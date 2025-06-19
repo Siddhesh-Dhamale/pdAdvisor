@@ -122,10 +122,10 @@
     transform-origin: bottom center;
     perspective: 600px;
 }
-
-.QASubcaption:hover {
-    transform: rotateX(25deg); /* creates a flip illusion */
-    color: red;
+.QAbutton:hover {
+    background-color: #d41b3a;
+    color: white !important;
+    border: 0;
 }
 
 .effect.effect-3 {
@@ -241,11 +241,10 @@
     }
 }
 
-.BusinessScrollContainer{
+.BusinessScrollContainer {
     height: 380px;
     overflow-y: scroll;
 }
-
 
 /* CTA */
 .cta-banner {
@@ -277,7 +276,7 @@
     /* z-index: -1; keep it behind text */
 }
 
-.cta-content{
+.cta-content {
     z-index: 1;
 }
 
@@ -317,7 +316,7 @@
     position: absolute;
     width: 70px;
     height: 70px;
-    background-color: var(--bs-body-bg);;
+    background-color: var(--bs-body-bg);
     /* Optional background */
     border-radius: 50%;
     display: flex;

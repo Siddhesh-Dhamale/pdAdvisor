@@ -113,28 +113,71 @@ header.scrolled .custom-nav-link {
 /* header css */
 
 /* cursor css */
-   #dot,
-    #ball {
-        position: fixed;
-        top: 0;
-        left: 0;
-        pointer-events: none;
-        z-index: 9999;
-        transform: translate(-50%, -50%);
-    }
+#dot,
+#ball {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+}
 
-    #dot {
-        width: 6px;
-        height: 6px;
-        background-color: black;
-        border-radius: 50%;
-    }
+#dot {
+    width: 6px;
+    height: 6px;
+    background-color: black;
+    border-radius: 50%;
+}
 
-    #ball {
-        width: 35px;
-        height: 35px;
-        border: 2px solid black;
-        border-radius: 50%;
-    }
+#ball {
+    width: 35px;
+    height: 35px;
+    border: 2px solid black;
+    border-radius: 50%;
+}
 
 /* cursor css end*/
+
+/* scroll down button css */
+
+.go-down-btn {
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+}
+
+.go-down-btn svg {
+    display: block;
+}
+
+.go-down-btn text {
+    font-size: 8px;
+    transform-origin: center;
+    animation: rotate-btn 10s linear infinite;
+}
+
+@keyframes rotate-btn {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.go-down-btn polygon {
+    transition: transform 0.3s ease;
+}
+
+.go-down-btn:hover polygon {
+    transform: translateY(3px);
+}
+
+.scrollText textPath {
+    fill: #c8102e;
+}
+
+.magnetic-btn {
+    display: inline-block;
+    transition: transform 0.2s ease;
+    will-change: transform;
+}
+/* scroll down button css end  */

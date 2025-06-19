@@ -120,6 +120,33 @@
                     </div>
                 </div>
             </section>
+            <section class="container ">
+                <div class="rotating-scroll magnetic-wrapper float-end p-3">
+                    <a href="" class="go-down-btn magnetic-btn" title="Scroll down">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                            width="120" height="120" viewBox="0 0 100 100" aria-hidden="true">
+
+                            <!-- Arrow Polygon -->
+                            <polygon fill="#878787" points="55.334,46 49.333,58 43.333,46" />
+
+                            <!-- Circular Path for Text -->
+                            <path id="textPath" fill="none" d="M89.322,50.197c0,22.09-17.91,40-40,40c-22.089,0-40-17.91-40-40 
+                                c0-22.089,17.911-40,40-40C71.412,10.197,89.322,28.108,89.322,50.197z" />
+
+                            <!-- Rotating Text Around Path -->
+                            <text class="scrollText" font-size="8" letter-spacing="2" fill="#000" textLength="350">
+                                <textPath href="#textPath" startOffset="-1%">
+                                    &nbsp; • SCROLL DOWN • SCROLL DOWN • SCROLL DOWN • SCROLL DOWN •
+                                </textPath>
+                            </text>
+
+                        </svg>
+                    </a>
+                </div>
+            </section>
+
+
             <section class="container py-5">
                 <div class="swiper industrySwiper">
                     <div class="swiper-wrapper">

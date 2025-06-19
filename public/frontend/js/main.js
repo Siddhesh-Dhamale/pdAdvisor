@@ -43,3 +43,29 @@ document.addEventListener("DOMContentLoaded", () => {
     animateCursor();
 });
 // END
+
+// scroll down rotating button
+
+const magneticBtn = document.querySelector(".magnetic-btn");
+const strength = 30; // max movement in px
+
+document.addEventListener("mousemove", (e) => {
+    const rect = magneticBtn.getBoundingClientRect();
+    const btnX = rect.left + rect.width / 2;
+    const btnY = rect.top + rect.height / 2;
+    const distX = e.clientX - btnX;
+    const distY = e.clientY - btnY;
+
+    const distance = Math.sqrt(distX * distX + distY * distY);
+
+    const maxDistance = 100; // sensitivity
+    if (distance < maxDistance) {
+        const moveX = (distX / maxDistance) * strength;
+        const moveY = (distY / maxDistance) * strength;
+        magneticBtn.style.transform = `translate(${moveX}px, ${moveY}px) scale(1.1)`;
+    } else {
+        magneticBtn.style.transform = "translate(0, 0) scale(1)";
+    }
+});
+
+// scroll down rotating button end
