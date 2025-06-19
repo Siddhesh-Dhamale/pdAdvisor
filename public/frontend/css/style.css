@@ -3,30 +3,9 @@
 @source '../**/*.blade.php';
 @source '../**/*.js';
 
-/* @theme {
-    --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif,
-        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
-        "Noto Color Emoji";
-} */
-/* Tropiline font face declarations */
-@font-face {
-    font-family: "Tropiline";
-    src: url("/fonts/tropiline-font-family/Tropiline-Regular.otf")
-        format("opentype");
-    font-weight: 400;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: "Tropiline";
-    src: url("/fonts/tropiline-font-family/Tropiline-Bold.otf")
-        format("opentype");
-    font-weight: 600;
-    font-style: normal;
-}
 
 body {
-    font-family: "Tropiline", sans-serif !important;
+    font-family: "Marcellus", sans-serif !important;
     overflow-x: hidden !important;
 }
 a {
