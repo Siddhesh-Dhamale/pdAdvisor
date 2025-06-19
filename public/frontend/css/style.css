@@ -1,0 +1,140 @@
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+/* @theme {
+    --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+        "Noto Color Emoji";
+} */
+/* Tropiline font face declarations */
+@font-face {
+    font-family: "Tropiline";
+    src: url("/fonts/tropiline-font-family/Tropiline-Regular.otf")
+        format("opentype");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Tropiline";
+    src: url("/fonts/tropiline-font-family/Tropiline-Bold.otf")
+        format("opentype");
+    font-weight: 600;
+    font-style: normal;
+}
+
+body {
+    font-family: "Tropiline", sans-serif !important;
+    overflow-x: hidden !important;
+}
+a {
+    text-decoration: none !important;
+}
+footer a {
+    text-decoration: none !important;
+    color: white !important;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Marcellus", serif !important;
+    /*font-weight: 400;*/
+    font-style: normal !important;
+}
+
+p,
+span,
+li,
+a,
+div,
+small {
+    font-family: "Marcellus", serif !important;
+    /*font-family: 'Montserrat', sans-serif !important;*/
+}
+.small {
+    font-size: 10px !important;
+}
+
+/* header css */
+
+header {
+    position: fixed;
+    width: 100%;
+    background-color: transparent;
+    z-index: 999;
+    color: white;
+}
+.custom-nav-link {
+    color: white;
+    position: relative;
+    font-weight: 400;
+}
+.nav-link {
+    color: white !important;
+}
+header.scrolled {
+    color: #000;
+    background-color: white !important;
+    transition: background-color 0.3s ease;
+}
+header.scrolled .nav-link {
+    color: #777 !important;
+}
+header.scrolled .custom-nav-link {
+    color: white;
+    position: relative;
+    font-weight: 400;
+}
+
+.custom-nav-link.active {
+    color: #000;
+}
+
+.custom-nav-link.active::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: #c8102e;
+    /* red underline */
+    margin-top: 4px;
+    border-radius: 1px;
+}
+.nav-link:focus,
+.nav-link:hover {
+    color: #c8102e !important;
+}
+
+/* header css */
+
+/* cursor css */
+   #dot,
+    #ball {
+        position: fixed;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+    }
+
+    #dot {
+        width: 6px;
+        height: 6px;
+        background-color: black;
+        border-radius: 50%;
+    }
+
+    #ball {
+        width: 35px;
+        height: 35px;
+        border: 2px solid black;
+        border-radius: 50%;
+    }
+
+/* cursor css end*/
