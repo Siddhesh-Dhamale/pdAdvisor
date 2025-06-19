@@ -352,3 +352,7 @@
 }
 
 /* Rotating circle css */
+
+.companyTitle:hover {
+    color: #c8102e;
+}

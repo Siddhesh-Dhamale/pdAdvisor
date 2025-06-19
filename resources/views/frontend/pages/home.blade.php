@@ -291,7 +291,7 @@
                                     <span class="small badge rounded-pill text-bg-secondary px-3 py-2">Solutions by Us</span>
                                     <span class="small px-3">January 29, 2020</span>
                                 </div>
-                                <p class="fw-medium pt-3">RetailCo. revitalizes performance with customer-centric shift</p>
+                                <p class="fw-medium pt-3  companyTitle">RetailCo. revitalizes performance with customer-centric shift</p>
                                 <p class="QASubcaption small">We applied our proprietary value-mapping methodology to align leadership, redefine KPIs, and instil a culture of data-informed decisions.</p>
                             </div>
                         </div>
@@ -311,7 +311,7 @@
                                     <span class="small badge rounded-pill text-bg-secondary px-3 py-2">Solutions by Us</span>
                                     <span class="small px-3">January 29, 2020</span>
                                 </div>
-                                <p class="fw-medium pt-3">Smart Supply Chains: Data-Driven, Sustainable, Ready</p>
+                                <p class="fw-medium pt-3 companyTitle">Smart Supply Chains: Data-Driven, Sustainable, Ready</p>
                                 <p class="QASubcaption small">Through our unique value-mapping framework, we brought alignment across leadership, transformed performance metrics, and championed data-backed decisions.</p>
                             </div>
                         </div>
@@ -331,7 +331,7 @@
                         <!--            <span class="small badge rounded-pill text-bg-secondary px-3">Business</span>-->
                         <!--            <span class="small px-3">January 29, 2020</span>-->
                         <!--        </div>-->
-                        <!--        <p class="fw-medium pt-3">Strategic Value Framework</p>-->
+                        <!--        <p class="fw-medium pt-3 companyTitle">Strategic Value Framework</p>-->
                         <!--        <p class="QASubcaption small">We applied our proprietary value-mapping methodology to align leadership, redefine KPIs, and instil a culture of data-informed decisions.</p>-->
                         <!--    </div>-->
                         <!--</div>-->
