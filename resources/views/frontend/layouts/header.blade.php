@@ -4,7 +4,7 @@
     <nav>
         <ul class="nav">
             <li class="nav-item">
-                <a class="nav-link active custom-nav-link" href="#">Home</a>
+                <a class="nav-link active custom-nav-link" href="/">Home</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link custom-nav-link" href="#">Industries</a>
@@ -16,7 +16,7 @@
                 <a class="nav-link custom-nav-link" href="#">Insights</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link custom-nav-link" href="#">About Us</a>
+                <a class="nav-link custom-nav-link" href="/About">About Us</a>
             </li>
             <!--<li class="nav-item">-->
             <!--    <a class="nav-link custom-nav-link" href="#">About Us</a>-->

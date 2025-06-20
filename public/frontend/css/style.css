@@ -3,7 +3,6 @@
 @source '../**/*.blade.php';
 @source '../**/*.js';
 
-
 body {
     font-family: "Marcellus", sans-serif !important;
     overflow-x: hidden !important;
@@ -90,6 +89,102 @@ header.scrolled .custom-nav-link {
 }
 
 /* header css */
+
+/* title border */
+.brdr-bottom {
+    position: relative;
+    z-index: 11;
+}
+
+.brdr-bottom::after {
+    content: "";
+    padding: 2px;
+    width: 100%;
+    background-color: #c8102e;
+    position: absolute;
+    bottom: 2px;
+    left: 0;
+    z-index: -1;
+}
+.brdr-bottom-hero {
+    position: relative;
+    z-index: 11;
+}
+
+.brdr-bottom-hero::after {
+    content: "";
+    padding: 1px;
+    width: 100%;
+    background-color: #c8102e;
+    position: absolute;
+    bottom: 3px;
+    left: 0;
+    z-index: -1;
+}
+/* title border end*/
+
+/* Hero banner  */
+.hero-swiper .swiper-slide {
+    height: 100dvh;
+}
+.hero-swiper .swiper-slide img {
+    width: 100%;
+    height: 100%;
+}
+
+.hero {
+    background-color: #f8f9fa;
+    /* padding: 60px 0; */
+    text-align: center;
+}
+
+.icons-section {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 90;
+}
+
+.icons-section svg .cls-1 {
+    fill: white;
+}
+
+.icons-section i {
+    font-size: 2rem;
+    margin: 10px;
+}
+
+.HeroContent {
+    position: absolute;
+    top: 25%;
+    left: 10%;
+    color: white;
+    width: 50%;
+    font: normal normal 600 55px/65px Tropiline;
+}
+
+.HeroContent p {
+    font-size: 30px !important;
+}
+
+.HeroContent h1 {
+    font-size: 50px;
+}
+/* Hero banner end */
+
+/* subcaptions css */
+.QASubcaption {
+    opacity: 0.5;
+}
+.QASubcaption {
+    display: inline-block;
+    transition: transform 0.5s ease, color 0.5s ease;
+    transform-origin: bottom center;
+    perspective: 600px;
+}
+
+/* subcaptions css */
 
 /* cursor css */
 #dot,

@@ -1,33 +1,4 @@
-.brdr-bottom {
-    position: relative;
-    z-index: 11;
-}
 
-.brdr-bottom::after {
-    content: "";
-    padding: 2px;
-    width: 100%;
-    background-color: #c8102e;
-    position: absolute;
-    bottom: 2px;
-    left: 0;
-    z-index: -1;
-}
-.brdr-bottom-hero {
-    position: relative;
-    z-index: 11;
-}
-
-.brdr-bottom-hero::after {
-    content: "";
-    padding: 1px;
-    width: 100%;
-    background-color: #c8102e;
-    position: absolute;
-    bottom: 3px;
-    left: 0;
-    z-index: -1;
-}
 
 .icon-trigger {
     position: relative;
