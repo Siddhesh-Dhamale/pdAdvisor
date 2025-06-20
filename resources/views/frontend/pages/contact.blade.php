@@ -34,8 +34,8 @@ $page_name = 'contact-us';
             <section class="py-5 w-75 mx-auto">
                 <div class="container">
                     <p class="text-uppercase text-muted small mb-2 section-subtitle">Contact Us</p>
-                    <h2 class="highlight-title">
-                        <span class="highlight-line">Connect with us to discover how our experts can</span><br>
+                    <h2 class="highlight-title mx-auto">
+                        <span class="brdr-bottom">Connect with us to discover how our experts can</span><br>
                         help you achieve your goals
                     </h2>
                 </div>

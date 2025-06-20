@@ -7,9 +7,7 @@
     <title>Insights Page</title>
     {{view('frontend.layouts.css')}}
     <link rel="stylesheet" href="frontend/css/insights.css">
-
-
-
+    <link rel="stylesheet" href="frontend/css/home.css">
 </head>
 <?php
 $page_name = 'insights'; 
@@ -25,7 +23,8 @@ $page_name = 'insights';
                 <div class="hero-container">
                     <img src="frontend/img/insight/insights-banner.png" alt="Hero Image" class="hero-image">
                     <div class="hero-content">
-                        <h1> <span class="highlight-line-1">Big visions start with a</span><br>simple conversation.</h1>
+                        <h1 class="fw-bold"> <span class="brdr-bottom">Big visions start with a</span><br>simple
+                            conversation.</h1>
                         <a href="#contact"
                             class="btn btn-danger rounded-lg px-4 btn-contact align-item-right">Contact</a>
                     </div>
@@ -59,8 +58,8 @@ $page_name = 'insights';
                 </div>
                 <div class="container heading-section">
                     <!-- <p class="text-uppercase text-muted small mb-2 section-subtitle">Contact Us</p> -->
-                    <h2 class="highlight-title text-center">
-                        <span class="highlight-line">Stay ahead with our latest thinking.
+                    <h2 class="fw-bold text-center" >
+                        <span class="brdr-bottom">Stay ahead with our latest thinking.</span>
                     </h2>
                     <p class="mx-auto mt-5">Explore our latest research, client stories, and expert perspectives to help
                         you stay ahead in an
@@ -71,7 +70,7 @@ $page_name = 'insights';
             </section>
 
 
-
+            <!-- FILTERING SECTION -->
             <section>
                 <div class="container py-5">
                     <div class="row">
@@ -81,8 +80,8 @@ $page_name = 'insights';
                                 <!-- Example Article -->
                                 <div class="col-md-6 article" data-topic="Strategy">
                                     <div class="card article-card">
-                                        <img src="https://via.placeholder.com/400x160" class="card-img-top article-img"
-                                            alt="...">
+                                        <img src="frontend/img/insight/service-card-1.png"
+                                            class="card-img-top article-img" alt="...">
                                         <div class="card-body">
                                             <h6 class="card-title">Energy Executive Agenda 2025: New Challenges, New
                                                 Innovations</h6>
@@ -95,8 +94,8 @@ $page_name = 'insights';
 
                                 <div class="col-md-6 article" data-topic="AI & Data">
                                     <div class="card article-card">
-                                        <img src="https://via.placeholder.com/400x160" class="card-img-top article-img"
-                                            alt="...">
+                                        <img src="frontend/img/insight/service-card-2.png"
+                                            class="card-img-top article-img" alt="...">
                                         <div class="card-body">
                                             <h6 class="card-title">AI and Sustainability: The Power of Integration</h6>
                                             <p class="card-text">Three practices to help companies deploy a more
@@ -154,63 +153,89 @@ $page_name = 'insights';
                 </div>
             </section>
 
-            <section class="contact-map-section py-5">
-                <!-- Google Map Image (replace with iframe if dynamic map needed) -->
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3768.1032544438103!2d72.95256187525315!3d19.19069198203768!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b905c193fc1d%3A0xe51ccf4213ab2fff!2sCrezvatic%20Pvt.%20Ltd.!5e0!3m2!1sen!2sin!4v1750401326727!5m2!1sen!2sin"
-                    width="100%" height="600" style="border:0;" allowfullscreen="" loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <!-- CTA SECTION -->
+            <section class="circleContainer position-relative d-flex justify-content-center bg-white pt-5 mb-0">
 
-                <!-- Contact Box -->
-                <div class="contact-box">
-                    <h4>Get In Touch</h4>
-                    <p><strong>Email:</strong> info@pdadvisorsandstrategists.com</p>
-                    <p><strong>Address:</strong> 202 Leo Building 24th Road, near Starbucks Bandra (W),<br>Mumbai-400052
-                        Maharashtra</p>
-                    <p><strong>Contact:</strong> +91 9820202059</p>
-                </div>
-            </section>
-
-            <section class="contact-form-section">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <!-- Left Text Column -->
-                        <div class="col-md-5 contact-left">
-                            <h2>Let’s<br>contact<br>for<br>better<br>result</h2>
-                            <div class="divider-line"></div>
-                            <div class="company-logo">Company Logo</div>
-                        </div>
-
-                        <!-- Right Form Column -->
-                        <div class="col-md-7">
-                            <form>
-                                <div class="mb-3">
-                                    <input type="text" class="form-control" placeholder="Name" required>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-md-6 mb-2 mb-md-0">
-                                        <input type="email" class="form-control" placeholder="Email" required>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="text" class="form-control" placeholder="Phone" required>
-                                    </div>
-                                </div>
-                                <div class="mb-3">
-                                    <input type="text" class="form-control" placeholder="Company">
-                                </div>
-                                <div class="mb-3">
-                                    <input type="url" class="form-control" placeholder="Website">
-                                </div>
-                                <div class="mb-3">
-                                    <textarea class="form-control" rows="4" placeholder="Message"></textarea>
-                                </div>
-                                <button type="submit" class="submit-btn">Submit Now</button>
-                            </form>
+                <div class="circle2">
+                    <div class="circle">
+                        <div class="logo"><i class="fa-solid fa-plus text-dark"></i></div>
+                        <div class="text">
+                            <p class=""><span style="transform: rotate(0deg)">
+                                </span><span style="transform: rotate(10.3deg)"> </span><span
+                                    style="transform: rotate(20.6deg)"> </span><span
+                                    style="transform: rotate(30.900000000000002deg)"> </span><span
+                                    style="transform: rotate(41.2deg)"> </span><span style="transform: rotate(51.5deg)">
+                                </span><span style="transform: rotate(61.800000000000004deg)"> </span><span
+                                    style="transform: rotate(72.10000000000001deg)"> </span><span
+                                    style="transform: rotate(82.4deg)"> </span><span style="transform: rotate(92.7deg)">
+                                </span><span style="transform: rotate(103deg)"> </span><span
+                                    style="transform: rotate(113.30000000000001deg)"> </span><span
+                                    style="transform: rotate(123.60000000000001deg)"> </span><span
+                                    style="transform: rotate(133.9deg)"> </span><span
+                                    style="transform: rotate(144.20000000000002deg)"> </span><span
+                                    style="transform: rotate(154.5deg)"> </span><span
+                                    style="transform: rotate(164.8deg)"> </span><span
+                                    style="transform: rotate(175.10000000000002deg)"> </span><span
+                                    style="transform: rotate(185.4deg)"> </span><span
+                                    style="transform: rotate(195.70000000000002deg)"> </span><span
+                                    style="transform: rotate(206deg)"> </span><span style="transform: rotate(216.3deg)">
+                                </span><span style="transform: rotate(226.60000000000002deg)"> </span><span
+                                    style="transform: rotate(236.9deg)"> </span><span
+                                    style="transform: rotate(247.20000000000002deg)"> </span><span
+                                    style="transform: rotate(257.5deg)"> </span><span
+                                    style="transform: rotate(267.8deg)"> </span><span
+                                    style="transform: rotate(278.1deg)"> </span><span
+                                    style="transform: rotate(288.40000000000003deg)"> </span><span
+                                    style="transform: rotate(298.70000000000005deg)"> </span><span
+                                    style="transform: rotate(309deg)"> </span><span style="transform: rotate(319.3deg)">
+                                </span><span style="transform: rotate(329.6deg)"> </span><span
+                                    style="transform: rotate(339.90000000000003deg)">T</span><span
+                                    style="transform: rotate(350.20000000000005deg)">u</span><span
+                                    style="transform: rotate(360.5deg)">r</span><span
+                                    style="transform: rotate(370.8deg)">n</span><span
+                                    style="transform: rotate(381.1deg)">i</span><span
+                                    style="transform: rotate(391.40000000000003deg)">n</span><span
+                                    style="transform: rotate(401.70000000000005deg)">g</span><span
+                                    style="transform: rotate(412deg)"> </span><span
+                                    style="transform: rotate(422.3deg)">B</span><span
+                                    style="transform: rotate(432.6deg)">u</span><span
+                                    style="transform: rotate(442.90000000000003deg)">s</span><span
+                                    style="transform: rotate(453.20000000000005deg)">i</span><span
+                                    style="transform: rotate(463.50000000000006deg)">n</span><span
+                                    style="transform: rotate(473.8deg)">e</span><span
+                                    style="transform: rotate(484.1deg)">s</span><span
+                                    style="transform: rotate(494.40000000000003deg)">s</span><span
+                                    style="transform: rotate(504.70000000000005deg)">e</span><span
+                                    style="transform: rotate(515deg)">s</span><span
+                                    style="transform: rotate(525.3000000000001deg)"> </span><span
+                                    style="transform: rotate(535.6deg)">.</span><span
+                                    style="transform: rotate(545.9000000000001deg)"> </span><span
+                                    style="transform: rotate(556.2deg)">I</span><span
+                                    style="transform: rotate(566.5deg)">n</span><span
+                                    style="transform: rotate(576.8000000000001deg)">t</span><span
+                                    style="transform: rotate(587.1deg)">o</span><span
+                                    style="transform: rotate(597.4000000000001deg)"> </span><span
+                                    style="transform: rotate(607.7deg)">W</span><span
+                                    style="transform: rotate(618deg)">i</span><span
+                                    style="transform: rotate(628.3000000000001deg)">n</span><span
+                                    style="transform: rotate(638.6deg)">n</span><span
+                                    style="transform: rotate(648.9000000000001deg)">e</span><span
+                                    style="transform: rotate(659.2deg)">r</span><span
+                                    style="transform: rotate(669.5deg)">s</span><span
+                                    style="transform: rotate(679.8000000000001deg)"> </span><span
+                                    style="transform: rotate(690.1deg)">.</span><span
+                                    style="transform: rotate(700.4000000000001deg)"> </span></p>
                         </div>
                     </div>
                 </div>
+                <div class="cta-banner">
+                    <div class="cta-content">
+                        <h2 class="fw-bold"><span class="brdr-bottom">Guiding high-impact organizations to
+                                scale</span><br> with vision and purpose</h2>
+                        <a class="btn btn-danger rounded-lg px-4" href="#">Let’s Make It Happen</a>
+                    </div>
+                </div>
             </section>
-
 
 
 
@@ -277,6 +302,12 @@ $page_name = 'insights';
             }
         });
     </script>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap 5 JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 
 
     {{ view('frontend.layouts.scripts') }}
