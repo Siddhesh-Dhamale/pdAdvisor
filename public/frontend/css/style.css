@@ -126,6 +126,7 @@ header.scrolled .custom-nav-link {
 /* Hero banner  */
 .hero-swiper .swiper-slide {
     height: 100dvh;
+    max-height: 60vw;
 }
 .hero-swiper .swiper-slide img {
     width: 100%;
@@ -157,7 +158,7 @@ header.scrolled .custom-nav-link {
 
 .HeroContent {
     position: absolute;
-    top: 25%;
+    top: 35%;
     left: 10%;
     color: white;
     width: 50%;
