@@ -120,6 +120,7 @@
                     </div>
                 </div>
             </section>
+
             <section class="container ">
                 <div class="rotating-scroll magnetic-wrapper float-end p-3">
                     <a href="" class="go-down-btn magnetic-btn" title="Scroll down">
@@ -424,15 +425,7 @@
 
         </div>
     </div>
-    <!-- rotating circle script  -->
-    <script>
-        const text = document.querySelector(".text p");
-        const str = text.textContent;
-        text.innerHTML = str
-            .split("")
-            .map((char, i) => `<span style="transform: rotate(${i * 10.3}deg)" >${char}</span>`)
-            .join("");
-    </script>
+
     {{ view('frontend.layouts.scripts') }}
     {{view('frontend.layouts.footer')}}
 

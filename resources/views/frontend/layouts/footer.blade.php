@@ -1,4 +1,5 @@
 <style>
+
     ul li,
     ul {
         list-style: none;
@@ -39,18 +40,18 @@
 </style>
 
 
-<footer class="pt-5 text-white">
-    <div class="overflow-hidden p-0">
+<footer class="pt-5 text-white ">
+    <div class="overflow-hidden p-0 w-100">
         <div class="row">
             <div class="col-md-4 col-0 bg-lightgray"></div>
             <div class="col-md-8 col-12 p-0 ">
                 <div class="bg-danger p-4 socialNames text-start d-flex justify-content-between">
-                    <span class="mx-3   ">Facebook</span>
-                    <span class="mx-3   ">Instagram</span>
-                    <span class="mx-3   ">YouTube</span>
-                    <span class="mx-3   ">WhatsApp</span>
-                    <span class="mx-3   ">Twitter</span>
-                    <span class="mx-3   ">LinkedIn</span>
+                    <span class="mx-3">Facebook</span>
+                    <span class="mx-3">Instagram</span>
+                    <span class="mx-3">YouTube</span>
+                    <span class="mx-3">WhatsApp</span>
+                    <span class="mx-3">Twitter</span>
+                    <span class="mx-3">LinkedIn</span>
                 </div>
             </div>
         </div>
