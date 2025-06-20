@@ -237,15 +237,6 @@ $page_name = 'insights';
                 </div>
             </section>
 
-
-
-
-
-
-            <!-- <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script> -->
-
-
-
         </div>
     </div>
     <!-- rotating circle script  -->
@@ -257,58 +248,6 @@ $page_name = 'insights';
             .map((char, i) => `<span style="transform: rotate(${i * 10.3}deg)" >${char}</span>`)
             .join("");
     </script>
-
-    <script>
-        // FILTERING LOGIC
-        function filterArticles() {
-            const selectedTopic = document.querySelector('input[name="topic"]:checked')?.value || '';
-            const selectedIndustry = document.querySelector('input[name="industry"]:checked')?.value || '';
-
-            document.querySelectorAll('.article').forEach(card => {
-                const cardTopic = card.getAttribute('data-topic');
-                const cardIndustry = card.getAttribute('data-industry');
-
-                const topicMatch = !selectedTopic || cardTopic === selectedTopic;
-                const industryMatch = !selectedIndustry || cardIndustry === selectedIndustry;
-
-                card.style.display = (topicMatch && industryMatch) ? 'block' : 'none';
-            });
-        }
-
-        // Apply filter on topic change
-        document.querySelectorAll('input[name="topic"]').forEach(radio => {
-            radio.addEventListener('change', filterArticles);
-        });
-
-        // Apply filter on industry change
-        document.querySelectorAll('input[name="industry"]').forEach(radio => {
-            radio.addEventListener('change', filterArticles);
-        });
-
-        // COLLAPSE TOGGLE + ARROW DIRECTION
-        document.querySelectorAll('.filter-title').forEach(header => {
-            const targetSelector = header.getAttribute('data-bs-target');
-            const collapseTarget = document.querySelector(targetSelector);
-            const arrow = header.querySelector('.arrow');
-
-            if (collapseTarget) {
-                collapseTarget.addEventListener('show.bs.collapse', () => {
-                    arrow.textContent = '▲';
-                });
-
-                collapseTarget.addEventListener('hide.bs.collapse', () => {
-                    arrow.textContent = '▼';
-                });
-            }
-        });
-    </script>
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Bootstrap 5 JS Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-
 
     {{ view('frontend.layouts.scripts') }}
     {{view('frontend.layouts.footer')}}
