@@ -57,11 +57,7 @@ $page_name = 'insights';
                 </div>
                 <div class="container heading-section">
                     <!-- <p class="text-uppercase text-muted small mb-2 section-subtitle">Contact Us</p> -->
-<<<<<<< HEAD
                     <h2 class="fw-bold text-center">
-=======
-                    <h1 class="fw-bold text-center">
->>>>>>> b233133af902ab18883199ddd9231d6a655c65c7
                         <span class="brdr-bottom">Stay ahead with our latest thinking.</span>
                     </h1>
                     <p class="mx-auto mt-5 text-center">Explore our latest research, client stories, and expert perspectives to help
@@ -269,15 +265,6 @@ $page_name = 'insights';
 
         </div>
     </div>
-    <!-- rotating circle script  -->
-    <!-- <script>
-        const text = document.querySelector(".text p");
-        const str = text.textContent;
-        text.innerHTML = str
-            .split("")
-            .map((char, i) => `<span style="transform: rotate(${i * 10.3}deg)" >${char}</span>`)
-            .join("");
-    </script> -->
 
     {{ view('frontend.layouts.scripts') }}
     {{view('frontend.layouts.footer')}}
