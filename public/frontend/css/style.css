@@ -47,6 +47,10 @@ header {
     z-index: 999;
     color: white;
 }
+.companyLogo {
+    text-decoration: none !important;
+    color: white;
+}
 .custom-nav-link {
     color: white;
     position: relative;
@@ -60,13 +64,16 @@ header.scrolled {
     background-color: white !important;
     transition: background-color 0.3s ease;
 }
-header.scrolled .nav-link {
+header.scrolled .nav-link, header.scrolled .companyLogo {
     color: #777 !important;
 }
 header.scrolled .custom-nav-link {
     color: white;
     position: relative;
     font-weight: 400;
+}
+header.scrolled .custom-nav-link.active {
+    color: #c8102e !important;
 }
 
 .custom-nav-link.active {
@@ -256,3 +263,109 @@ header.scrolled .custom-nav-link {
     will-change: transform;
 }
 /* scroll down button css end  */
+/* CTA */
+.cta-banner {
+    background-image: url("../img/home/CTA.webp");
+    background-repeat: no-repeat;
+    /* background-size: cover; */
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 300px;
+    height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    padding: 50px 20px;
+    width: 100%;
+    position: relative;
+}
+
+.cta-banner::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* semi-transparent black */
+    /* z-index: -1; keep it behind text */
+}
+
+.cta-content {
+    z-index: 1;
+}
+
+.cta-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+/* Rotating circle css */
+
+.circle {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /*margin-bottom: -80px;*/
+    background-color: black;
+}
+
+.circle2 {
+    position: absolute;
+    z-index: 1;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: -25px;
+    background-color: white;
+}
+
+.logo {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    background-color: var(--bs-body-bg);
+    /* Optional background */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #000;
+}
+
+.text {
+    position: absolute;
+    width: auto;
+    height: 100px;
+    font-family: consolas;
+    color: white;
+    font-size: 9px;
+    animation: textRotation 8s linear infinite;
+}
+
+@keyframes textRotation {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.text span {
+    position: absolute;
+    left: 50%;
+    transform-origin: 0 50px;
+    /* Half of circle's radius */
+    font-size: 0.8em;
+}
+
+/* Rotating circle css */

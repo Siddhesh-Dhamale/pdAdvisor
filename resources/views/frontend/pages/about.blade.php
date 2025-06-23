@@ -23,19 +23,11 @@
                         <div class="swiper-slide position-relative">
                             <img class="w-100" src="frontend/img/about/abtHero.png" alt="">
                             <div class="HeroContent text-start lh-1">
-                                <h1 class=" underlinedHeading fw-bold"><span class="brdr-bottom-hero">Empowering Ambitious</span></h1>
+                                <h2 class=" underlinedHeading"><span class="brdr-bottom-hero">Empowering Ambitious</span></h2>
                                 <h1 class="m-0 p-0"> Leaders to Shape the <br> Future</h1>
-                                <a class="btn btn-danger rounded-lg px-4 my-4" href="#">Contact</a>
+                                <a class="btn btn-danger rounded-lg px-4 my-5" href="#">Contact</a>
                             </div>
                         </div>
-                        <!-- <div class="swiper-slide position-relative">
-                            <img class="w-100" src="frontend/img/about/abtHero.png" alt="">
-                            <div class="HeroContent text-start lh-1">
-                                <h1 class=" underlinedHeading fw-bold"><span class="brdr-bottom-hero">Empowering Ambitious</span></h1>
-                                <h1 class="m-0 p-0"> Leaders to Shape the Future</h1>
-                                <a class="btn btn-danger rounded-lg px-4 my-4" href="#">Contact</a>
-                            </div>
-                        </div> -->
                     </div>
                 </div>
             </section>
@@ -83,7 +75,7 @@
                     <div class=" row justify-content-evenly text-start pt-2">
                         <div class="col-12 col-md-2"><small>Our Approach</small></div>
                         <div class="col-12 col-md-4">
-                            <h1><span class="brdr-bottom">A Trusted Partner</span> <br> In Strategic <br>Transformation</h1>
+                            <h1 class="fw-bold"><span class="brdr-bottom">A Trusted Partner</span> <br> In Strategic <br>Transformation</h1>
                         </div>
                         <div class="col-12 col-md-4">
                             <p class="QASubcaption">PD Advisors & Strategists is a premier consultancy dedicated to guiding organizations through pivotal transformations. Our multidisciplinary team combines deep industry knowledge with innovative thinking to address our clients' most pressing needs.</p>

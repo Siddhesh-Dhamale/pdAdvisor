@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="frontend/css/home.css">
 </head>
 <?php
-$page_name = 'insights'; 
+$page_name = 'insights';
 ?>
 
 <body>
@@ -23,8 +23,7 @@ $page_name = 'insights';
                 <div class="hero-container">
                     <img src="frontend/img/insight/insights-banner.png" alt="Hero Image" class="hero-image">
                     <div class="hero-content">
-                        <h1 class="fw-bold"> <span class="brdr-bottom">Big visions start with a</span><br>simple
-                            conversation.</h1>
+                        <h1 class="fw-bold"> <span class="brdr-bottom">Helping Industry </span> <br> Leaders Lead the Future</h1>
                         <a href="#contact"
                             class="btn btn-danger rounded-lg px-4 btn-contact align-item-right">Contact</a>
                     </div>
@@ -58,10 +57,10 @@ $page_name = 'insights';
                 </div>
                 <div class="container heading-section">
                     <!-- <p class="text-uppercase text-muted small mb-2 section-subtitle">Contact Us</p> -->
-                    <h2 class="fw-bold text-center" >
+                    <h1 class="fw-bold text-center">
                         <span class="brdr-bottom">Stay ahead with our latest thinking.</span>
-                    </h2>
-                    <p class="mx-auto mt-5">Explore our latest research, client stories, and expert perspectives to help
+                    </h1>
+                    <p class="mx-auto mt-5 text-center">Explore our latest research, client stories, and expert perspectives to help
                         you stay ahead in an
                         ever-changing world. Our insights reflect the depth of our experience across industries and
                         capabilities, offering practical guidance and innovative thinking.</p>
@@ -240,14 +239,14 @@ $page_name = 'insights';
         </div>
     </div>
     <!-- rotating circle script  -->
-    <script>
+    <!-- <script>
         const text = document.querySelector(".text p");
         const str = text.textContent;
         text.innerHTML = str
             .split("")
             .map((char, i) => `<span style="transform: rotate(${i * 10.3}deg)" >${char}</span>`)
             .join("");
-    </script>
+    </script> -->
 
     {{ view('frontend.layouts.scripts') }}
     {{view('frontend.layouts.footer')}}
