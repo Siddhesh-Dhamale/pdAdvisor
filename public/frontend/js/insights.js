@@ -41,3 +41,28 @@ document.querySelectorAll('.filter-title').forEach(header => {
         });
     }
 });
+
+// TOGGLE DESELECTION FOR RADIO BUTTONS
+function enableRadioToggle(groupName) {
+    let lastChecked = null;
+
+    document.querySelectorAll(`input[name="${groupName}"]`).forEach(radio => {
+        radio.addEventListener('mousedown', function (e) {
+            if (this === lastChecked) {
+                // Deselect on second click
+                e.preventDefault(); // Prevent the default selection
+                this.checked = false;
+                lastChecked = null;
+                filterArticles(); // Trigger the filter manually
+            } else {
+                lastChecked = this;
+            }
+        });
+
+        radio.addEventListener('change', filterArticles);
+    });
+}
+
+// Run toggling logic for both groups
+enableRadioToggle('topic');
+enableRadioToggle('industry');
