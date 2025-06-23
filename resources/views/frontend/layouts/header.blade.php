@@ -1,26 +1,25 @@
 <header class="d-flex justify-content-evenly align-items-baseline px-4 py-4 ">
-    <div class="fw-semibold">Company Logo</div>
-
+    <a class="companyLogo" href="/">
+        <div class="fw-semibold ">Company Logo</div>
+    </a>
     <nav>
         <ul class="nav">
             <li class="nav-item">
-                <a class="nav-link active custom-nav-link" href="/">Home</a>
+                <a class="nav-link custom-nav-link {{ request()->is('/') ? 'active' : '' }}" href="/">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link custom-nav-link" href="#">Industries</a>
+                <a class="nav-link custom-nav-link {{ request()->is('industries') ? 'active' : '' }}" href="/industries">Industries</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link custom-nav-link" href="#">Capabilities</a>
+                <a class="nav-link custom-nav-link {{ request()->is('services') ? 'active' : '' }}" href="/services">Solutions</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link custom-nav-link" href="#">Insights</a>
+                <a class="nav-link custom-nav-link {{ request()->is('insights') ? 'active' : '' }}" href="/insights">Insights</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link custom-nav-link" href="/About">About Us</a>
+                <a class="nav-link custom-nav-link {{ request()->is('about') ? 'active' : '' }}" href="/about">About Us</a>
             </li>
-            <!--<li class="nav-item">-->
-            <!--    <a class="nav-link custom-nav-link" href="#">About Us</a>-->
-            <!--</li>-->
+
         </ul>
     </nav>
 
@@ -28,7 +27,7 @@
         <!-- ✅ Font Awesome Search Icon -->
         <i class="fas fa-search" style="font-size: 1.2rem;"></i>
 
-        <a class="btn btn-danger rounded-lg px-4" href="#">Contact Us</a>
+        <a class="btn btn-danger rounded-lg px-4" href="/contact">Contact Us</a>
     </div>
 </header>
 

@@ -24,7 +24,7 @@ $page_name = 'contact-us';
                 <div class="hero-container">
                     <img src="frontend/img/contact/contact-banner.png" alt="Hero Image" class="hero-image">
                     <div class="hero-content">
-                        <h1>Big visions start with a<br>simple conversation.</h1>
+                        <h1 >Big visions start with a<br>simple conversation.</h1>
                         <a href="#contact"
                             class="btn btn-danger rounded-lg px-4 btn-contact align-item-right">Contact</a>
                     </div>
@@ -34,10 +34,10 @@ $page_name = 'contact-us';
             <section class="py-5 w-75 mx-auto">
                 <div class="container">
                     <p class="text-uppercase text-muted small mb-2 section-subtitle">Contact Us</p>
-                    <h2 class="highlight-title mx-auto">
+                    <h1 class="highlight-title mx-auto fw-bold">
                         <span class="brdr-bottom">Connect with us to discover how our experts can</span><br>
                         help you achieve your goals
-                    </h2>
+                    </h1>
                 </div>
             </section>
 
@@ -111,14 +111,14 @@ $page_name = 'contact-us';
         </div>
     </div>
     <!-- rotating circle script  -->
-    <script>
+    <!-- <script>
         const text = document.querySelector(".text p");
         const str = text.textContent;
         text.innerHTML = str
             .split("")
             .map((char, i) => `<span style="transform: rotate(${i * 10.3}deg)" >${char}</span>`)
             .join("");
-    </script>
+    </script> -->
     {{ view('frontend.layouts.scripts') }}
     {{view('frontend.layouts.footer')}}
 

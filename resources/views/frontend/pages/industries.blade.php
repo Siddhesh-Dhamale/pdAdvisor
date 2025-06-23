@@ -322,14 +322,14 @@ $page_name = 'industries';
         </div>
     </div>
     <!-- rotating circle script  -->
-    <script>
+    <!-- <script>
         const text = document.querySelector(".text p");
         const str = text.textContent;
         text.innerHTML = str
             .split("")
             .map((char, i) => `<span style="transform: rotate(${i * 10.3}deg)" >${char}</span>`)
             .join("");
-    </script>
+    </script> -->
 
 
 
