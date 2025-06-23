@@ -57,7 +57,11 @@ $page_name = 'insights';
                 </div>
                 <div class="container heading-section">
                     <!-- <p class="text-uppercase text-muted small mb-2 section-subtitle">Contact Us</p> -->
+<<<<<<< HEAD
+                    <h2 class="fw-bold text-center">
+=======
                     <h1 class="fw-bold text-center">
+>>>>>>> b233133af902ab18883199ddd9231d6a655c65c7
                         <span class="brdr-bottom">Stay ahead with our latest thinking.</span>
                     </h1>
                     <p class="mx-auto mt-5 text-center">Explore our latest research, client stories, and expert perspectives to help
@@ -103,6 +107,30 @@ $page_name = 'insights';
                                         </div>
                                     </div>
                                 </div>
+                                <div class="col-md-6 article" data-topic="AI & Data">
+                                    <div class="card article-card">
+                                        <img src="frontend/img/insight/service-card-2.png"
+                                            class="card-img-top article-img" alt="...">
+                                        <div class="card-body">
+                                            <h6 class="card-title">AI and Sustainability: The Power of Integration</h6>
+                                            <p class="card-text">Three practices to help companies deploy a more
+                                                carbon-conscious, tech-focused approach.</p>
+                                            <span class="read-more">Read more >>></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 article" data-topic="AI & Data">
+                                    <div class="card article-card">
+                                        <img src="frontend/img/insight/service-card-2.png"
+                                            class="card-img-top article-img" alt="...">
+                                        <div class="card-body">
+                                            <h6 class="card-title">AI and Sustainability: The Power of Integration</h6>
+                                            <p class="card-text">Three practices to help companies deploy a more
+                                                carbon-conscious, tech-focused approach.</p>
+                                            <span class="read-more">Read more >>></span>
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <!-- Add more articles as needed -->
                             </div>
@@ -117,6 +145,7 @@ $page_name = 'insights';
                                     Explore by Topic <span class="arrow">▲</span>
                                 </div>
                                 <div class="collapse show filter-options ps-3 pt-2" id="topicFilter">
+                                    <label><input type="radio" name="topic" value="" checked> All</label>
                                     <label><input type="radio" name="topic" value="Strategy"> Strategy</label>
                                     <label><input type="radio" name="topic" value="Technology"> Technology</label>
                                     <label><input type="radio" name="topic" value="AI & Data"> AI & Data</label>
@@ -132,6 +161,7 @@ $page_name = 'insights';
                                 </div>
                             </div>
 
+
                             <!-- Explore by Industry -->
                             <div class="mb-4">
                                 <div class="filter-title d-flex justify-content-between align-items-center collapsed"
@@ -139,6 +169,7 @@ $page_name = 'insights';
                                     Explore by Industry <span class="arrow">▼</span>
                                 </div>
                                 <div class="collapse filter-options ps-3 pt-2" id="industryFilter">
+                                    <label><input type="radio" name="industry" value="" checked> All</label>
                                     <label><input type="radio" name="industry" value="Energy"> Energy</label>
                                     <label><input type="radio" name="industry" value="Healthcare"> Healthcare</label>
                                     <label><input type="radio" name="industry" value="Retail"> Retail</label>
