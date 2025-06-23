@@ -75,11 +75,11 @@
                     <div class="col-md-3 p-4 text-start">
                         <h6 class="pb-4  ">Quick Links</h6>
                         <ul class=" ">
-                            <li class=" "><a href="">Industries</a></li>
-                            <li class=" "><a href="">Capabilities</a></li>
-                            <li class=" "><a href="">Insights</a></li>
-                            <li class=" "><a href="">About Us</a></li>
-                            <li class=" "><a href="">Contact Us</a></li>
+                            <li class=" "><a href="/industries">Industries</a></li>
+                            <li class=" "><a href="/services">Solutions</a></li>
+                            <li class=" "><a href="/insights">Insights</a></li>
+                            <li class=" "><a href="/about">About Us</a></li>
+                            <li class=" "><a href="/contact">Contact Us</a></li>
 
                         </ul>
                     </div>
@@ -112,7 +112,7 @@
         <!-- Bottom strip -->
         <div class="bg-lightgray">
             <div class="container d-flex justify-content-between border-top pt-3  text-white-50 ">
-                <p class="mb-0  ">PD Advisors & Strategists | Developed by Sanmisha Technologies</p>
+                <p class="mb-0  ">PD Advisors & Strategists | Powered by <a href="https://crezvatic.com/" target="_blank">Crezvatic</a></p>
                 <div>
                     <a href="#" class="text-white-50 me-3  ">Privacy Policy</a>
                     <a href="#" class="text-white-50  ">Terms of Service</a>
