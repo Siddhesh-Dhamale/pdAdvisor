@@ -129,7 +129,7 @@
                 <div class="row justify-content-evenly align-items-end">
                     <div class="col-12 col-md-4 circleContainer h-100 position-relative p-0">
                         <div class="AboutCircularCounter position-relative ">
-                            <span class="position-relative thirty">30</span>
+                            <span class="position-relative thirty">10</span>
                         </div>
 
                     </div>
