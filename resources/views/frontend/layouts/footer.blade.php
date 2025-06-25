@@ -112,7 +112,7 @@
         <!-- Bottom strip -->
         <div class="bg-lightgray">
             <div class="container d-flex justify-content-between border-top pt-3  text-white-50 ">
-                <p class="mb-0  ">PD Advisors & Strategists | Powered by <a href="https://crezvatic.com/" target="_blank">Crezvatic</a></p>
+                <p class="mb-0  ">PD Advisors & Strategists | Developed by <a href="https://crezvatic.com/" target="_blank">Crezvatic</a></p>
                 <div>
                     <a href="#" class="text-white-50 me-3  ">Privacy Policy</a>
                     <a href="#" class="text-white-50  ">Terms of Service</a>

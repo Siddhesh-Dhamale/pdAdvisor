@@ -14,6 +14,7 @@
 <?php
 $page_name = 'contact-us'; 
 ?>
+
 <body>
     <div class="main">
         {{view('frontend.layouts.header')}}
@@ -24,7 +25,9 @@ $page_name = 'contact-us';
                 <div class="hero-container">
                     <img src="frontend/img/contact/contact-banner.png" alt="Hero Image" class="hero-image">
                     <div class="hero-content">
-                        <h1 >Big visions start with a<br>simple conversation.</h1>
+                        <h1 class="fw-bold"><span class="brdr-bottom">Big visions start</span>
+                            with a<br>simple conversation.
+                        </h1>
                         <a href="#contact"
                             class="btn btn-danger rounded-lg px-4 btn-contact align-item-right">Contact</a>
                     </div>

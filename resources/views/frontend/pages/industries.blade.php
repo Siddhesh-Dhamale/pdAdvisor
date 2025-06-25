@@ -23,9 +23,9 @@ $page_name = 'industries';
                 <div class="hero-container">
                     <img src="frontend/img/industries/industries-banner.png" alt="Hero Image" class="hero-image">
                     <div class="hero-content">
-                        <h1 class="fw-bold"> <span class="brdr-bottom">Helping Industries</span><br>Leader Lead the
+                        <h1 class="fw-bold"> <span class="brdr-bottom">Helping Industry</span><br>Leader Lead the
                             Future</h1>
-                        <a href="#contact"
+                        <a href="/contact"
                             class="btn btn-danger rounded-lg px-4 btn-contact align-item-right">Contact</a>
                     </div>
                 </div>
@@ -62,8 +62,7 @@ $page_name = 'industries';
                 <section class="container ServiceScrollButton position-absolute d-flex justify-content-end pb-2">
                     <div class="rotating-scroll magnetic-wrapper ">
                         <a href="" class="go-down-btn magnetic-btn" title="Scroll down">
-                            <svg xmlns="http://www.w3.org/2000/svg"
-                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                 width="120" height="120" viewBox="0 0 100 100" aria-hidden="true">
 
                                 <!-- Arrow Polygon -->
@@ -172,56 +171,57 @@ $page_name = 'industries';
 
                         <div class="col-sm-6 col-md-4 col-lg-3">
                             <img src="frontend/img/industries/13.png" alt="Media" class="mb-3" />
-                            <h6 class="fw-bold text-danger">Media & Entertainment</h6>
-                            <p class="small">Innovate content delivery and monetization strategies across platforms.</p>
+                            <h6 class="fw-bold text-danger">Metals</h6>
+                            <p class="small">Deliver sustainable growth in a volatile, global market.</p>
                         </div>
 
                         <div class="col-sm-6 col-md-4 col-lg-3">
                             <img src="frontend/img/industries/14.png" alt="Media" class="mb-3" />
-                            <h6 class="fw-bold text-danger">Media & Entertainment</h6>
-                            <p class="small">Innovate content delivery and monetization strategies across platforms.</p>
+                            <h6 class="fw-bold text-danger">Private Equity</h6>
+                            <p class="small">Create value across the investment lifecycle with strategic insight.</p>
                         </div>
 
                         <div class="col-sm-6 col-md-4 col-lg-3">
                             <img src="frontend/img/industries/15.png" alt="Media" class="mb-3" />
-                            <h6 class="fw-bold text-danger">Media & Entertainment</h6>
-                            <p class="small">Innovate content delivery and monetization strategies across platforms.</p>
+                            <h6 class="fw-bold text-danger">Real Estate</h6>
+                            <p class="small">Rethink assets and operations in a hybrid, digitized world.</p>
                         </div>
 
                         <div class="col-sm-6 col-md-4 col-lg-3">
                             <img src="frontend/img/industries/16.png" alt="Media" class="mb-3" />
-                            <h6 class="fw-bold text-danger">Media & Entertainment</h6>
-                            <p class="small">Innovate content delivery and monetization strategies across platforms.</p>
+                            <h6 class="fw-bold text-danger">Retail</h6>
+                            <p class="small">Redefine customer journeys with agility and innovation.</p>
                         </div>
 
                         <div class="col-sm-6 col-md-4 col-lg-3">
                             <img src="frontend/img/industries/17.png" alt="Media" class="mb-3" />
-                            <h6 class="fw-bold text-danger">Media & Entertainment</h6>
-                            <p class="small">Innovate content delivery and monetization strategies across platforms.</p>
+                            <h6 class="fw-bold text-danger">Social Impact</h6>
+                            <p class="small">Advance equity, inclusion, and mission-driven innovation.</p>
                         </div>
 
                         <div class="col-sm-6 col-md-4 col-lg-3">
                             <img src="frontend/img/industries/18.png" alt="Media" class="mb-3" />
-                            <h6 class="fw-bold text-danger">Media & Entertainment</h6>
-                            <p class="small">Innovate content delivery and monetization strategies across platforms.</p>
+                            <h6 class="fw-bold text-danger">Technology</h6>
+                            <p class="small">Lead the digital age with bold innovation across.</p>
                         </div>
 
                         <div class="col-sm-6 col-md-4 col-lg-3">
                             <img src="frontend/img/industries/19.png" alt="Media" class="mb-3" />
-                            <h6 class="fw-bold text-danger">Media & Entertainment</h6>
-                            <p class="small">Innovate content delivery and monetization strategies across platforms.</p>
+                            <h6 class="fw-bold text-danger">Telecommunications</h6>
+                            <p class="small">Enable next-gen connectivity through infrastructure and service evolution.
+                            </p>
                         </div>
 
                         <div class="col-sm-6 col-md-4 col-lg-3">
                             <img src="frontend/img/industries/20.png" alt="Media" class="mb-3" />
-                            <h6 class="fw-bold text-danger">Media & Entertainment</h6>
-                            <p class="small">Innovate content delivery and monetization strategies across platforms.</p>
+                            <h6 class="fw-bold text-danger">Transportation</h6>
+                            <p class="small">Shape the future of movement with sustainable and efficient solutions.</p>
                         </div>
 
                         <div class="col-sm-6 col-md-4 col-lg-3">
                             <img src="frontend/img/industries/21.png" alt="Media" class="mb-3" />
-                            <h6 class="fw-bold text-danger">Media & Entertainment</h6>
-                            <p class="small">Innovate content delivery and monetization strategies across platforms.</p>
+                            <h6 class="fw-bold text-danger">Travel & Leisure</h6>
+                            <p class="small">Reimagine experiences that delight travellers and scale sustainably.</p>
                         </div>
 
                     </div>
@@ -314,12 +314,31 @@ $page_name = 'industries';
                                         <h5 class="fw-semibold mb-3">Want to talk with our experts?</h5>
                                         <select class="form-select">
                                             <option selected disabled>Select an Industry</option>
+                                            <option value="strategic-expertise">Strategic Expertise by Sector</option>
                                             <option value="aviation">Aviation</option>
-                                            <option value="energy">Energy</option>
-                                            <option value="healthcare">Healthcare</option>
-                                            <option value="finance">Finance</option>
-                                            <!-- Add more options as needed -->
+                                            <option value="energy-natural-resources">Energy & Natural Resources</option>
+                                            <option value="healthcare-life-sciences">Healthcare & Life Sciences</option>
+                                            <option value="aerospace-defence">Aerospace & Defence</option>
+                                            <option value="construction-infrastructure">Construction & Infrastructure
+                                            </option>
+                                            <option value="financial-services">Financial Services</option>
+                                            <option value="machinery-equipment">Machinery & Equipment</option>
+                                            <option value="automotive-mobility">Automotive & Mobility</option>
+                                            <option value="consumer-products">Consumer Products</option>
+                                            <option value="forest-products-packaging">Forest Products, Paper & Packaging
+                                            </option>
+                                            <option value="media-entertainment">Media & Entertainment</option>
+                                            <option value="metals">Metals</option>
+                                            <option value="private-equity">Private Equity</option>
+                                            <option value="real-estate">Real Estate</option>
+                                            <option value="retail">Retail</option>
+                                            <option value="social-impact">Social Impact</option>
+                                            <option value="technology">Technology</option>
+                                            <option value="telecommunications">Telecommunications</option>
+                                            <option value="transportation">Transportation</option>
+                                            <option value="travel-leisure">Travel & Leisure</option>
                                         </select>
+
                                     </div>
 
                                     <!-- Divider -->
@@ -330,7 +349,7 @@ $page_name = 'industries';
                                     <!-- Right Section -->
                                     <div class="col-md-5 text-center text-md-start">
                                         <h5 class="fw-semibold mb-3">We tailor solutions for every challenge.</h5>
-                                        <a href="#" class="btn btn-light rounded-pill px-4 fw-semibold">
+                                        <a href="/contact" class="btn btn-light rounded-pill px-4 fw-semibold">
                                             Let’s talk →
                                         </a>
                                     </div>

@@ -23,9 +23,10 @@
                         <div class="swiper-slide position-relative">
                             <img class="w-100" src="frontend/img/about/abtHero.png" alt="">
                             <div class="HeroContent text-start lh-1">
-                                <h2 class=" underlinedHeading"><span class="brdr-bottom-hero">Empowering Ambitious</span></h2>
+                                <h2 class=" underlinedHeading"><span class="brdr-bottom-hero">Empowering
+                                        Ambitious</span></h2>
                                 <h1 class="m-0 p-0"> Leaders to Shape the <br> Future</h1>
-                                <a class="btn btn-danger rounded-lg px-4 my-5" href="#">Contact</a>
+                                <a class="btn btn-danger rounded-lg px-4 my-5" href="/contact">Contact</a>
                             </div>
                         </div>
                     </div>
@@ -35,8 +36,10 @@
             <section class="py-5">
                 <div class="row justify-content-evenly position-relative">
                     <div class="col-12 col-md-6 text-start">
-                        <h1 class="fw-bold"><span class="brdr-bottom">Navigating Complexity,</span> <br> Seizing transformative <br> opportunities.</h1>
-                        <p class="py-3 QASubcaption">At PD Advisors & Strategists we commit is to deliver tailored strategies that drive sustainable growth and lasting impact.</p>
+                        <h1 class="fw-bold"><span class="brdr-bottom">Navigating Complexity,</span> <br> Seizing
+                            transformative <br> opportunities.</h1>
+                        <p class="py-3 QASubcaption">At PD Advisors & Strategists we commit is to deliver tailored
+                            strategies that drive sustainable growth and lasting impact.</p>
                     </div>
                     <div class="col-12 col-md-3 ">
                         <img class="w-100" src="frontend/img/about/Group 72.png" alt="err">
@@ -45,8 +48,7 @@
                     <section class="container Abtscrolldwn position-absolute d-flex justify-content-end pb-2">
                         <div class="rotating-scroll magnetic-wrapper ">
                             <a href="" class="go-down-btn magnetic-btn" title="Scroll down">
-                                <svg xmlns="http://www.w3.org/2000/svg"
-                                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                     width="120" height="120" viewBox="0 0 100 100" aria-hidden="true">
 
                                     <!-- Arrow Polygon -->
@@ -57,7 +59,8 @@
                                 c0-22.089,17.911-40,40-40C71.412,10.197,89.322,28.108,89.322,50.197z" />
 
                                     <!-- Rotating Text Around Path -->
-                                    <text class="scrollText" font-size="8" letter-spacing="2" fill="#000" textLength="350">
+                                    <text class="scrollText" font-size="8" letter-spacing="2" fill="#000"
+                                        textLength="350">
                                         <textPath href="#textPath" startOffset="-1%">
                                             &nbsp; • SCROLL DOWN • SCROLL DOWN • SCROLL DOWN • SCROLL DOWN •
                                         </textPath>
@@ -75,10 +78,15 @@
                     <div class=" row justify-content-evenly text-start pt-2">
                         <div class="col-12 col-md-2"><small>Our Approach</small></div>
                         <div class="col-12 col-md-4">
-                            <h1 class="fw-bold"><span class="brdr-bottom">A Trusted Partner</span> <br> In Strategic <br>Transformation</h1>
+                            <h1 class="fw-bold"><span class="brdr-bottom">A Trusted Partner</span> <br> In Strategic
+                                <br>Transformation
+                            </h1>
                         </div>
                         <div class="col-12 col-md-4">
-                            <p class="QASubcaption">PD Advisors & Strategists is a premier consultancy dedicated to guiding organizations through pivotal transformations. Our multidisciplinary team combines deep industry knowledge with innovative thinking to address our clients' most pressing needs.</p>
+                            <p class="QASubcaption">PD Advisors & Strategists is a premier consultancy dedicated to
+                                guiding organizations through pivotal transformations. Our multidisciplinary team
+                                combines deep industry knowledge with innovative thinking to address our clients' most
+                                pressing needs.</p>
                         </div>
                     </div>
                 </div>
@@ -87,43 +95,46 @@
 
 
             <section class="pt-5">
-                <div class="row">
+                <div class="row g-0">
+                    <!-- Left Column with Image -->
                     <div class="col-12 col-md-6 p-0">
-                        <img class="w-100 h-100 object-fit-cover" src="frontend/img/about/ABT.png" alt="">
+                        <img class="w-100 h-100 object-fit-cover d-block" src="frontend/img/about/ABT.png" alt=""
+                            id="aboutImage">
                     </div>
-                    <div class="col-12 col-md-6 bg-dark p-5">
-                        <h2 class="text-white w-75">Collaborative, Insight-Driven, and Results Oriented</h2>
-                        <br>
-                        <div class="row">
-                            <div class="col-6 col-md-5 m-2 text-white">
-                                <img class="checkMarkImg" src="frontend/img/about/checkMark.png" alt="">
-                                <!-- <i class="fa-solid fa-check fw-bold fs-3 py-2"></i> -->
-                                <p>Integrity : </p>
-                                <p>Upholding the highest ethical standards in all our engagements.</p>
-                            </div>
+
+                    <!-- Right Column with Vertically Centered Content -->
+                    <div class="col-12 col-md-6 bg-dark p-5 d-flex" id="rightContent">
+                        <div class="my-auto w-100">
+                            <h2 class="text-white w-75">Collaborative, Insight-Driven, and Results Oriented</h2>
                             <br>
-                            <div class="col-6 col-md-5 m-2 text-white">
-                                <img class="checkMarkImg" src="frontend/img/about/checkMark.png" alt="">
-                                <!-- <i class="fa-solid fa-check fw-bold fs-3 py-2"></i> -->
-                                <p>Integrity : </p>
-                                <p>Upholding the highest ethical standards in all our engagements.</p>
+                            <div class="row">
+                                <div class="col-6 col-md-5 m-2 text-white">
+                                    <img class="checkMarkImg" src="frontend/img/about/checkMark.png" alt="">
+                                    <p class="fw-bold mb-1">Integrity:</p>
+                                    <p>Upholding the highest ethical standards in all our engagements.</p>
+                                </div>
+                                <div class="col-6 col-md-5 m-2 text-white">
+                                    <img class="checkMarkImg" src="frontend/img/about/checkMark.png" alt="">
+                                    <p class="fw-bold mb-1">Excellence:</p>
+                                    <p>Striving for superior quality and continuous improvement.</p>
+                                </div>
+                                <div class="col-6 col-md-5 m-2 text-white">
+                                    <img class="checkMarkImg" src="frontend/img/about/checkMark.png" alt="">
+                                    <p class="fw-bold mb-1">Innovation:</p>
+                                    <p>Embracing creativity to drive meaningful change.</p>
+                                </div>
+                                <div class="col-6 col-md-5 m-2 text-white">
+                                    <img class="checkMarkImg" src="frontend/img/about/checkMark.png" alt="">
+                                    <p class="fw-bold mb-1">Collaboration:</p>
+                                    <p>Fostering inclusive partnerships for collective success.</p>
+                                </div>
                             </div>
-                            <div class="col-6 col-md-5 m-2 text-white">
-                                <img class="checkMarkImg" src="frontend/img/about/checkMark.png" alt="">
-                                <!-- <i class="fa-solid fa-check fw-bold fs-3 py-2"></i> -->
-                                <p>Integrity : </p>
-                                <p>Upholding the highest ethical standards in all our engagements.</p>
-                            </div>
-                            <div class="col-6 col-md-5 m-2 text-white">
-                                <img class="checkMarkImg" src="frontend/img/about/checkMark.png" alt="">
-                                <!-- <i class="fa-solid fa-check fw-bold fs-3 py-2"></i> -->
-                                <p>Integrity : </p>
-                                <p>Upholding the highest ethical standards in all our engagements.</p>
-                            </div>
+
                         </div>
                     </div>
                 </div>
             </section>
+
 
             <section class="py-5 my-5 container">
                 <div class="row justify-content-evenly align-items-end">
@@ -136,12 +147,16 @@
                     <div class="col-12 col-md-7">
                         <div class="row justify-content-evenly">
                             <div class="col-6">
-                                <h1 class="fw-bold"><span class="brdr-bottom">Serving Clients</span> <br> Across Diverse <br> Market</h1>
-                                <p class="QASubcaption">We believe in working side by side with our clients, fostering partnerships built on trust and mutual respect.</p>
+                                <h1 class="fw-bold"><span class="brdr-bottom">Serving Clients</span> <br> Across Diverse
+                                    <br> Market
+                                </h1>
+                                <p class="QASubcaption">We believe in working side by side with our clients, fostering
+                                    partnerships built on trust and mutual respect.</p>
                             </div>
                             <div class="col-6">
 
-                                <p class="QASubcaption">Our approach integrates data-driven insights with practical solutions. ensuring that strategies are not only visionary but also executable.</p>
+                                <p class="QASubcaption">Our approach integrates data-driven insights with practical
+                                    solutions. ensuring that strategies are not only visionary but also executable.</p>
                                 <img class="smallAbtimg" src="frontend/img/about/ABT.png" alt="">
 
                             </div>
@@ -151,9 +166,12 @@
             </section>
 
             <section class="container">
-                <h1 class="text-center fw-bold py-4"><span class="brdr-bottom">Driving Positive Change</span> <br> Beyond Business</h1>
+                <h1 class="text-center fw-bold py-4"><span class="brdr-bottom">Driving Positive Change</span> <br>
+                    Beyond Business</h1>
                 <div class="d-flex justify-content-center">
-                    <p class="QASubcaption w-75">We are dedicated to making a difference not only in the business world but also in the communities we serve. Our initiatives focus on sustainability, education, and social equity, reflecting our belief in responsible and inclusive growth.</p>
+                    <p class="QASubcaption w-75">We are dedicated to making a difference not only in the business world
+                        but also in the communities we serve. Our initiatives focus on sustainability, education, and
+                        social equity, reflecting our belief in responsible and inclusive growth.</p>
                 </div>
             </section>
 

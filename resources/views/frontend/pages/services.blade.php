@@ -22,7 +22,7 @@
                             <div class="HeroContent text-start lh-1">
                                 <h2 class=" underlinedHeading"><span class="brdr-bottom-hero">Helping Industry</span></h2>
                                 <h1 class="m-0 p-0">Leaders Lead the Future</h1>
-                                <a class="btn btn-danger rounded-lg px-4 my-5" href="#">Contact</a>
+                                <a class="btn btn-danger rounded-lg px-4 my-5" href="/contact">Contact</a>
                             </div>
                         </div>
                     </div>
