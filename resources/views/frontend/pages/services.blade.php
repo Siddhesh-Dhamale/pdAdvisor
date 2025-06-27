@@ -29,7 +29,7 @@
                 </div>
             </section>
 
-            <section class="position-relative">
+            <section class="scroll-snap-section position-relative">
                 <div class="container py-5">
                     <div class=" row justify-content-evenly text-start pt-2">
                         <div class="col-12 col-md-3 p-4"><small>Our Approach</small></div>
@@ -70,7 +70,7 @@
             </section>
 
 
-            <section class="container">
+            <section class="scroll-snap-section container">
                 <h1 class="fw-bold text-center py-5"> <span class="brdr-bottom">How Can We Help You</span></h1>
                 <div class="row servicesCont ">
                     <div class="col-6 col-md-3 p-4">
@@ -137,7 +137,7 @@
                 </div>
             </section>
 
-            <section class="circleContainer position-relative d-flex justify-content-center bg-white pt-5">
+            <section class="scroll-snap-section circleContainer position-relative d-flex justify-content-center bg-white pt-5">
 
                 <div class="circle2">
                     <div class="circle">

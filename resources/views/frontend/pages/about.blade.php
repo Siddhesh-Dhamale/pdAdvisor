@@ -33,7 +33,7 @@
                 </div>
             </section>
 
-            <section class="py-5">
+            <section class="py-5 scroll-snap-section">
                 <div class="row justify-content-evenly position-relative">
                     <div class="col-12 col-md-6 text-start">
                         <h1 class="fw-bold"><span class="brdr-bottom">Navigating Complexity,</span> <br> Seizing
@@ -73,7 +73,7 @@
                 </div>
             </section>
 
-            <section>
+            <section class="scroll-snap-section">
                 <div class="container py-5">
                     <div class=" row justify-content-evenly text-start pt-2">
                         <div class="col-12 col-md-2"><small>Our Approach</small></div>
@@ -94,7 +94,7 @@
             </section>
 
 
-            <section class="pt-5">
+            <section class="pt-5 scroll-snap-section">
                 <div class="row g-0">
                     <!-- Left Column with Image -->
                     <div class="col-12 col-md-6 p-0">
@@ -136,7 +136,7 @@
             </section>
 
 
-            <section class="py-5 my-5 container">
+            <section class="py-5 my-5 container scroll-snap-section">
                 <div class="row justify-content-evenly align-items-end">
                     <div class="col-12 col-md-4 circleContainer h-100 position-relative p-0">
                         <div class="AboutCircularCounter position-relative ">
@@ -165,7 +165,7 @@
                 </div>
             </section>
 
-            <section class="container">
+            <section class="container scroll-snap-section">
                 <h1 class="text-center fw-bold py-4"><span class="brdr-bottom">Driving Positive Change</span> <br>
                     Beyond Business</h1>
                 <div class="d-flex justify-content-center">

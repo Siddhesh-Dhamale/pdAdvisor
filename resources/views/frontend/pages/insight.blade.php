@@ -32,7 +32,7 @@ $page_name = 'insights';
             </section>
 
             <!-- HEADING SECTION -->
-            <section class="py-5 mx-auto mb-3">
+            <section class="py-5 mx-auto mb-3 scroll-snap-section">
                 <div class="rotating-scroll magnetic-wrapper float-end p-3">
                     <a href="" class="go-down-btn magnetic-btn" title="Scroll down"
                         style="transform: translate(-10.92px, 1.5px) scale(1.1);">
@@ -71,7 +71,7 @@ $page_name = 'insights';
 
 
             <!-- FILTERING SECTION -->
-            <section>
+            <section class="scroll-snap-section">
                 <div class="container py-5">
                     <div class="row">
                         <!-- Left: Articles -->
@@ -181,7 +181,7 @@ $page_name = 'insights';
             </section>
 
             <!-- CTA SECTION -->
-            <section class="circleContainer position-relative d-flex justify-content-center bg-white pt-5 mb-0">
+            <section class="scroll-snap-section circleContainer position-relative d-flex justify-content-center bg-white pt-5 mb-0">
 
                 <div class="circle2">
                     <div class="circle">

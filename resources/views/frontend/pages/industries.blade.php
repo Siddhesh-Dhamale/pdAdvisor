@@ -19,7 +19,7 @@ $page_name = 'industries';
 
         <div class="page-wrapper">
             <!-- HERO SECTION -->
-            <section class="hero">
+            <section class="hero scroll-snap-section">
                 <div class="hero-container">
                     <img src="frontend/img/industries/industries-banner.png" alt="Hero Image" class="hero-image">
                     <div class="hero-content">
@@ -34,7 +34,7 @@ $page_name = 'industries';
 
 
             <!-- HEADING SECTION -->
-            <section class="introduction-section py-5">
+            <section class="scroll-snap-section introduction-section py-5">
                 <div class="container">
                     <div class="row ">
                         <div class="col-md-2">
@@ -86,7 +86,7 @@ $page_name = 'industries';
             </section>
 
             <!-- EXPERTISE SECTION -->
-            <section class="our-expertise py-5">
+            <section class="scroll-snap-section our-expertise py-5">
                 <div class="container">
                     <h2 class="mb-5 text-center">
                         <span class="brdr-bottom">Our Expertise</span>
@@ -229,7 +229,8 @@ $page_name = 'industries';
             </section>
 
             <!-- CTA SECTION -->
-            <section class="circleContainer position-relative d-flex justify-content-center bg-white pt-5 mb-0">
+            <section
+                class="scroll-snap-section circleContainer position-relative d-flex justify-content-center bg-white pt-5 mb-0">
 
                 <div class="circle2">
                     <div class="circle">
@@ -374,6 +375,13 @@ $page_name = 'industries';
             .map((char, i) => `<span style="transform: rotate(${i * 10.3}deg)" >${char}</span>`)
             .join("");
     </script> -->
+
+  
+
+
+
+
+
 
 
 

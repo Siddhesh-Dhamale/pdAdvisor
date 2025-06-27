@@ -34,7 +34,7 @@ $page_name = 'contact-us';
                 </div>
 
             </section>
-            <section class="py-5 w-75 mx-auto">
+            <section class="py-5 w-75 mx-auto scroll-snap-section">
                 <div class="container">
                     <p class="text-uppercase text-muted small mb-2 section-subtitle">Contact Us</p>
                     <h1 class="highlight-title mx-auto fw-bold">
@@ -44,7 +44,7 @@ $page_name = 'contact-us';
                 </div>
             </section>
 
-            <section class="contact-map-section py-5">
+            <section class="contact-map-section py-5 scroll-snap-section">
                 <!-- Google Map Image (replace with iframe if dynamic map needed) -->
                 <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3768.1032544438103!2d72.95256187525315!3d19.19069198203768!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b905c193fc1d%3A0xe51ccf4213ab2fff!2sCrezvatic%20Pvt.%20Ltd.!5e0!3m2!1sen!2sin!4v1750401326727!5m2!1sen!2sin"
@@ -61,7 +61,7 @@ $page_name = 'contact-us';
                 </div>
             </section>
 
-            <section class="contact-form-section">
+            <section class="contact-form-section scroll-snap-section">
                 <div class="container">
                     <div class="row align-items-center">
                         <!-- Left Text Column -->

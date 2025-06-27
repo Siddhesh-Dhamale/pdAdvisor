@@ -140,7 +140,7 @@
 
 
 
-            <section class="container py-5">
+            <section class="container py-5 scroll-snap-section">
                 <section class="container position-absolute">
                     <div class="rotating-scroll magnetic-wrapper float-end p-3">
                         <a href="" class="go-down-btn magnetic-btn" title="Scroll down">
@@ -203,7 +203,8 @@
 
                                         <!-- <p class="QASubcaption pt-5">View all...</p> -->
                                         <div class="button-effect pt-5">
-                                            <a class="effect effect-3 " href="/industries" title="View all...">View all...</a>
+                                            <a class="effect effect-3 " href="/industries" title="View all...">View
+                                                all...</a>
                                         </div>
                                     </div>
                                 </div>
@@ -285,7 +286,7 @@
                 </div>
             </section> -->
 
-            <section class="py-5" id="stats-section">
+            <section class="py-5 scroll-snap-section" id="stats-section">
 
                 <div class="text-center">
                     <h1 class="fw-bold">
@@ -312,7 +313,7 @@
             </section>
 
 
-            <section class="businessSection container pt-2 pb-5">
+            <section class="businessSection container pt-2 pb-5 scroll-snap-section">
                 <div class="row justify-content-between align-items-start pt-5">
                     <div class="col-5">
                         <h1 class="fw-bold">
@@ -399,7 +400,8 @@
                     </div>
                 </div>
             </section>
-            <section class="circleContainer position-relative d-flex justify-content-center bg-white pt-5">
+            <section
+                class="scroll-snap-section circleContainer position-relative d-flex justify-content-center bg-white pt-5">
 
                 <div class="circle2">
                     <div class="circle">
@@ -420,7 +422,7 @@
             </section>
 
 
-            <section class="container py-5">
+            <section class="scroll-snap-section container py-5">
                 <div class="row align-items-center">
                     <!-- Left Content -->
                     <div class="col-lg-4 mb-4 mb-lg-0">
