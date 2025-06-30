@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting && entry.intersectionRatio >= 0.3) {
+            if (entry.isIntersecting && entry.intersectionRatio >= 0.1) {
                 const target = entry.target;
 
                 if (!isScrolling) {
@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }, {
-        threshold: 0.3
+        threshold: 0.1
     });
 
     sections.forEach(section => {
