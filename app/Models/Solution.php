@@ -22,18 +22,27 @@ class Solution extends Model
         'cta_title',
     ];
 
-    public function solutionCards(): HasMany
+    public function solutionCards()
     {
         return $this->hasMany(SolutionCard::class);
     }
 
-    public function solutionCounters(): HasMany
+    public function solutionCounters()
     {
         return $this->hasMany(SolutionCounter::class);
     }
 
-    public function solutionResultCards(): HasMany
+    public function solutionResultCards()
     {
         return $this->hasMany(SolutionResultCard::class);
+    }
+    public function services()
+    {
+        return $this->hasMany(Service::class);
+    }
+    public function solutionServices()
+    {
+        return $this->hasMany(\App\Models\Service::class, 'solution_id');
+        // Assuming 'solution_id' is the foreign key in the services table that links to solutions.id
     }
 }

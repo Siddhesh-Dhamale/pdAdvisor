@@ -4,19 +4,45 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Solution;
-use App\Models\SolutionCard;
-use App\Models\SolutionCounter;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class SolutionController extends Controller
 {
+    protected $imageDir = 'frontend/img/solutions';
+
+private function uploadImage($file, $subDir = ''): string
+{
+    $folder = $this->imageDir . ($subDir ? "/$subDir" : '');
+    $path = public_path($folder);
+
+    if (!File::exists($path)) {
+        File::makeDirectory($path, 0755, true);
+    }
+
+    $filename = uniqid() . '.' . $file->getClientOriginalExtension();
+    $file->move($path, $filename);
+
+    return $filename; // only return filename
+}
+
+
+
+    private function deleteImage($path)
+    {
+        $full = public_path($path);
+        if ($path && File::exists($full)) {
+            File::delete($full);
+        }
+    }
+
     public function index()
     {
         $solutions = Solution::withCount([
             'solutionCards',
             'solutionCounters',
-            'solutionResultCards'
+            'solutionResultCards',
+            'solutionServices',
         ])->get();
 
         return view('admin.solutions.index', compact('solutions'));
@@ -40,7 +66,8 @@ class SolutionController extends Controller
             'counter_heading' => 'nullable|string',
             'result_cards_heading' => 'nullable|string',
             'cta_title' => 'nullable|string',
-
+            'cta_button_text' => 'nullable|string|max:255',
+            'cta_button_url' => 'nullable|url',
             'hero_image' => 'nullable|image|max:2048',
             'cta_image' => 'nullable|image|max:2048',
 
@@ -51,29 +78,60 @@ class SolutionController extends Controller
             'cards' => 'nullable|array',
             'cards.*.card_heading' => 'required_with:cards|string',
             'cards.*.card_description' => 'required_with:cards|string',
+
+            'result_cards' => 'nullable|array',
+            'result_cards.*.card_heading' => 'required_with:result_cards|string',
+            'result_cards.*.card_description' => 'required_with:result_cards|string',
+            'result_cards.*.card_image' => 'nullable|image|max:2048',
+
+            'services' => 'nullable|array',
+            'services.*.service_heading' => 'required_with:services|string',
+            'services.*.service_description' => 'required_with:services|string',
+            'services.*.service_url' => 'nullable|url',
         ]);
 
-        // Handle image uploads
         if ($request->hasFile('hero_image')) {
-            $data['hero_image'] = $request->file('hero_image')->store('solutions', 'public');
+            $data['hero_image'] = $this->uploadImage($request->file('hero_image'));
         }
         if ($request->hasFile('cta_image')) {
-            $data['cta_image'] = $request->file('cta_image')->store('solutions', 'public');
+            $data['cta_image'] = $this->uploadImage($request->file('cta_image'));
         }
 
         $solution = Solution::create($data);
 
-        // Save counters
         if (!empty($data['counters'])) {
             foreach ($data['counters'] as $counter) {
                 $solution->solutionCounters()->create($counter);
             }
         }
 
-        // Save solution cards
         if (!empty($data['cards'])) {
             foreach ($data['cards'] as $card) {
                 $solution->solutionCards()->create($card);
+            }
+        }
+
+        if (!empty($data['result_cards'])) {
+            foreach ($data['result_cards'] as $index => $resultCard) {
+                $cardData = [
+                    'card_heading' => $resultCard['card_heading'],
+                    'card_description' => $resultCard['card_description'],
+                ];
+
+                if ($request->hasFile("result_cards.$index.card_image")) {
+                    $cardData['card_image'] = $this->uploadImage(
+                        $request->file("result_cards.$index.card_image"),
+                        'result_cards'
+                    );
+                }
+
+                $solution->solutionResultCards()->create($cardData);
+            }
+        }
+
+        if (!empty($data['services'])) {
+            foreach ($data['services'] as $service) {
+                $solution->solutionServices()->create($service);
             }
         }
 
@@ -82,7 +140,7 @@ class SolutionController extends Controller
 
     public function edit(Solution $solution)
     {
-        $solution->load('solutionCards', 'solutionCounters', 'solutionResultCards');
+        $solution->load('solutionCards', 'solutionCounters', 'solutionResultCards', 'solutionServices');
         return view('admin.solutions.edit', compact('solution'));
     }
 
@@ -99,7 +157,8 @@ class SolutionController extends Controller
             'counter_heading' => 'nullable|string',
             'result_cards_heading' => 'nullable|string',
             'cta_title' => 'nullable|string',
-
+            'cta_button_text' => 'nullable|string|max:255',
+            'cta_button_url' => 'nullable|url',
             'hero_image' => 'nullable|image|max:2048',
             'cta_image' => 'nullable|image|max:2048',
 
@@ -110,38 +169,62 @@ class SolutionController extends Controller
             'cards' => 'nullable|array',
             'cards.*.card_heading' => 'required_with:cards|string',
             'cards.*.card_description' => 'required_with:cards|string',
+
+            'result_cards' => 'nullable|array',
+            'result_cards.*.card_heading' => 'required_with:result_cards|string',
+            'result_cards.*.card_description' => 'required_with:result_cards|string',
+            'result_cards.*.card_image' => 'nullable|image|max:2048',
+
+            'services' => 'nullable|array',
+            'services.*.service_heading' => 'required_with:services|string',
+            'services.*.service_url' => 'nullable|url',
         ]);
 
-        // Handle image uploads & delete old images
         if ($request->hasFile('hero_image')) {
-            if ($solution->hero_image) {
-                Storage::disk('public')->delete($solution->hero_image);
-            }
-            $data['hero_image'] = $request->file('hero_image')->store('solutions', 'public');
+            $this->deleteImage($solution->hero_image);
+            $data['hero_image'] = $this->uploadImage($request->file('hero_image'));
         }
+
         if ($request->hasFile('cta_image')) {
-            if ($solution->cta_image) {
-                Storage::disk('public')->delete($solution->cta_image);
-            }
-            $data['cta_image'] = $request->file('cta_image')->store('solutions', 'public');
+            $this->deleteImage($solution->cta_image);
+            $data['cta_image'] = $this->uploadImage($request->file('cta_image'));
         }
 
         $solution->update($data);
 
-        // Sync counters: delete old & create new
         $solution->solutionCounters()->delete();
-        if (!empty($data['counters'])) {
-            foreach ($data['counters'] as $counter) {
-                $solution->solutionCounters()->create($counter);
-            }
+        foreach ($data['counters'] ?? [] as $counter) {
+            $solution->solutionCounters()->create($counter);
         }
 
-        // Sync solution cards: delete old & create new
         $solution->solutionCards()->delete();
-        if (!empty($data['cards'])) {
-            foreach ($data['cards'] as $card) {
-                $solution->solutionCards()->create($card);
+        foreach ($data['cards'] ?? [] as $card) {
+            $solution->solutionCards()->create($card);
+        }
+
+        $solution->solutionResultCards->each(function ($card) {
+            $this->deleteImage($card->card_image);
+        });
+        $solution->solutionResultCards()->delete();
+        foreach ($data['result_cards'] ?? [] as $index => $resultCard) {
+            $cardData = [
+                'card_heading' => $resultCard['card_heading'],
+                'card_description' => $resultCard['card_description'],
+            ];
+
+            if ($request->hasFile("result_cards.$index.card_image")) {
+                $cardData['card_image'] = $this->uploadImage(
+                    $request->file("result_cards.$index.card_image"),
+                    'result_cards'
+                );
             }
+
+            $solution->solutionResultCards()->create($cardData);
+        }
+
+        $solution->solutionServices()->delete();
+        foreach ($data['services'] ?? [] as $service) {
+            $solution->solutionServices()->create($service);
         }
 
         return redirect()->route('admin.solutions.index')->with('success', 'Solution updated!');
@@ -149,17 +232,17 @@ class SolutionController extends Controller
 
     public function destroy(Solution $solution)
     {
-        // Delete images
-        if ($solution->hero_image) {
-            Storage::disk('public')->delete($solution->hero_image);
-        }
-        if ($solution->cta_image) {
-            Storage::disk('public')->delete($solution->cta_image);
-        }
-        // Delete related cards and counters
+        $this->deleteImage($solution->hero_image);
+        $this->deleteImage($solution->cta_image);
+
+        $solution->solutionResultCards->each(function ($card) {
+            $this->deleteImage($card->card_image);
+        });
+
         $solution->solutionCards()->delete();
         $solution->solutionCounters()->delete();
         $solution->solutionResultCards()->delete();
+        $solution->solutionServices()->delete();
 
         $solution->delete();
 

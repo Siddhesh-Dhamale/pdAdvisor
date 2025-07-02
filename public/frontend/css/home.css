@@ -133,29 +133,6 @@
     top: 0;
 }
 
-/* Counter section css */
-.stats {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 40px;
-    gap: 80px;
-    flex-wrap: wrap;
-    text-align: center;
-}
-
-.stat-item {
-    font-size: 50px;
-    font-weight: bold;
-}
-
-.stat-label {
-    color: #cc0000;
-    font-size: 20px;
-    margin-top: 8px;
-}
-
-/* Counter section css end */
 
 .marquee-row {
     width: 100%;
