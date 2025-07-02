@@ -10,6 +10,8 @@ class Solution extends Model
     protected $fillable = [
         'title',
         'slug',
+        'description',  
+        'icon',
         'hero_heading',
         'hero_description',
         'hero_image',
@@ -20,20 +22,31 @@ class Solution extends Model
         'result_cards_heading',
         'cta_image',
         'cta_title',
+        'cta_button_text',
+        'cta_button_url',
     ];
 
-    public function solutionCards(): HasMany
+    public function solutionCards()
     {
         return $this->hasMany(SolutionCard::class);
     }
 
-    public function solutionCounters(): HasMany
+    public function solutionCounters()
     {
         return $this->hasMany(SolutionCounter::class);
     }
 
-    public function solutionResultCards(): HasMany
+    public function solutionResultCards()
     {
         return $this->hasMany(SolutionResultCard::class);
+    }
+    public function services()
+    {
+        return $this->hasMany(Service::class);
+    }
+    public function solutionServices()
+    {
+        return $this->hasMany(\App\Models\Service::class, 'solution_id');
+        // Assuming 'solution_id' is the foreign key in the services table that links to solutions.id
     }
 }

@@ -1,3 +1,56 @@
+// counter section js
+
+document.addEventListener("DOMContentLoaded", () => {
+    const statsSection = document.querySelector("#stats-section");
+    const counters = document.querySelectorAll(".stat-item");
+
+    // Only proceed if #stats-section exists
+    if (!statsSection || counters.length === 0) {
+        console.warn("Missing #stats-section or .stat-item elements.");
+        return;
+    }
+
+    let hasAnimated = false;
+    const animationDuration = 2000;
+
+    function animateCount(counter) {
+        const target = parseInt(counter.getAttribute("data-target"));
+        if (isNaN(target)) return;
+
+        let count = 0;
+        const frameRate = 60;
+        const totalFrames = Math.round((animationDuration / 1000) * frameRate);
+        const increment = target / totalFrames;
+
+        const interval = setInterval(() => {
+            count += increment;
+            if (count >= target) {
+                counter.innerText = `${target.toLocaleString()}+`;
+                clearInterval(interval);
+            } else {
+                counter.innerText = `${Math.round(count).toLocaleString()}+`;
+            }
+        }, 1000 / frameRate);
+    }
+
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting && !hasAnimated) {
+                    hasAnimated = true;
+                    counters.forEach(animateCount);
+                }
+            });
+        },
+        { threshold: 0.4 }
+    );
+
+    // ✅ Only observe if section exists
+    observer.observe(statsSection);
+});
+
+// counter section js end
+
 // cursor
 document.addEventListener("DOMContentLoaded", () => {
     const mouse = {
@@ -82,44 +135,75 @@ text.innerHTML = str
     )
     .join("");
 
+// <!-- rotating circle script  End -->
+
+// continus marquee slider
+
+const $list = $(".marquee-item-list");
+const originalItems = $list.html(); // Grab original <li>s
+
+// Append original items multiple times to extend list for scrolling
+for (let i = 0; i < 5; i++) {
+    $list.append(originalItems); // Adds more <li>s to same <ul>
+}
+
+// insights slider
+
+const swiper = new Swiper(".insightsSwiper", {
+    slidesPerView: 2,
+    spaceBetween: 30,
+    loop: true,
+    autoplay: {
+        delay: 3000,
+    },
+    breakpoints: {
+        768: {
+            slidesPerView: 2,
+        },
+    },
+});
 
 // SECTION SCROLL ANIMATION
 
-document.addEventListener('DOMContentLoaded', function () {
-    const sections = document.querySelectorAll('.scroll-snap-section');
+document.addEventListener("DOMContentLoaded", function () {
+    const sections = document.querySelectorAll(".scroll-snap-section");
     let isScrolling = false;
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting && entry.intersectionRatio >= 0.1) {
-                const target = entry.target;
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting && entry.intersectionRatio >= 0.1) {
+                    const target = entry.target;
 
-                if (!isScrolling) {
-                    isScrolling = true;
+                    if (!isScrolling) {
+                        isScrolling = true;
 
-                    // Optional: visual animation class
-                    sections.forEach(sec => sec.classList.remove('active'));
-                    target.classList.add('active');
+                        // Optional: visual animation class
+                        sections.forEach((sec) =>
+                            sec.classList.remove("active")
+                        );
+                        target.classList.add("active");
 
-                    // Smooth scroll to reveal full section
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                        // Smooth scroll to reveal full section
+                        target.scrollIntoView({
+                            behavior: "smooth",
+                            block: "start",
+                        });
 
-                    // Reset scroll lock after scroll finishes
-                    setTimeout(() => {
-                        isScrolling = false;
-                    }, 1000); // Match your animation speed
+                        // Reset scroll lock after scroll finishes
+                        setTimeout(() => {
+                            isScrolling = false;
+                        }, 1000); // Match your animation speed
+                    }
                 }
-            }
-        });
-    }, {
-        threshold: 0.1
-    });
+            });
+        },
+        {
+            threshold: 0.1,
+        }
+    );
 
-    sections.forEach(section => {
+    sections.forEach((section) => {
         observer.observe(section);
     });
 });
-

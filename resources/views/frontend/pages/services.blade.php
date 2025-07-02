@@ -70,7 +70,7 @@
             </section>
 
 
-            <section class="scroll-snap-section container">
+            <!-- <section class="scroll-snap-section container">
                 <h1 class="fw-bold text-center py-5"> <span class="brdr-bottom">How Can We Help You</span></h1>
                 <div class="row servicesCont ">
                     <div class="col-6 col-md-3 p-4">
@@ -135,7 +135,30 @@
                     </div>
 
                 </div>
+            </section> -->
+
+            <section class="scroll-snap-section container">
+                <h1 class="fw-bold text-center py-5">
+                    <span class="brdr-bottom">How Can We Help You</span>
+                </h1>
+                <div class="row servicesCont">
+                    @foreach($solutions as $sol)
+                    <div class="col-6 col-md-3 p-4">
+                        @if($sol->icon)
+                        <img class="py-2" src="{{ asset('frontend/img/solutions/icons/' . $sol->icon) }}"
+                            alt="{{ $sol->title }}">
+                        @endif
+                        <h5 class="fw-bold text-danger">{{ $sol->title }}</h5>
+                        @if($sol->description)
+                        <p class="small fw-bold">{{ Str::limit($sol->description, 100) }}</p>
+                        @endif
+                        <a href="{{ route('frontend.solutions.show', $sol->slug) }}"
+                            class="small fw-semibold text-dark">Read More →</a>
+                    </div>
+                    @endforeach
+                </div>
             </section>
+
 
             <section class="scroll-snap-section circleContainer position-relative d-flex justify-content-center bg-white pt-5">
 
