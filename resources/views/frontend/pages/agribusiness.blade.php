@@ -315,34 +315,51 @@
             </section>
 
             <!-- WHY TRUST SECTION -->
-            <section class="why-trust-section text-white py-5 scroll-snap-section">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-md-6">
-                            <h2 class="section-heading ">
-                                <span class="brdr-bottom">
-                                    {!! $industry->subhero_heading !!}
-                                </span>
-                            </h2>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="row g-4">
-                                @foreach (range(1, 4) as $i)
-                                    @php $desc = $industry->{'subhero_description' . $i}; @endphp
-                                    @if($desc)
-                                        <div class="col-sm-6">
-                                            <div class="check-item">
-                                                <div class="check-icon">✓</div>
-                                                <p><strong>{{ $desc }}</strong></p>
+            @php
+                // Check if subhero_heading is present
+                $hasHeading = !empty($industry->subhero_heading);
+
+                // Check if any subhero_description1-4 is present
+                $hasDescriptions = false;
+                foreach (range(1, 4) as $i) {
+                    if (!empty($industry->{'subhero_description' . $i})) {
+                        $hasDescriptions = true;
+                        break;
+                    }
+                }
+            @endphp
+
+            @if($hasHeading || $hasDescriptions)
+                <section class="why-trust-section text-white py-5 scroll-snap-section">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-md-6">
+                                <h2 class="section-heading">
+                                    <span class="brdr-bottom">
+                                        {!! $industry->subhero_heading !!}
+                                    </span>
+                                </h2>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row g-4">
+                                    @foreach (range(1, 4) as $i)
+                                        @php $desc = $industry->{'subhero_description' . $i}; @endphp
+                                        @if(!empty($desc))
+                                            <div class="col-sm-6">
+                                                <div class="check-item">
+                                                    <div class="check-icon">✓</div>
+                                                    <p><strong>{{ $desc }}</strong></p>
+                                                </div>
                                             </div>
-                                        </div>
-                                    @endif
-                                @endforeach
+                                        @endif
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
+            @endif
+
 
             <!-- SOLUTIONS CARDS -->
             <section class="agribusiness-solutions py-5 scroll-snap-section">
@@ -420,8 +437,8 @@
                                 <div class="col-md-4">
                                     <div class="insight-card text-left">
                                         @if($resultCard->card_image)
-                                            <img src="{{ asset('storage/' . $resultCard->card_image) }}"
-                                                class="img-fluid mb-3" alt="card image">
+                                            <img src="{{ asset('storage/' . $resultCard->card_image) }}" class="img-fluid mb-3"
+                                                alt="card image">
                                         @endif
                                         <h5 class="insight-title text-danger">{!! $resultCard->card_heading !!}</h5>
                                         <p class="insight-desc text-muted">{{ $resultCard->card_description }}</p>
