@@ -1,8 +1,12 @@
 <form action="{{ isset($solution) ? route('admin.solutions.update', $solution) : route('admin.solutions.store') }}" method="POST" enctype="multipart/form-data" class="container py-4">
     @csrf
     @if(isset($solution))
-        @method('PUT')
+    @method('PUT')
     @endif
+
+    <div class="d-flex justify-content-end">
+        <button type="submit" class="btn btn-primary btn-lg px-4">{{ isset($solution) ? 'Update' : 'Create' }}</button>
+    </div>
 
     {{-- Solution Title & Slug --}}
     <div class="row g-3 mb-4">
@@ -17,6 +21,16 @@
             @error('slug')<div class="invalid-feedback">{{ $message }}</div>@enderror
         </div>
     </div>
+    <div class="mb-3">
+        <label for="description" class="form-label fw-bold">Description</label>
+        <textarea name="description" id="description" rows="4" class="form-control">{{ old('description', $solution->description ?? '') }}</textarea>
+    </div>
+    <div class="mb-3">
+        <label for="icon" class="form-label fw-bold">Icon (SVG, PNG, JPG, JPEG)</label>
+        <input type="file" name="icon" id="icon" class="form-control" accept=".svg,.png,.jpg,.jpeg">
+    </div>
+
+
 
     {{-- Hero Section --}}
     <section class="mb-5">
@@ -33,7 +47,7 @@
             <label for="hero_image" class="form-label fw-semibold">Hero Image</label>
             <input type="file" class="form-control" id="hero_image" name="hero_image" accept="image/*">
             @if(isset($solution) && $solution->hero_image)
-                <img src="{{ asset('frontend/img/solutions/' . $solution->hero_image) }}" class="img-thumbnail mt-3" style="max-height: 140px;" alt="Hero Image Preview">
+            <img src="{{ asset('frontend/img/solutions/' . $solution->hero_image) }}" class="img-thumbnail mt-3" style="max-height: 140px;" alt="Hero Image Preview">
             @endif
         </div>
     </section>
@@ -60,20 +74,20 @@
         </div>
         <div id="card-wrapper" class="mb-3">
             @php
-                $cards = old('cards', $solution->solutionCards ?? [['card_heading' => '', 'card_description' => '']]);
+            $cards = old('cards', $solution->solutionCards ?? [['card_heading' => '', 'card_description' => '']]);
             @endphp
             @foreach($cards as $i => $card)
-                <div class="card mb-3 shadow-sm position-relative p-3">
-                    <button type="button" class="btn-close position-absolute top-0 end-0 m-2" aria-label="Remove" onclick="removeElement(this)"></button>
-                    <div class="mb-2">
-                        <label class="form-label fw-semibold">Card Heading</label>
-                        <input type="text" name="cards[{{ $i }}][card_heading]" class="form-control" placeholder="Card Heading" value="{{ $card['card_heading'] ?? '' }}">
-                    </div>
-                    <div>
-                        <label class="form-label fw-semibold">Card Description</label>
-                        <textarea name="cards[{{ $i }}][card_description]" class="form-control" placeholder="Card Description" rows="2">{{ $card['card_description'] ?? '' }}</textarea>
-                    </div>
+            <div class="card mb-3 shadow-sm position-relative p-3">
+                <button type="button" class="btn-close position-absolute top-0 end-0 m-2" aria-label="Remove" onclick="removeElement(this)"></button>
+                <div class="mb-2">
+                    <label class="form-label fw-semibold">Card Heading</label>
+                    <input type="text" name="cards[{{ $i }}][card_heading]" class="form-control" placeholder="Card Heading" value="{{ $card['card_heading'] ?? '' }}">
                 </div>
+                <div>
+                    <label class="form-label fw-semibold">Card Description</label>
+                    <textarea name="cards[{{ $i }}][card_description]" class="form-control" placeholder="Card Description" rows="2">{{ $card['card_description'] ?? '' }}</textarea>
+                </div>
+            </div>
             @endforeach
         </div>
         <button type="button" class="btn btn-outline-primary" onclick="addCard()">+ Add Card</button>
@@ -88,20 +102,20 @@
         </div>
         <div id="counter-wrapper">
             @php
-                $counters = old('counters', $solution->solutionCounters ?? [['title' => '', 'number' => '']]);
+            $counters = old('counters', $solution->solutionCounters ?? [['title' => '', 'number' => '']]);
             @endphp
             @foreach($counters as $i => $counter)
-                <div class="row g-3 mb-3 align-items-center border rounded p-3 position-relative shadow-sm">
-                    <button type="button" class="btn-close position-absolute top-0 end-0 m-2" aria-label="Remove" onclick="removeElement(this)"></button>
-                    <div class="col-md-8">
-                        <label class="form-label fw-semibold">Counter Title</label>
-                        <input type="text" name="counters[{{ $i }}][title]" class="form-control" placeholder="Counter Title" value="{{ $counter['title'] ?? '' }}">
-                    </div>
-                    <div class="col-md-4">
-                        <label class="form-label fw-semibold">Number</label>
-                        <input type="number" name="counters[{{ $i }}][number]" class="form-control" placeholder="Number" value="{{ $counter['number'] ?? '' }}">
-                    </div>
+            <div class="row g-3 mb-3 align-items-center border rounded p-3 position-relative shadow-sm">
+                <button type="button" class="btn-close position-absolute top-0 end-0 m-2" aria-label="Remove" onclick="removeElement(this)"></button>
+                <div class="col-md-8">
+                    <label class="form-label fw-semibold">Counter Title</label>
+                    <input type="text" name="counters[{{ $i }}][title]" class="form-control" placeholder="Counter Title" value="{{ $counter['title'] ?? '' }}">
                 </div>
+                <div class="col-md-4">
+                    <label class="form-label fw-semibold">Number</label>
+                    <input type="number" name="counters[{{ $i }}][number]" class="form-control" placeholder="Number" value="{{ $counter['number'] ?? '' }}">
+                </div>
+            </div>
             @endforeach
         </div>
         <button type="button" class="btn btn-outline-primary" onclick="addCounter()">+ Add Counter</button>
@@ -116,30 +130,30 @@
         </div>
         <div id="result-card-wrapper">
             @php
-                $resultCards = old('result_cards', $solution->solutionResultCards ?? [['card_heading' => '', 'card_description' => '', 'card_image' => '']]);
+            $resultCards = old('result_cards', $solution->solutionResultCards ?? [['card_heading' => '', 'card_description' => '', 'card_image' => '']]);
             @endphp
             @foreach($resultCards as $i => $resultCard)
-                <div class="card mb-3 shadow-sm position-relative p-3">
-                    <button type="button" class="btn-close position-absolute top-0 end-0 m-2" aria-label="Remove" onclick="removeElement(this)"></button>
-                    <div class="mb-2">
-                        <label class="form-label fw-semibold">Card Heading</label>
-                        <input type="text" name="result_cards[{{ $i }}][card_heading]" class="form-control" placeholder="Card Heading" value="{{ $resultCard['card_heading'] ?? '' }}">
-                    </div>
-                    <div class="mb-2">
-                        <label class="form-label fw-semibold">Card Description</label>
-                        <textarea name="result_cards[{{ $i }}][card_description]" class="form-control" placeholder="Card Description" rows="2">{{ $resultCard['card_description'] ?? '' }}</textarea>
-                    </div>
-                    <div>
-                        <label class="form-label fw-semibold">Card Image</label>
-                        <input type="file" name="result_cards[{{ $i }}][card_image]" class="form-control" accept="image/*">
-                        @if(isset($solution) && $solution->solutionResultCards && $solution->solutionResultCards->count() > $i)
-                            @php $img = $solution->solutionResultCards[$i]->card_image; @endphp
-                            @if($img)
-                                <img src="{{ asset('frontend/img/solutions/result_cards/' . $img) }}" alt="Result Card Image" class="img-thumbnail mt-3" style="max-height: 140px;">
-                            @endif
-                        @endif
-                    </div>
+            <div class="card mb-3 shadow-sm position-relative p-3">
+                <button type="button" class="btn-close position-absolute top-0 end-0 m-2" aria-label="Remove" onclick="removeElement(this)"></button>
+                <div class="mb-2">
+                    <label class="form-label fw-semibold">Card Heading</label>
+                    <input type="text" name="result_cards[{{ $i }}][card_heading]" class="form-control" placeholder="Card Heading" value="{{ $resultCard['card_heading'] ?? '' }}">
                 </div>
+                <div class="mb-2">
+                    <label class="form-label fw-semibold">Card Description</label>
+                    <textarea name="result_cards[{{ $i }}][card_description]" class="form-control" placeholder="Card Description" rows="2">{{ $resultCard['card_description'] ?? '' }}</textarea>
+                </div>
+                <div>
+                    <label class="form-label fw-semibold">Card Image</label>
+                    <input type="file" name="result_cards[{{ $i }}][card_image]" class="form-control" accept="image/*">
+                    @if(isset($solution) && $solution->solutionResultCards && $solution->solutionResultCards->count() > $i)
+                    @php $img = $solution->solutionResultCards[$i]->card_image; @endphp
+                    @if($img)
+                    <img src="{{ asset('frontend/img/solutions/result_cards/' . $img) }}" alt="Result Card Image" class="img-thumbnail mt-3" style="max-height: 140px;">
+                    @endif
+                    @endif
+                </div>
+            </div>
             @endforeach
         </div>
         <button type="button" class="btn btn-outline-primary" onclick="addResultCard()">+ Add Result Card</button>
@@ -150,20 +164,20 @@
         <h4 class="mb-3 border-bottom pb-2">Services</h4>
         <div id="service-wrapper">
             @php
-                $services = old('services', $solution->services ?? [['name' => '', 'url' => '']]);
+            $services = old('services', $solution->services ?? [['name' => '', 'url' => '']]);
             @endphp
             @foreach($services as $i => $service)
-                <div class="card mb-3 shadow-sm position-relative p-3">
-                    <button type="button" class="btn-close position-absolute top-0 end-0 m-2" aria-label="Remove" onclick="removeElement(this)"></button>
-                    <div class="mb-2">
-                        <label class="form-label fw-semibold">Service Name</label>
-                        <input type="text" name="services[{{ $i }}][name]" class="form-control" placeholder="Service Name" value="{{ $service['name'] ?? '' }}">
-                    </div>
-                    <div>
-                        <label class="form-label fw-semibold">Service URL</label>
-                        <input type="url" name="services[{{ $i }}][url]" class="form-control" placeholder="Service URL" value="{{ $service['url'] ?? '' }}">
-                    </div>
+            <div class="card mb-3 shadow-sm position-relative p-3">
+                <button type="button" class="btn-close position-absolute top-0 end-0 m-2" aria-label="Remove" onclick="removeElement(this)"></button>
+                <div class="mb-2">
+                    <label class="form-label fw-semibold">Service Name</label>
+                    <input type="text" name="services[{{ $i }}][name]" class="form-control" placeholder="Service Name" value="{{ $service['name'] ?? '' }}">
                 </div>
+                <div>
+                    <label class="form-label fw-semibold">Service URL</label>
+                    <input type="text" name="services[{{ $i }}][url]" class="form-control" placeholder="Service URL" value="{{ $service['url'] ?? '' }}">
+                </div>
+            </div>
             @endforeach
         </div>
         <button type="button" class="btn btn-outline-primary" onclick="addService()">+ Add Service</button>
@@ -182,20 +196,18 @@
         </div>
         <div class="mb-3">
             <label for="cta_button_url" class="form-label fw-semibold">CTA Button URL</label>
-            <input type="url" class="form-control" id="cta_button_url" name="cta_button_url" value="{{ old('cta_button_url', $solution->cta_button_url ?? '') }}">
+            <input type="text" class="form-control" id="cta_button_url" name="cta_button_url" value="{{ old('cta_button_url', $solution->cta_button_url ?? '') }}">
         </div>
         <div>
             <label for="cta_image" class="form-label fw-semibold">CTA Image</label>
             <input type="file" class="form-control" id="cta_image" name="cta_image" accept="image/*">
             @if(isset($solution) && $solution->cta_image)
-                <img src="{{ asset('frontend/img/solutions/cta_img' . $solution->cta_image) }}" class="img-thumbnail mt-3" style="max-height: 140px;" alt="CTA Image Preview">
+            <img src="{{ asset('frontend/img/solutions/cta_img' . $solution->cta_image) }}" class="img-thumbnail mt-3" style="max-height: 140px;" alt="CTA Image Preview">
             @endif
         </div>
     </section>
 
-    <div class="d-flex justify-content-end">
-        <button type="submit" class="btn btn-primary btn-lg px-4">{{ isset($solution) ? 'Update' : 'Create' }}</button>
-    </div>
+
 </form>
 
 @push('scripts')
@@ -278,11 +290,12 @@
             </div>
             <div>
                 <label class="form-label fw-semibold">Service URL</label>
-                <input type="url" name="services[${serviceIndex}][url]" class="form-control" placeholder="Service URL">
+                <input type="text" name="services[${serviceIndex}][url]" class="form-control" placeholder="Service URL">
             </div>
         </div>`;
         wrapper.insertAdjacentHTML('beforeend', html);
         serviceIndex++;
     }
 </script>
+
 @endpush

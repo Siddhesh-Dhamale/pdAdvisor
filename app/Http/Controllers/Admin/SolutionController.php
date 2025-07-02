@@ -11,20 +11,21 @@ class SolutionController extends Controller
 {
     protected $imageDir = 'frontend/img/solutions';
 
-private function uploadImage($file, $subDir = ''): string
-{
-    $folder = $this->imageDir . ($subDir ? "/$subDir" : '');
-    $path = public_path($folder);
+    private function uploadImage($file, $subDir = ''): string
+    {
+        $folder = $this->imageDir . ($subDir ? "/$subDir" : '');
+        $path = public_path($folder);
 
-    if (!File::exists($path)) {
-        File::makeDirectory($path, 0755, true);
+        if (!File::exists($path)) {
+            File::makeDirectory($path, 0755, true);
+        }
+
+        $extension = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
+        $filename = uniqid() . '.' . strtolower($extension);
+        $file->move($path, $filename);
+
+        return $filename; // only return filename
     }
-
-    $filename = uniqid() . '.' . $file->getClientOriginalExtension();
-    $file->move($path, $filename);
-
-    return $filename; // only return filename
-}
 
 
 
@@ -58,6 +59,8 @@ private function uploadImage($file, $subDir = ''): string
         $data = $request->validate([
             'title' => 'required|string|max:255',
             'slug' => 'required|string|max:255|unique:solutions,slug',
+            'description' => 'nullable|string',
+            'icon' => 'nullable|file|mimes:svg,png,jpg,jpeg|max:2048',
             'hero_heading' => 'nullable|string',
             'hero_description' => 'nullable|string',
             'subhero_heading' => 'nullable|string',
@@ -96,6 +99,10 @@ private function uploadImage($file, $subDir = ''): string
         if ($request->hasFile('cta_image')) {
             $data['cta_image'] = $this->uploadImage($request->file('cta_image'));
         }
+        if ($request->hasFile('icon')) {
+            $data['icon'] = $this->uploadImage($request->file('icon'), 'icons');
+        }
+
 
         $solution = Solution::create($data);
 
@@ -146,9 +153,12 @@ private function uploadImage($file, $subDir = ''): string
 
     public function update(Request $request, Solution $solution)
     {
+        // dd($request->all());exit;
         $data = $request->validate([
             'title' => 'required|string|max:255',
             'slug' => 'required|string|max:255|unique:solutions,slug,' . $solution->id,
+            'description' => 'nullable|string',
+            'icon' => 'nullable|file|mimes:svg,png,jpg,jpeg|max:2048',
             'hero_heading' => 'nullable|string',
             'hero_description' => 'nullable|string',
             'subhero_heading' => 'nullable|string',
@@ -189,6 +199,9 @@ private function uploadImage($file, $subDir = ''): string
             $this->deleteImage($solution->cta_image);
             $data['cta_image'] = $this->uploadImage($request->file('cta_image'));
         }
+        if ($request->hasFile('icon')) {
+            $data['icon'] = $this->uploadImage($request->file('icon'), 'icons');
+        }
 
         $solution->update($data);
 
@@ -202,25 +215,38 @@ private function uploadImage($file, $subDir = ''): string
             $solution->solutionCards()->create($card);
         }
 
-        $solution->solutionResultCards->each(function ($card) {
-            $this->deleteImage($card->card_image);
-        });
+        // Delete and recreate result cards, preserving existing image if no new one is uploaded
+        // Delete old result cards, but store existing ones temporarily
+        $oldCards = $solution->solutionResultCards;
         $solution->solutionResultCards()->delete();
+
         foreach ($data['result_cards'] ?? [] as $index => $resultCard) {
             $cardData = [
                 'card_heading' => $resultCard['card_heading'],
                 'card_description' => $resultCard['card_description'],
             ];
 
+            // Get old card by index
+            $oldCard = $oldCards[$index] ?? null;
+
             if ($request->hasFile("result_cards.$index.card_image")) {
+                // Delete old image if replacing
+                if ($oldCard && $oldCard->card_image) {
+                    $this->deleteImage('frontend/img/solutions/result_cards/' . $oldCard->card_image);
+                }
+
                 $cardData['card_image'] = $this->uploadImage(
                     $request->file("result_cards.$index.card_image"),
                     'result_cards'
                 );
+            } elseif ($oldCard) {
+                // If no new image, preserve the old image
+                $cardData['card_image'] = $oldCard->card_image;
             }
 
             $solution->solutionResultCards()->create($cardData);
         }
+
 
         $solution->solutionServices()->delete();
         foreach ($data['services'] ?? [] as $service) {
