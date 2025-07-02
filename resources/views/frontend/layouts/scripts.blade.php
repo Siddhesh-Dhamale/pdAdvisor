@@ -7,6 +7,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 
-<script src="frontend/js/insights.js"></script>
-<script src="frontend/js/home.js"></script>
-<script src="frontend/js/main.js"></script>
+<script src="{{ asset('frontend/js/insights.js') }}"></script>
+<script src="{{ asset('frontend/js/home.js') }}"></script>
+<script src="{{ asset('frontend/js/main.js') }}"></script>
