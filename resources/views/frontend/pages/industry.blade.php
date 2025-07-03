@@ -218,7 +218,7 @@
                                 </div>
                                 <div class="col-5 d-flex justify-content-center">
                                     @if($industry->hero_image)
-                                        <img class="w-75" src="{{ asset('storage/' . $industry->hero_image) }}"
+                                        <img class="w-75" src="{{ asset('frontend/img/' . $industry->hero_image) }}"
                                             alt="HERO BANNER">
                                     @endif
                                 </div>
@@ -371,7 +371,7 @@
                                 <div class="col-md-4">
                                     <div class="insight-card text-left">
                                         @if($resultCard->card_image)
-                                            <img src="{{ asset('storage/' . $resultCard->card_image) }}" class="img-fluid mb-3"
+                                            <img src="{{ asset('frontend/img/' . $resultCard->card_image) }}" class="img-fluid mb-3"
                                                 alt="card image">
                                         @endif
                                         <h5 class="insight-title text-danger">{!! $resultCard->card_heading !!}</h5>
