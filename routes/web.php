@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\SolutionController as AdminSolutionController;
-use App\Http\Controllers\Frontend\SolutionController as FrontendSolutionController;
+use App\Http\Controllers\frontend\SolutionController as FrontendSolutionController;
 use App\Http\Controllers\Admin\SolutionController;
 use App\Http\Controllers\Admin\IndustryController;
 use App\Http\Controllers\frontend\HomeController;

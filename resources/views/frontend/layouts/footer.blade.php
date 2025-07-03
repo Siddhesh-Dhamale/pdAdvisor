@@ -138,7 +138,7 @@
 
     </div>
 </footer>
-<script>
+<!-- <script>
     document.addEventListener('DOMContentLoaded', function () {
         const sections = document.querySelectorAll('.scroll-snap-section');
         let isScrolling = false;
@@ -176,4 +176,4 @@
             observer.observe(section);
         });
     });
-</script>
+</script> -->

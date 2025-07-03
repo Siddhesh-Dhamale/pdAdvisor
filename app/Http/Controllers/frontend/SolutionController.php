@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Frontend;
+namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -17,8 +17,9 @@ class SolutionController extends Controller
     public function show($slug)
     {
         $solution = Solution::where('slug', $slug)
-            ->with(['solutionCards', 'solutionCounters', 'solutionResultCards'])
+            ->with(['solutionCards', 'solutionCounters', 'solutionResultCards', 'services'])
             ->firstOrFail();
+        // dd($solution->services);
 
         return view('frontend.pages.solutions', compact('solution'));
     }

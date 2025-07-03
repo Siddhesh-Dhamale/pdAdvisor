@@ -182,42 +182,33 @@ if(count($words) <= 3) {
                     @endforeach
                 </div>
             </section>
+
+            @if ($solution->services->isNotEmpty())
             <section class="py-5 container scroll-snap-section">
                 <h1 class="fw-bold text-center pb-5"><span class="brdr-bottom">Our Services</span></h1>
                 <div class="d-flex flex-wrap gap-3 px-5 justify-content-center">
-                    <button class="py-3 px-5 servicesBtn rounded-4 text-center">
-                        <h6 class="fw-bold  m-0">Retail</h6>
-                    </button>
-                    <button class="py-3 px-5 servicesBtn rounded-4 text-center">
-                        <h6 class="fw-bold  m-0">Private Equity</h6>
-                    </button>
-                    <button class="py-3 px-5 servicesBtn rounded-4 text-center">
-                        <h6 class="fw-bold  m-0">Technology</h6>
-                    </button>
-                    <button class="py-3 px-5 servicesBtn rounded-4 text-center">
-                        <h6 class="fw-bold  m-0">Oil & Gas</h6>
-                    </button>
-                    <button class="py-3 px-5 servicesBtn rounded-4 text-center">
-                        <h6 class="fw-bold  m-0">Healthcare & Life Sciences</h6>
-                    </button>
-                    <button class="py-3 px-5 servicesBtn rounded-4 text-center">
-                        <h6 class="fw-bold  m-0">Oil & Gas</h6>
-                    </button>
-                    <button class="py-3 px-5 servicesBtn rounded-4 text-center">
-                        <h6 class="fw-bold  m-0">Healthcare & Life Sciences</h6>
-                    </button>
-                    <button class="py-3 px-5 servicesBtn rounded-4 text-center">
-                        <h6 class="fw-bold  m-0">Chemicals</h6>
-                    </button>
-                    <button class="py-3 px-5 servicesBtn rounded-4 text-center">
-                        <h6 class="fw-bold  m-0">Consumer Products</h6>
-                    </button>
-                    <button class="py-3 px-5 servicesBtn rounded-4 text-center">
-                        <h6 class="fw-bold  m-0">Mining</h6>
-                    </button>
+                    @foreach ($solution->services as $service)
+                    <a href="{{ $service->service_url ?? '#' }}" class="py-3 px-5 servicesBtn rounded-4 text-center text-decoration-none">
+                        <h6 class="fw-bold m-0">{{ $service->service_heading }}</h6>
+                    </a>
+                    @endforeach
                 </div>
-
             </section>
+            @else
+            <section class="py-5 container scroll-snap-section">
+                <h1 class="fw-bold text-center pb-5"><span class="brdr-bottom">Our Services</span></h1>
+                <div class="d-flex flex-wrap gap-3 px-5 justify-content-center">
+                    @foreach ([
+                    'Retail', 'Private Equity', 'Technology', 'Oil & Gas',
+                    'Healthcare & Life Sciences', 'Chemicals', 'Consumer Products', 'Mining'
+                    ] as $defaultService)
+                    <button class="py-3 px-5 servicesBtn rounded-4 text-center">
+                        <h6 class="fw-bold m-0">{{ $defaultService }}</h6>
+                    </button>
+                    @endforeach
+                </div>
+            </section>
+            @endif
 
 
             {{-- CTA Banner --}}
@@ -240,7 +231,7 @@ if(count($words) <= 3) {
                         <img src="{{ asset('frontend/img/solutions/'.$solution->cta_image) }}" class="img-fluid mb-3">
                         @endif -->
                         @if($solution->cta_button_text)
-                         <a href="/contact" class="btn btn-danger rounded px-4 my-4">{{ $solution->cta_button_text }}</a>
+                        <a href="/contact" class="btn btn-danger rounded px-4 my-4">{{ $solution->cta_button_text }}</a>
                         @endif
                         <!-- <a href="/contact" class="btn btn-danger rounded px-4">Let’s Make It Happen</a> -->
                     </div>

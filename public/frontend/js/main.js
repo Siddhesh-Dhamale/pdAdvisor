@@ -165,45 +165,45 @@ const swiper = new Swiper(".insightsSwiper", {
 
 // SECTION SCROLL ANIMATION
 
-document.addEventListener("DOMContentLoaded", function () {
-    const sections = document.querySelectorAll(".scroll-snap-section");
-    let isScrolling = false;
+// document.addEventListener("DOMContentLoaded", function () {
+//     const sections = document.querySelectorAll(".scroll-snap-section");
+//     let isScrolling = false;
 
-    const observer = new IntersectionObserver(
-        (entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting && entry.intersectionRatio >= 0.1) {
-                    const target = entry.target;
+//     const observer = new IntersectionObserver(
+//         (entries) => {
+//             entries.forEach((entry) => {
+//                 if (entry.isIntersecting && entry.intersectionRatio >= 0.1) {
+//                     const target = entry.target;
 
-                    if (!isScrolling) {
-                        isScrolling = true;
+//                     if (!isScrolling) {
+//                         isScrolling = true;
 
-                        // Optional: visual animation class
-                        sections.forEach((sec) =>
-                            sec.classList.remove("active")
-                        );
-                        target.classList.add("active");
+//                         // Optional: visual animation class
+//                         sections.forEach((sec) =>
+//                             sec.classList.remove("active")
+//                         );
+//                         target.classList.add("active");
 
-                        // Smooth scroll to reveal full section
-                        target.scrollIntoView({
-                            behavior: "smooth",
-                            block: "start",
-                        });
+//                         // Smooth scroll to reveal full section
+//                         target.scrollIntoView({
+//                             behavior: "smooth",
+//                             block: "start",
+//                         });
 
-                        // Reset scroll lock after scroll finishes
-                        setTimeout(() => {
-                            isScrolling = false;
-                        }, 1000); // Match your animation speed
-                    }
-                }
-            });
-        },
-        {
-            threshold: 0.1,
-        }
-    );
+//                         // Reset scroll lock after scroll finishes
+//                         setTimeout(() => {
+//                             isScrolling = false;
+//                         }, 1000); // Match your animation speed
+//                     }
+//                 }
+//             });
+//         },
+//         {
+//             threshold: 0.1,
+//         }
+//     );
 
-    sections.forEach((section) => {
-        observer.observe(section);
-    });
-});
+//     sections.forEach((section) => {
+//         observer.observe(section);
+//     });
+// });

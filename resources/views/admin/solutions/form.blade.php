@@ -1,10 +1,20 @@
+@if ($errors->any())
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
+
 <form action="{{ isset($solution) ? route('admin.solutions.update', $solution) : route('admin.solutions.store') }}" method="POST" enctype="multipart/form-data" class="container py-4">
     @csrf
     @if(isset($solution))
     @method('PUT')
     @endif
 
-    <div class="d-flex justify-content-end">
+    <div class="d-flex justify-content-end position-fixed top-0 end-0 p-5">
         <button type="submit" class="btn btn-primary btn-lg px-4">{{ isset($solution) ? 'Update' : 'Create' }}</button>
     </div>
 
@@ -164,18 +174,18 @@
         <h4 class="mb-3 border-bottom pb-2">Services</h4>
         <div id="service-wrapper">
             @php
-            $services = old('services', $solution->services ?? [['name' => '', 'url' => '']]);
+            $services = old('services', $solution->services ?? [['service_heading' => '', 'service_url' => '']]);
             @endphp
             @foreach($services as $i => $service)
             <div class="card mb-3 shadow-sm position-relative p-3">
                 <button type="button" class="btn-close position-absolute top-0 end-0 m-2" aria-label="Remove" onclick="removeElement(this)"></button>
                 <div class="mb-2">
                     <label class="form-label fw-semibold">Service Name</label>
-                    <input type="text" name="services[{{ $i }}][name]" class="form-control" placeholder="Service Name" value="{{ $service['name'] ?? '' }}">
+                    <input type="text" name="services[{{ $i }}][service_heading]" class="form-control" placeholder="Service Name" value="{{ $service['service_heading'] ?? '' }}">
                 </div>
                 <div>
                     <label class="form-label fw-semibold">Service URL</label>
-                    <input type="text" name="services[{{ $i }}][url]" class="form-control" placeholder="Service URL" value="{{ $service['url'] ?? '' }}">
+                    <input type="text" name="services[{{ $i }}][service_url]" class="form-control" placeholder="Service URL" value="{{$service['service_url'] ?? '' }}">
                 </div>
             </div>
             @endforeach
@@ -212,15 +222,18 @@
 
 @push('scripts')
 <script>
+    // Initialize indices from old input or existing solution data counts
     let cardIndex = {{ count(old('cards', $solution->solutionCards ?? [['card_heading' => '', 'card_description' => '']])) }};
     let counterIndex = {{ count(old('counters', $solution->solutionCounters ?? [['title' => '', 'number' => '']])) }};
     let resultCardIndex = {{ count(old('result_cards', $solution->solutionResultCards ?? [['card_heading' => '', 'card_description' => '', 'card_image' => '']])) }};
     let serviceIndex = {{ count(old('services', $solution->services ?? [['name' => '', 'url' => '']])) }};
 
+    // Remove card, counter, result card, or service element
     function removeElement(button) {
         button.closest('.card, .row').remove();
     }
 
+    // Add new Solution Card
     function addCard() {
         const wrapper = document.getElementById('card-wrapper');
         const html = `
@@ -239,6 +252,7 @@
         cardIndex++;
     }
 
+    // Add new Counter
     function addCounter() {
         const wrapper = document.getElementById('counter-wrapper');
         const html = `
@@ -257,6 +271,7 @@
         counterIndex++;
     }
 
+    // Add new Result Card
     function addResultCard() {
         const wrapper = document.getElementById('result-card-wrapper');
         const html = `
@@ -279,6 +294,7 @@
         resultCardIndex++;
     }
 
+    // Add new Service
     function addService() {
         const wrapper = document.getElementById('service-wrapper');
         const html = `
@@ -286,16 +302,15 @@
             <button type="button" class="btn-close position-absolute top-0 end-0 m-2" aria-label="Remove" onclick="removeElement(this)"></button>
             <div class="mb-2">
                 <label class="form-label fw-semibold">Service Name</label>
-                <input type="text" name="services[${serviceIndex}][name]" class="form-control" placeholder="Service Name">
+                <input type="text" name="services[${serviceIndex}][service_heading]" class="form-control" placeholder="Service Name">
             </div>
             <div>
                 <label class="form-label fw-semibold">Service URL</label>
-                <input type="text" name="services[${serviceIndex}][url]" class="form-control" placeholder="Service URL">
+                <input type="text" name="services[${serviceIndex}][service_url]" class="form-control" placeholder="Service URL">
             </div>
         </div>`;
         wrapper.insertAdjacentHTML('beforeend', html);
         serviceIndex++;
     }
 </script>
-
 @endpush

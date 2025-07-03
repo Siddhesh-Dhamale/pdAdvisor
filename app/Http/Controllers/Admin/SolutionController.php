@@ -89,8 +89,8 @@ class SolutionController extends Controller
 
             'services' => 'nullable|array',
             'services.*.service_heading' => 'required_with:services|string',
-            'services.*.service_description' => 'required_with:services|string',
-            'services.*.service_url' => 'nullable|url',
+            'services.*.service_url' => 'nullable|string',
+
         ]);
 
         if ($request->hasFile('hero_image')) {
@@ -187,7 +187,7 @@ class SolutionController extends Controller
 
             'services' => 'nullable|array',
             'services.*.service_heading' => 'required_with:services|string',
-            'services.*.service_url' => 'nullable|url',
+            'services.*.service_url' => 'nullable|string',
         ]);
 
         if ($request->hasFile('hero_image')) {
