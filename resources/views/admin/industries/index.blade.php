@@ -19,6 +19,8 @@
                     <th>Cards</th>
                     <th>Counters</th>
                     <th>Results</th>
+                    <th>Category Type</th>
+                    <th>Related Categories</th> {{-- NEW COLUMN --}}
                     <th style="width: 160px;">Actions</th>
                 </tr>
             </thead>
@@ -31,6 +33,21 @@
                         <td>{{ $industry->industry_counters_count }}</td>
                         <td>{{ $industry->industry_result_cards_count }}</td>
                         <td>
+                            @if($industry->parent_id === null)
+                                <span class="badge bg-success">Parent</span>
+                            @else
+                                <span class="badge bg-secondary">Child of
+                                    {{ optional($industry->parent)->title ?? 'Unknown' }}</span>
+                            @endif
+                        </td>
+                        <td>
+                            @if($industry->related->isNotEmpty())
+                                {{ $industry->related->pluck('title')->implode(', ') }}
+                            @else
+                                <em class="text-muted">None</em>
+                            @endif
+                        </td>
+                        <td>
                             <a href="{{ route('admin.industries.edit', $industry) }}" class="btn btn-sm btn-warning">Edit</a>
                             <form action="{{ route('admin.industries.destroy', $industry) }}" method="POST" class="d-inline">
                                 @csrf @method('DELETE')
@@ -41,7 +58,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="6" class="text-center">No industries found.</td>
+                        <td colspan="8" class="text-center">No industries found.</td>
                     </tr>
                 @endforelse
             </tbody>

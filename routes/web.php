@@ -32,6 +32,10 @@ Route::prefix('admin/solutions')->name('admin.solutions.')->group(function () {
 });
 Route::get('/solutions', [FrontendSolutionController::class, 'index'])->name('frontend.solutions.index');
 Route::get('/solutions/{slug}', [FrontendSolutionController::class, 'show'])->name('frontend.solutions.show');
+Route::get('/industries/{slug}', [IndustriesController::class, 'show'])->name('industries.show');
+
+
+Route::get('/industries', [IndustriesController::class, 'index'])->name('industries.index');
 
 Route::prefix('admin/industries')->name('admin.industries.')->group(function () {
     Route::get('/', [IndustryController::class, 'index'])->name('index');

@@ -3,6 +3,20 @@
     @csrf
     @if(isset($industry)) @method('PUT') @endif
 
+
+    <!-- Category Section -->
+    <div class="mb-4">
+        <label for="parent_id" class="form-label fw-bold">Parent Category (Optional)</label>
+        <select class="form-select" name="parent_id" id="parent_id">
+            <option value="">No Parent (Top-Level Category)</option>
+            @foreach($allIndustries as $ind)
+                <option value="{{ $ind->id }}" {{ old('parent_id', $industry->parent_id ?? '') == $ind->id ? 'selected' : '' }}>
+                    {{ $ind->title }}
+                </option>
+            @endforeach
+        </select>
+    </div>
+
     {{-- Industry Title --}}
     <div class="mb-4">
         <label for="title" class="form-label fw-bold">Industry Title</label>
@@ -35,7 +49,6 @@
         <label for="hero_image" class="form-label fw-bold">Hero Image</label>
         <input type="file" class="form-control" id="hero_image" name="hero_image" accept="image/*">
         @if(isset($industry) && $industry->hero_image)
-
             <img src="{{ asset('storage/' . $industry->hero_image) }}" alt="Hero Image" style="max-height: 120px;">
         @endif
     </div>
@@ -51,7 +64,7 @@
         <div class="mb-3">
             <label class="form-label fw-bold">Subhero Description {{ $i }}</label>
             <input type="text" name="subhero_description{{ $i }}" class="form-control"
-                value="{{ old('subhero_description' . $i, $industry->{'subhero_description' . $i} ?? '') }}">
+                value="{{ old("subhero_description$i", $industry->{'subhero_description' . $i} ?? '') }}">
         </div>
     @endfor
 
@@ -64,19 +77,19 @@
     </div>
     <div id="card-wrapper" class="mb-4">
         @php
-            $cards = old('cards', $industry->cards ?? [['card_heading' => '', 'card_description' => '']]);
+            $cards = old('cards', isset($industry) ? $industry->industryCards->toArray() : [['card_heading' => '', 'card_description' => '']]);
         @endphp
         @foreach($cards as $i => $card)
             <div class="card mb-3 p-3 border">
                 <div class="mb-2">
                     <label class="form-label fw-bold">Card Heading</label>
                     <input type="text" name="cards[{{ $i }}][card_heading]" class="form-control"
-                        value="{{ $card['card_heading'] ?? '' }}">
+                        value="{{ old("cards.$i.card_heading", $card['card_heading'] ?? '') }}">
                 </div>
                 <div>
                     <label class="form-label fw-bold">Card Description</label>
                     <textarea name="cards[{{ $i }}][card_description]" class="form-control"
-                        rows="2">{{ $card['card_description'] ?? '' }}</textarea>
+                        rows="2">{{ old("cards.$i.card_description", $card['card_description'] ?? '') }}</textarea>
                 </div>
             </div>
         @endforeach
@@ -92,24 +105,43 @@
     </div>
     <div id="counter-wrapper" class="mb-4">
         @php
-            $counters = old('counters', $industry->counters ?? [['title' => '', 'number' => '']]);
+            $counters = old('counters', isset($industry) ? $industry->industryCounters->toArray() : [['title' => '', 'number' => '']]);
         @endphp
         @foreach($counters as $i => $counter)
             <div class="row g-2 mb-3 align-items-center border rounded p-3">
                 <div class="col-md-8">
                     <label class="form-label fw-bold">Counter Title</label>
                     <input type="text" name="counters[{{ $i }}][title]" class="form-control"
-                        value="{{ $counter['title'] ?? '' }}">
+                        value="{{ old("counters.$i.title", $counter['title'] ?? '') }}">
                 </div>
                 <div class="col-md-4">
                     <label class="form-label fw-bold">Number</label>
                     <input type="number" name="counters[{{ $i }}][number]" class="form-control"
-                        value="{{ $counter['number'] ?? '' }}">
+                        value="{{ old("counters.$i.number", $counter['number'] ?? '') }}">
                 </div>
             </div>
         @endforeach
     </div>
     <button type="button" class="btn btn-secondary mb-4" onclick="addCounter()">+ Add Counter</button>
+
+    {{-- Related Categories --}}
+    <div class="mb-4">
+        <label class="form-label fw-bold">Related Categories</label>
+        <div class="border rounded p-3" style="max-height: 300px; overflow-y: auto;">
+            @foreach($allIndustries as $ind)
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" name="related_industries[]" value="{{ $ind->id }}"
+                        id="related_{{ $ind->id }}" {{ isset($industry) && $industry->related->pluck('id')->contains($ind->id) ? 'checked' : '' }}>
+                    <label class="form-check-label" for="related_{{ $ind->id }}">
+                        {{ $ind->title }}
+                    </label>
+                </div>
+            @endforeach
+        </div>
+    </div>
+
+
+
 
     {{-- Result Cards --}}
     <h5 class="mb-3 fw-bold">Result Cards</h5>
@@ -120,25 +152,25 @@
     </div>
     <div id="result-card-wrapper" class="mb-4">
         @php
-            $resultCards = old('result_cards', $industry->resultCards ?? [['card_heading' => '', 'card_description' => '', 'card_image' => null]]);
+            $resultCards = old('result_cards', isset($industry) ? $industry->industryResultCards->toArray() : [['card_heading' => '', 'card_description' => '', 'card_image' => null]]);
         @endphp
         @foreach($resultCards as $i => $rc)
             <div class="card p-3 border mb-3">
                 <div class="mb-2">
                     <label class="form-label fw-bold">Card Heading</label>
                     <input type="text" name="result_cards[{{ $i }}][card_heading]" class="form-control"
-                        value="{{ $rc['card_heading'] ?? '' }}">
+                        value="{{ old("result_cards.$i.card_heading", $rc['card_heading'] ?? '') }}">
                 </div>
                 <div class="mb-2">
                     <label class="form-label fw-bold">Card Description</label>
                     <textarea name="result_cards[{{ $i }}][card_description]" class="form-control"
-                        rows="2">{{ $rc['card_description'] ?? '' }}</textarea>
+                        rows="2">{{ old("result_cards.$i.card_description", $rc['card_description'] ?? '') }}</textarea>
                 </div>
                 <div class="mb-2">
                     <label class="form-label fw-bold">Card Image</label>
                     <input type="file" name="result_cards[{{ $i }}][card_image]" class="form-control" accept="image/*">
-                    @if(isset($rc['card_image']) && $rc['card_image'])
-                        <img src="{{ asset('storage/' . $rc['card_image']) }}" class="img-thumbnail mt-2"
+                    @if(!empty($rc['card_image']))
+                        <img src="{{ asset('public/storage/result_cards/' . $rc['card_image']) }}" class="img-thumbnail mt-2"
                             alt="Result Card Image" style="max-height: 120px;">
                     @endif
                 </div>
@@ -165,7 +197,7 @@
     <button type="submit" class="btn btn-primary mb-5">{{ isset($industry) ? 'Update' : 'Create' }}</button>
 </form>
 
-{{-- Add JavaScript below or include as separate file --}}
+{{-- JavaScript for dynamic fields --}}
 <script>
     function addCard() {
         let index = document.querySelectorAll('#card-wrapper .card').length;

@@ -1,84 +1,63 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Industries Page</title>
-    {{view('frontend.layouts.css')}}
+    {{ view('frontend.layouts.css') }}
     <link rel="stylesheet" href="frontend/css/industries.css">
     <link rel="stylesheet" href="frontend/css/home.css">
 </head>
-<?php
-$page_name = 'industries';
-?>
+
+<?php $page_name = 'industries'; ?>
 
 <body>
     <div class="main">
-        {{view('frontend.layouts.header')}}
+        {{ view('frontend.layouts.header') }}
 
         <div class="page-wrapper">
+
             <!-- HERO SECTION -->
             <section class="hero scroll-snap-section">
                 <div class="hero-container">
                     <img src="frontend/img/industries/industries-banner.png" alt="Hero Image" class="hero-image">
                     <div class="hero-content">
-                        <h1 class="fw-bold"> <span class="brdr-bottom">Helping Industry</span><br>Leader Lead the
-                            Future</h1>
-                        <a href="/contact"
-                            class="btn btn-danger rounded-lg px-4 btn-contact align-item-right">Contact</a>
+                        <h1 class="fw-bold">
+                            <span class="brdr-bottom">Helping Industry</span><br>Leader Lead the Future
+                        </h1>
+                        <a href="/contact" class="btn btn-danger rounded-lg px-4 btn-contact align-item-right">Contact</a>
                     </div>
                 </div>
             </section>
 
-
-
             <!-- HEADING SECTION -->
             <section class="scroll-snap-section introduction-section py-5">
                 <div class="container">
-                    <div class="row ">
+                    <div class="row">
                         <div class="col-md-2">
                             <p class="text-uppercase medium text-muted mb-2">Introduction</p>
                         </div>
-                        <!-- Left Column -->
                         <div class="col-md-5">
                             <h2 class="display-5 fw-bold">
-                                <span class="brdr-bottom">Bridging Possibility</span><br>
-                                with Performance
+                                <span class="brdr-bottom">Bridging Possibility</span><br>with Performance
                             </h2>
                         </div>
-
-                        <!-- Right Column -->
                         <div class="col-md-5">
                             <p class="text-muted">
-                                At PD Advisors & Strategists, we work with leaders across sectors to navigate
-                                disruption,
-                                unlock growth, and build lasting impact. From legacy businesses to startups, we bring
-                                deep industry expertise and strategic clarity.
+                                At PD Advisors & Strategists, we work with leaders across sectors to navigate disruption, unlock growth, and build lasting impact. From legacy businesses to startups, we bring deep industry expertise and strategic clarity.
                             </p>
                         </div>
                     </div>
                 </div>
                 <section class="container ServiceScrollButton position-absolute d-flex justify-content-end pb-2">
-                    <div class="rotating-scroll magnetic-wrapper ">
+                    <div class="rotating-scroll magnetic-wrapper">
                         <a href="" class="go-down-btn magnetic-btn" title="Scroll down">
-                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                width="120" height="120" viewBox="0 0 100 100" aria-hidden="true">
-
-                                <!-- Arrow Polygon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
                                 <polygon fill="#878787" points="55.334,46 49.333,58 43.333,46" />
-
-                                <!-- Circular Path for Text -->
-                                <path id="textPath" fill="none" d="M89.322,50.197c0,22.09-17.91,40-40,40c-22.089,0-40-17.91-40-40 
-                                c0-22.089,17.911-40,40-40C71.412,10.197,89.322,28.108,89.322,50.197z" />
-
-                                <!-- Rotating Text Around Path -->
+                                <path id="textPath" fill="none" d="M89.322,50.197c0,22.09-17.91,40-40,40c-22.089,0-40-17.91-40-40 c0-22.089,17.911-40,40-40C71.412,10.197,89.322,28.108,89.322,50.197z" />
                                 <text class="scrollText" font-size="8" letter-spacing="2" fill="#000" textLength="350">
                                     <textPath href="#textPath" startOffset="-1%">
                                         &nbsp; • SCROLL DOWN • SCROLL DOWN • SCROLL DOWN • SCROLL DOWN •
                                     </textPath>
                                 </text>
-
                             </svg>
                         </a>
                     </div>
@@ -92,143 +71,74 @@ $page_name = 'industries';
                         <span class="brdr-bottom">Our Expertise</span>
                     </h2>
                     <div class="row g-5">
+                        @foreach([
+                            'Strategic Expertise by Sector',
+                            'Aviation',
+                            'Energy & Natural Resources',
+                            'Healthcare & Life Sciences',
+                            'Aerospace & Defence',
+                            'Construction & Infrastructure',
+                            'Financial Services',
+                            'Machinery & Equipment',
+                            'Automotive & Mobility',
+                            'Consumer Products',
+                            'Forest Products, Paper & Packaging',
+                            'Media & Entertainment',
+                            'Metals',
+                            'Private Equity',
+                            'Real Estate',
+                            'Retail',
+                            'Social Impact',
+                            'Technology',
+                            'Telecommunications',
+                            'Transportation',
+                            'Travel & Leisure'
+                        ] as $i => $title)
+                            <div class="col-sm-6 col-md-4 col-lg-3">
+                                @if(isset($industries[$title]))
+                                    <a href="{{ route('industries.show', $industries[$title]) }}" class="text-decoration-none text-dark">
+                                @endif
 
-                        <!-- Expertise Item -->
-                        <div class="col-sm-6 col-md-4 col-lg-3">
-                            <img src="frontend/img/industries/1.png" alt="Strategic Expertise" class="mb-3" />
-                            <h6 class="fw-bold text-danger">Strategic Expertise by Sector</h6>
-                            <p class="small">See how we unlock value across industries.</p>
-                        </div>
+                                <img src="frontend/img/industries/{{ $i + 1 }}.png" alt="{{ $title }}" class="mb-3" />
+                                <h6 class="fw-bold text-danger">{{ $title }}</h6>
+                                <p class="small">
+                                    @switch($title)
+                                        @case('Strategic Expertise by Sector') See how we unlock value across industries. @break
+                                        @case('Aviation') Navigate shifting consumer expectations and global operations with agility and insight. @break
+                                        @case('Energy & Natural Resources') Transition to sustainable and profitable models while meeting global demand. @break
+                                        @case('Healthcare & Life Sciences') Accelerate breakthroughs and improve lives across: @break
+                                        @case('Aerospace & Defence') Strategic innovation and operational excellence for national security and commercial growth. @break
+                                        @case('Construction & Infrastructure') Build resilience and efficiency across projects that shape the world. @break
+                                        @case('Financial Services') Reimagine financial experiences, compliance, and growth across sectors: @break
+                                        @case('Machinery & Equipment') Transform operations and embrace digital to compete globally. @break
+                                        @case('Automotive & Mobility') Enhance connectivity, safety, and sustainability in transportation. @break
+                                        @case('Consumer Products') Adapt to shifting demands and digital-first consumer behaviors. @break
+                                        @case('Forest Products, Paper & Packaging') Optimize operations and create sustainable packaging solutions. @break
+                                        @case('Media & Entertainment') Innovate content delivery and monetization strategies across platforms. @break
+                                        @case('Metals') Deliver sustainable growth in a volatile, global market. @break
+                                        @case('Private Equity') Create value across the investment lifecycle with strategic insight. @break
+                                        @case('Real Estate') Rethink assets and operations in a hybrid, digitized world. @break
+                                        @case('Retail') Redefine customer journeys with agility and innovation. @break
+                                        @case('Social Impact') Advance equity, inclusion, and mission-driven innovation. @break
+                                        @case('Technology') Lead the digital age with bold innovation across. @break
+                                        @case('Telecommunications') Enable next-gen connectivity through infrastructure and service evolution. @break
+                                        @case('Transportation') Shape the future of movement with sustainable and efficient solutions. @break
+                                        @case('Travel & Leisure') Reimagine experiences that delight travellers and scale sustainably. @break
+                                        @default Explore opportunities and solutions.
+                                    @endswitch
+                                </p>
 
-                        <div class="col-sm-6 col-md-4 col-lg-3">
-                            <img src="frontend/img/industries/2.png" alt="Aviation" class="mb-3" />
-                            <h6 class="fw-bold text-danger">Aviation</h6>
-                            <p class="small">Navigate shifting consumer expectations and global operations with agility
-                                and insight.</p>
-                        </div>
-
-                        <div class="col-sm-6 col-md-4 col-lg-3">
-                            <img src="frontend/img/industries/3.png" alt="Energy" class="mb-3" />
-                            <h6 class="fw-bold text-danger">Energy & Natural Resources</h6>
-                            <p class="small">Transition to sustainable and profitable models while meeting global
-                                demand.</p>
-                        </div>
-
-                        <div class="col-sm-6 col-md-4 col-lg-3">
-                            <img src="frontend/img/industries/4.png" alt="Healthcare" class="mb-3" />
-                            <h6 class="fw-bold text-danger">Healthcare & Life Sciences</h6>
-                            <p class="small">Accelerate breakthroughs and improve lives across:</p>
-                        </div>
-
-                        <div class="col-sm-6 col-md-4 col-lg-3">
-                            <img src="frontend/img/industries/5.png" alt="Aerospace" class="mb-3" />
-                            <h6 class="fw-bold text-danger">Aerospace & Defence</h6>
-                            <p class="small">Strategic innovation and operational excellence for national security and
-                                commercial growth.</p>
-                        </div>
-
-                        <div class="col-sm-6 col-md-4 col-lg-3">
-                            <img src="frontend/img/industries/6.png" alt="Construction" class="mb-3" />
-                            <h6 class="fw-bold text-danger">Construction & Infrastructure</h6>
-                            <p class="small">Build resilience and efficiency across projects that shape the world.</p>
-                        </div>
-
-                        <div class="col-sm-6 col-md-4 col-lg-3">
-                            <img src="frontend/img/industries/7.png" alt="Finance" class="mb-3" />
-                            <h6 class="fw-bold text-danger">Financial Services</h6>
-                            <p class="small">Reimagine financial experiences, compliance, and growth across sectors:</p>
-                        </div>
-
-                        <div class="col-sm-6 col-md-4 col-lg-3">
-                            <img src="frontend/img/industries/8.png" alt="Machinery" class="mb-3" />
-                            <h6 class="fw-bold text-danger">Machinery & Equipment</h6>
-                            <p class="small">Transform operations and embrace digital to compete globally.</p>
-                        </div>
-
-                        <div class="col-sm-6 col-md-4 col-lg-3">
-                            <img src="frontend/img/industries/9.png" alt="Automotive" class="mb-3" />
-                            <h6 class="fw-bold text-danger">Automotive & Mobility</h6>
-                            <p class="small">Enhance connectivity, safety, and sustainability in transportation.</p>
-                        </div>
-
-                        <div class="col-sm-6 col-md-4 col-lg-3">
-                            <img src="frontend/img/industries/10.png" alt="Consumer" class="mb-3" />
-                            <h6 class="fw-bold text-danger">Consumer Products</h6>
-                            <p class="small">Adapt to shifting demands and digital-first consumer behaviors.</p>
-                        </div>
-
-                        <div class="col-sm-6 col-md-4 col-lg-3">
-                            <img src="frontend/img/industries/11.png" alt="Forest Products" class="mb-3" />
-                            <h6 class="fw-bold text-danger">Forest Products, Paper & Packaging</h6>
-                            <p class="small">Optimize operations and create sustainable packaging solutions.</p>
-                        </div>
-
-                        <div class="col-sm-6 col-md-4 col-lg-3">
-                            <img src="frontend/img/industries/12.png" alt="Media" class="mb-3" />
-                            <h6 class="fw-bold text-danger">Media & Entertainment</h6>
-                            <p class="small">Innovate content delivery and monetization strategies across platforms.</p>
-                        </div>
-
-                        <div class="col-sm-6 col-md-4 col-lg-3">
-                            <img src="frontend/img/industries/13.png" alt="Media" class="mb-3" />
-                            <h6 class="fw-bold text-danger">Metals</h6>
-                            <p class="small">Deliver sustainable growth in a volatile, global market.</p>
-                        </div>
-
-                        <div class="col-sm-6 col-md-4 col-lg-3">
-                            <img src="frontend/img/industries/14.png" alt="Media" class="mb-3" />
-                            <h6 class="fw-bold text-danger">Private Equity</h6>
-                            <p class="small">Create value across the investment lifecycle with strategic insight.</p>
-                        </div>
-
-                        <div class="col-sm-6 col-md-4 col-lg-3">
-                            <img src="frontend/img/industries/15.png" alt="Media" class="mb-3" />
-                            <h6 class="fw-bold text-danger">Real Estate</h6>
-                            <p class="small">Rethink assets and operations in a hybrid, digitized world.</p>
-                        </div>
-
-                        <div class="col-sm-6 col-md-4 col-lg-3">
-                            <img src="frontend/img/industries/16.png" alt="Media" class="mb-3" />
-                            <h6 class="fw-bold text-danger">Retail</h6>
-                            <p class="small">Redefine customer journeys with agility and innovation.</p>
-                        </div>
-
-                        <div class="col-sm-6 col-md-4 col-lg-3">
-                            <img src="frontend/img/industries/17.png" alt="Media" class="mb-3" />
-                            <h6 class="fw-bold text-danger">Social Impact</h6>
-                            <p class="small">Advance equity, inclusion, and mission-driven innovation.</p>
-                        </div>
-
-                        <div class="col-sm-6 col-md-4 col-lg-3">
-                            <img src="frontend/img/industries/18.png" alt="Media" class="mb-3" />
-                            <h6 class="fw-bold text-danger">Technology</h6>
-                            <p class="small">Lead the digital age with bold innovation across.</p>
-                        </div>
-
-                        <div class="col-sm-6 col-md-4 col-lg-3">
-                            <img src="frontend/img/industries/19.png" alt="Media" class="mb-3" />
-                            <h6 class="fw-bold text-danger">Telecommunications</h6>
-                            <p class="small">Enable next-gen connectivity through infrastructure and service evolution.
-                            </p>
-                        </div>
-
-                        <div class="col-sm-6 col-md-4 col-lg-3">
-                            <img src="frontend/img/industries/20.png" alt="Media" class="mb-3" />
-                            <h6 class="fw-bold text-danger">Transportation</h6>
-                            <p class="small">Shape the future of movement with sustainable and efficient solutions.</p>
-                        </div>
-
-                        <div class="col-sm-6 col-md-4 col-lg-3">
-                            <img src="frontend/img/industries/21.png" alt="Media" class="mb-3" />
-                            <h6 class="fw-bold text-danger">Travel & Leisure</h6>
-                            <p class="small">Reimagine experiences that delight travellers and scale sustainably.</p>
-                        </div>
-
+                                @if(isset($industries[$title]))
+                                    </a>
+                                @endif
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </section>
 
-            <!-- CTA SECTION -->
+            <!-- CTA SECTION (unchanged) -->
+           <!-- CTA SECTION -->
             <section
                 class="scroll-snap-section circleContainer position-relative d-flex justify-content-center bg-white pt-5 mb-0">
 
@@ -364,30 +274,12 @@ $page_name = 'industries';
                 </div>
             </section>
 
+
+
         </div>
     </div>
-    <!-- rotating circle script  -->
-    <!-- <script>
-        const text = document.querySelector(".text p");
-        const str = text.textContent;
-        text.innerHTML = str
-            .split("")
-            .map((char, i) => `<span style="transform: rotate(${i * 10.3}deg)" >${char}</span>`)
-            .join("");
-    </script> -->
-
-  
-
-
-
-
-
-
-
 
     {{ view('frontend.layouts.scripts') }}
-    {{view('frontend.layouts.footer')}}
-
+    {{ view('frontend.layouts.footer') }}
 </body>
-
 </html>
