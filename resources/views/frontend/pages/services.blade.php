@@ -144,16 +144,18 @@
                 <div class="row servicesCont">
                     @foreach($solutions as $sol)
                     <div class="col-6 col-md-3 p-4">
-                        @if($sol->icon)
-                        <img class="py-2" src="{{ asset('frontend/img/solutions/icons/' . $sol->icon) }}"
-                            alt="{{ $sol->title }}">
-                        @endif
-                        <h5 class="fw-bold text-danger">{{ $sol->title }}</h5>
-                        @if($sol->description)
-                        <p class="small fw-bold">{{ Str::limit($sol->description, 100) }}</p>
-                        @endif
-                        <a href="{{ route('frontend.solutions.show', $sol->slug) }}"
-                            class="small fw-semibold text-dark">Read More →</a>
+                        <a href="{{ route('frontend.solutions.show', $sol->slug) }}" class="text-decoration-none text-dark">
+                            @if($sol->icon)
+                            <img class="py-2" src="{{ asset('frontend/img/solutions/icons/' . $sol->icon) }}"
+                                alt="{{ $sol->title }}">
+                            @endif
+                            <h5 class="fw-bold text-danger">{{ $sol->title }}</h5>
+                            @if($sol->description)
+                            <p class="small fw-bold">{{ Str::limit($sol->description, 100) }}</p>
+                            @endif
+                            <a href="{{ route('frontend.solutions.show', $sol->slug) }}"
+                                class="small fw-semibold text-dark">Read More →</a>
+                        </a>
                     </div>
                     @endforeach
                 </div>
@@ -164,7 +166,7 @@
 
                 <div class="circle2">
                     <div class="circle">
-                        <div class="logo"><i class="fa-solid fa-plus text-dark"></i></div>
+                        <div class="logo"><a href="/contact"><i class="fa-solid fa-plus text-dark"></i></a></div>
                         <div class="text">
                             <p class="">
                                 Turning Businesses . Into Winners . </p>
@@ -174,7 +176,7 @@
                 <div class="cta-banner">
                     <div class="cta-content">
                         <h2 class="fw-bold">Explore <span class="brdr-bottom"> how PD Advisors & Strategists </span> can <br>help you transform your challenges into <br> sustainable success.</h2>
-                        <a class="btn btn-danger rounded-lg px-4" href="#">Know More</a>
+                        <a class="btn btn-danger rounded-lg px-4" href="/contact">Know More</a>
                     </div>
                 </div>
             </section>

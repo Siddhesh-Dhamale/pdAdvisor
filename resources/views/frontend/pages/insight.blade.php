@@ -259,7 +259,7 @@ $page_name = 'insights';
                     <div class="cta-content">
                         <h2 class="fw-bold"><span class="brdr-bottom">Guiding high-impact organizations to
                                 scale</span><br> with vision and purpose</h2>
-                        <a class="btn btn-danger rounded-lg px-4" href="#">Let’s Make It Happen</a>
+                        <a class="btn btn-danger rounded-lg px-4" href="/contact">Let’s Make It Happen</a>
                     </div>
                 </div>
             </section>

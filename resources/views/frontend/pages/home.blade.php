@@ -24,7 +24,7 @@
                                 <p class="m-0 p-0 fs-4 pb-0 underlinedHeading"><span class="brdr-bottom-hero">Green
                                         Transformation Playbook:</span></p>
                                 <h1 class="m-0 p-0">From Vision to Execution in 12 Months</h1>
-                                <a class="btn btn-danger rounded-lg px-4" href="#">Read More</a>
+                                <a class="btn btn-danger rounded-lg px-4" href="/insights">Read More</a>
                             </div>
                         </div>
                         <div class="swiper-slide position-relative">
@@ -33,7 +33,7 @@
                                 <p class="m-0 p-0 fs-4 pb-0 underlinedHeading"><span class="brdr-bottom-hero">Green
                                         Transformation Playbook:</span></p>
                                 <h1 class="m-0 p-0">From Vision to Execution in 12 Months</h1>
-                                <a class="btn btn-danger rounded-lg px-4" href="#">Read More</a>
+                                <a class="btn btn-danger rounded-lg px-4" href="/insights">Read More</a>
                             </div>
                         </div>
                         <div class="swiper-slide position-relative">
@@ -42,7 +42,7 @@
                                 <p class="m-0 p-0 fs-4 pb-0 underlinedHeading"><span class="brdr-bottom-hero">Green
                                         Transformation Playbook:</span></p>
                                 <h1 class="m-0 p-0">From Vision to Execution in 12 Months</h1>
-                                <a class="btn btn-danger rounded-lg px-4" href="#">Read More</a>
+                                <a class="btn btn-danger rounded-lg px-4" href="/insights">Read More</a>
                             </div>
                         </div>
                         <div class="swiper-slide position-relative">
@@ -328,55 +328,61 @@
                         </div>
                     </div>
                     <div class="col-6 BusinessScrollContainer">
-                        <div class="row pb-4">
-                            <div class="col-5">
-                                <div class="d-flex align-items-center gap-4">
-                                    <div><img class="" src="frontend/img/home/profile-circle.svg" alt=""
-                                            style="width: 100px; height:100px;"></div>
-                                    <div class="name">
-                                        <!--<p class="m-0 small">Retail</p>-->
-                                        <p class="fw-bold">Retail</p>
+                        <a href="/insights" class="text-decoration-none text-dark">
+                            <div class="row pb-4">
+                                <div class="col-5">
+                                    <div class="d-flex align-items-center gap-4">
+                                        <div><img class="" src="frontend/img/home/profile-circle.svg" alt=""
+                                                style="width: 100px; height:100px;"></div>
+                                        <div class="name">
+                                            <!--<p class="m-0 small">Retail</p>-->
+                                            <p class="fw-bold">Retail</p>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-7">
-                                <div>
-                                    <span class="small badge rounded-pill text-bg-secondary px-3 py-2">Solutions by
-                                        Us</span>
-                                    <span class="small px-3">January 29, 2020</span>
-                                </div>
-                                <p class="fw-medium pt-3  companyTitle">RetailCo. revitalizes performance with
-                                    customer-centric shift</p>
-                                <p class="QASubcaption small">We applied our proprietary value-mapping methodology to
-                                    align leadership, redefine KPIs, and instil a culture of data-informed decisions.
-                                </p>
-                            </div>
-                        </div>
 
-                        <div class="row pb-4">
-                            <div class="col-5">
-                                <div class="d-flex align-items-center gap-4">
-                                    <div><img class="" src="frontend/img/home/profile-circle.svg" alt=""
-                                            style="width: 100px; height:100px;"></div>
-                                    <div class="name">
-                                        <!--<p class="m-0 small"></p>-->
-                                        <p class="fw-bold">Technology</p>
+                                </div>
+                                <div class="col-7">
+                                    <div>
+                                        <span class="small badge rounded-pill text-bg-secondary px-3 py-2">Solutions by
+                                            Us</span>
+                                        <span class="small px-3">January 29, 2020</span>
+                                    </div>
+                                    <p class="fw-medium pt-3  companyTitle">RetailCo. revitalizes performance with
+                                        customer-centric shift</p>
+                                    <p class="QASubcaption small">We applied our proprietary value-mapping methodology to
+                                        align leadership, redefine KPIs, and instil a culture of data-informed decisions.
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="/insights" class="text-decoration-none text-dark">
+                            <div class="row pb-4">
+
+                                <div class="col-5">
+                                    <div class="d-flex align-items-center gap-4">
+                                        <div><img class="" src="frontend/img/home/profile-circle.svg" alt=""
+                                                style="width: 100px; height:100px;"></div>
+                                        <div class="name">
+                                            <!--<p class="m-0 small"></p>-->
+                                            <p class="fw-bold">Technology</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-7">
-                                <div>
-                                    <span class="small badge rounded-pill text-bg-secondary px-3 py-2">Solutions by
-                                        Us</span>
-                                    <span class="small px-3">January 29, 2020</span>
+                                <div class="col-7">
+                                    <div>
+                                        <span class="small badge rounded-pill text-bg-secondary px-3 py-2">Solutions by
+                                            Us</span>
+                                        <span class="small px-3">January 29, 2020</span>
+                                    </div>
+                                    <p class="fw-medium pt-3 companyTitle">Smart Supply Chains: Data-Driven, Sustainable,
+                                        Ready</p>
+                                    <p class="QASubcaption small">Through our unique value-mapping framework, we brought
+                                        alignment across leadership, transformed performance metrics, and championed
+                                        data-backed decisions.</p>
                                 </div>
-                                <p class="fw-medium pt-3 companyTitle">Smart Supply Chains: Data-Driven, Sustainable,
-                                    Ready</p>
-                                <p class="QASubcaption small">Through our unique value-mapping framework, we brought
-                                    alignment across leadership, transformed performance metrics, and championed
-                                    data-backed decisions.</p>
                             </div>
-                        </div>
+                        </a>
 
                         <!--<div class="row pb-4">-->
                         <!--    <div class="col-5">-->
@@ -405,7 +411,7 @@
 
                 <div class="circle2">
                     <div class="circle">
-                        <div class="logo"><i class="fa-solid fa-plus text-dark"></i></div>
+                        <div class="logo"><a href="/contact"><i class="fa-solid fa-plus text-dark"></i></a></div>
                         <div class="text">
                             <p class="">
                                 Turning Businesses . Into Winners . </p>
@@ -416,7 +422,7 @@
                     <div class="cta-content">
                         <h2 class="fw-bold"><span class="brdr-bottom">Guiding high-impact organizations to
                                 scale</span><br> with vision and purpose</h2>
-                        <a class="btn btn-danger rounded-lg px-4" href="#">Let’s Make It Happen</a>
+                        <a class="btn btn-danger rounded-lg px-4" href="/contact">Let’s Make It Happen</a>
                     </div>
                 </div>
             </section>
