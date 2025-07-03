@@ -9,6 +9,7 @@ class Industry extends Model
     protected $fillable = [
         'title',
         'slug',
+        'parent_id',
         'hero_heading',
         'hero_description',
         'hero_image',
@@ -38,5 +39,37 @@ class Industry extends Model
     {
         return $this->hasMany(IndustryResultCard::class);
     }
+
+    public function parent()
+    {
+        return $this->belongsTo(Industry::class, 'parent_id');
+    }
+
+    public function children()
+    {
+        return $this->hasMany(Industry::class, 'parent_id');
+    }
+
+    public function related()
+    {
+        return $this->belongsToMany(
+            Industry::class,
+            'industry_related',
+            'industry_id',
+            'related_industry_id'
+        );
+    }
+    public function relatedTo()
+    {
+        return $this->belongsToMany(
+            Industry::class,
+            'industry_related',
+            'related_industry_id',
+            'industry_id'
+        );
+    }
+
+
+
 }
 ?>

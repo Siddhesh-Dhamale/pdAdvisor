@@ -38,7 +38,7 @@
         color: black !important;
     }
 
-    .scroll-snap-section {
+    /* .scroll-snap-section {
         scroll-margin-top: 90px!important;
         opacity: 1!important;
         transform: translateY(20px)!important;
@@ -48,11 +48,11 @@
     .scroll-snap-section.active {
         opacity: 1!important;
         transform: translateY(0)!important;
-    }
+    } */
 </style>
 
 
-<footer class="pt-5 text-white scroll-snap-section ">
+<footer class="text-white">
     <div class="overflow-hidden p-0 w-100">
         <div class="row">
             <div class="col-md-4 col-0 bg-lightgray"></div>

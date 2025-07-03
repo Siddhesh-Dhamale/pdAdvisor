@@ -17,15 +17,13 @@
     }
 
     .arrow-scroll-down {
-        bottom: 20px;
+        bottom: 120px;
     }
 
     .why-trust-section {
         background-color: #1d1d1d;
-        /* Matches dark background */
         color: #fff;
         height: 450px;
-        vertical-align: middle;
         align-items: center;
     }
 
@@ -48,7 +46,6 @@
         width: 100%;
         height: 5px;
         background-color: #ff1f1f;
-        /* Red underline */
         z-index: -1;
     }
 
@@ -56,7 +53,7 @@
         display: flex;
         align-items: flex-start;
         gap: 10px;
-        flex-direction: column
+        flex-direction: column;
     }
 
     .check-item p {
@@ -70,8 +67,6 @@
         line-height: 1;
     }
 
-    /* CARDS SECTION */
-
     .agribusiness-solutions {
         background-color: #fff;
     }
@@ -79,10 +74,7 @@
     .section-title {
         font-size: 2rem;
         font-weight: 600;
-    }
-
-    .section-title .highlight {
-        position: relative;
+        text-align: center;
     }
 
     .section-title .highlight::after {
@@ -93,16 +85,15 @@
         height: 5px;
         width: 100%;
         background-color: #d0021b;
-        /* red underline */
         z-index: -1;
     }
 
     .solution-card {
         border: 1px solid #eee;
         background-color: #fff;
-        transition: box-shadow 0.3s ease-in-out;
+        transition: box-shadow 0.3s;
         position: relative;
-        height: 300px
+        height: 300px;
     }
 
     .solution-card::before {
@@ -115,7 +106,7 @@
         left: 0;
         transform: scaleX(0);
         transform-origin: left;
-        transition: transform 0.3s ease;
+        transition: transform 0.3s;
     }
 
     .solution-card:hover::before {
@@ -151,36 +142,6 @@
         text-decoration: none;
     }
 
-    /* Heading underline */
-    .section-title {
-        font-size: 2rem;
-        font-weight: 500;
-        position: relative;
-    }
-
-    .section-title .highlight {
-        position: relative;
-    }
-
-    .section-title .highlight::after {
-        content: '';
-        position: absolute;
-        left: 0;
-        bottom: -5px;
-        height: 5px;
-        width: 100%;
-        background-color: #d0021b;
-        z-index: -1;
-    }
-
-    /* View All link */
-    .view-all {
-        font-size: 0.9rem;
-        color: #777;
-        text-decoration: none;
-    }
-
-    /* Sector Buttons */
     .sector-btn {
         padding: 10px 24px;
         border-radius: 20px;
@@ -188,80 +149,28 @@
         background-color: transparent;
         color: #d0021b;
         font-weight: 500;
-        transition: all 0.3s ease;
+        transition: all 0.3s;
     }
 
-    .sector-btn:hover {
-        background-color: #d0021b;
-        color: #fff;
-    }
-
+    .sector-btn:hover,
     .sector-btn.active {
         background-color: #d0021b;
         color: #fff;
-        border-color: #d0021b;
-    }
-
-    /* Section title underline */
-    .section-title {
-        font-size: 2rem;
-        font-weight: 500;
-        position: relative;
-        display: block;
-        text-align: center;
-    }
-
-    .section-title .highlight {
-        position: relative;
-    }
-
-    .section-title .highlight::after {
-        content: '';
-        position: absolute;
-        bottom: -5px;
-        left: 0;
-        width: 100%;
-        height: 5px;
-        background-color: #d0021b;
-        z-index: -1;
-    }
-
-    /* Insight Card */
-    .insight-card h5.insight-title {
-        font-size: 1rem;
-        font-weight: 500;
-        color: #d0021b;
-    }
-
-    .insight-desc {
-        font-size: 0.85rem;
-        line-height: 1.5;
-        color: #999;
-    }
-
-    .read-more {
-        font-size: 0.9rem;
-        margin-top: 10px;
     }
 
     .custom-learn-more {
         background-color: #d0021b;
-        /* red background */
         color: white;
-        /* white text */
         border-radius: 25px;
-        /* pill shape */
         padding: 10px 30px;
-        /* vertical and horizontal padding */
         font-size: 1rem;
         font-weight: 500;
         text-decoration: none;
-        transition: background-color 0.3s ease;
+        transition: background-color 0.3s;
     }
 
     .custom-learn-more:hover {
         background-color: #b00118;
-        /* slightly darker red on hover */
         color: white;
     }
 </style>
@@ -271,8 +180,9 @@
         {{ view('frontend.layouts.header') }}
 
         <div class="page-wrapper">
+
             <!-- HERO SECTION -->
-            <section class=" hero-section-main container py-5 scroll-snap-section">
+            <section class="hero-section-main container py-5 scroll-snap-section">
                 <section class="container position-absolute arrow-scroll-down">
                     <div class="rotating-scroll magnetic-wrapper float-end p-3">
                         <a href="" class="go-down-btn magnetic-btn" title="Scroll down">
@@ -301,13 +211,10 @@
                                 </div>
                                 <div class="col-5 d-flex justify-content-center">
                                     @if($industry->hero_image)
-                                        <img class="w-75" src="{{ asset('storage/industries/' . $industry->hero_image) }}"
+                                        <img class="w-75" src="{{ asset('storage/' . $industry->hero_image) }}"
                                             alt="HERO BANNER">
-
                                     @endif
                                 </div>
-
-
                             </div>
                         </div>
                     </div>
@@ -316,17 +223,8 @@
 
             <!-- WHY TRUST SECTION -->
             @php
-                // Check if subhero_heading is present
                 $hasHeading = !empty($industry->subhero_heading);
-
-                // Check if any subhero_description1-4 is present
-                $hasDescriptions = false;
-                foreach (range(1, 4) as $i) {
-                    if (!empty($industry->{'subhero_description' . $i})) {
-                        $hasDescriptions = true;
-                        break;
-                    }
-                }
+                $hasDescriptions = collect(range(1, 4))->contains(fn($i) => !empty($industry->{'subhero_description' . $i}));
             @endphp
 
             @if($hasHeading || $hasDescriptions)
@@ -334,11 +232,8 @@
                     <div class="container">
                         <div class="row align-items-center">
                             <div class="col-md-6">
-                                <h2 class="section-heading">
-                                    <span class="brdr-bottom">
-                                        {!! $industry->subhero_heading !!}
-                                    </span>
-                                </h2>
+                                <h2 class="section-heading"><span
+                                        class="brdr-bottom">{!! $industry->subhero_heading !!}</span></h2>
                             </div>
                             <div class="col-md-6">
                                 <div class="row g-4">
@@ -360,25 +255,41 @@
                 </section>
             @endif
 
-
             <!-- SOLUTIONS CARDS -->
             <section class="agribusiness-solutions py-5 scroll-snap-section">
                 <div class="container">
                     <h2 class="section-title text-center mb-5">
                         <span class="brdr-bottom">{{ $industry->solution_cards_heading }}</span>
                     </h2>
-
                     <div class="row g-4">
                         @foreach($industry->industryCards as $index => $card)
                             <div class="col-md-3">
-                                <div class="solution-card">
-                                    <div class="card-content">
-                                        <span class="card-number">{{ sprintf('%02d', $index + 1) }}</span>
-                                        <h5 class="card-title">{{ $card->card_heading }}</h5>
-                                        <p class="card-text">{{ $card->card_description }}</p>
-                                        <a href="#" class="read-more">Read More</a>
+                                @php
+                                    $matchedChild = $industry->children->firstWhere('title', $card->card_heading);
+                                @endphp
+
+                                @if($matchedChild)
+                                    <a href="{{ route('industries.show', $matchedChild->slug) }}"
+                                        class="text-decoration-none text-dark">
+                                        <div class="solution-card">
+                                            <div class="card-content">
+                                                <span class="card-number">{{ sprintf('%02d', $index + 1) }}</span>
+                                                <h5 class="card-title">{{ $card->card_heading }}</h5>
+                                                <p class="card-text">{{ $card->card_description }}</p>
+                                                <span class="read-more">Read More</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                @else
+                                    <div class="solution-card">
+                                        <div class="card-content">
+                                            <span class="card-number">{{ sprintf('%02d', $index + 1) }}</span>
+                                            <h5 class="card-title">{{ $card->card_heading }}</h5>
+                                            <p class="card-text">{{ $card->card_description }}</p>
+                                            <span class="read-more">Read More</span>
+                                        </div>
                                     </div>
-                                </div>
+                                @endif
                             </div>
                         @endforeach
                     </div>
@@ -386,10 +297,11 @@
             </section>
 
 
+
             <!-- COUNTERS -->
             <section class="py-5 scroll-snap-section" id="stats-section">
                 <div class="text-center">
-                    <h2 class="fw-bold"> <span class="brdr-bottom">{!! $industry->counter_heading !!}</span></h2>
+                    <h2 class="fw-bold"><span class="brdr-bottom">{!! $industry->counter_heading !!}</span></h2>
                 </div>
                 <div class="stats">
                     @foreach($industry->industryCounters as $counter)
@@ -401,39 +313,54 @@
                 </div>
             </section>
 
+            <!-- RELATED CATEGORIES -->
+            @if($industry->related->isNotEmpty())
+                <section class="energy-expertise py-5">
+                    <div class="container">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h2 class="section-title mx-auto">
+                                <span class="brdr-bottom">Explore Our {{ $industry->title }} Expertise</span>
+                            </h2>
+                        </div>
 
-            <!-- MULTIPLE TABS SECTION -->
-            <section class="energy-expertise py-5">
-                <div class="container">
-                    <div class="d-flex justify-content-between align-items-center mb-4">
-                        <h2 class="section-title mx-auto">
-                            <span class="brdr-bottom">Explore Our Energy Sector Expertise</span>
-                        </h2>
-                    </div>
-                    <div class="d-flex justify-content-end mb-3">
-                        <a href="#" class="view-all text-align-end">View all..</a>
-                    </div>
+                        <div class="d-flex justify-content-end mb-3">
+                            <a href="{{ route('industries.index') }}" class="view-all text-align-end">View all..</a>
+                        </div>
 
-                    <div class="d-flex flex-wrap gap-3 justify-content-center">
-                        <button class="sector-btn active">Retail</button>
-                        <button class="sector-btn">Private Equity</button>
-                        <button class="sector-btn">Technology</button>
-                        <button class="sector-btn">Oil & Gas</button>
-                        <button class="sector-btn">Healthcare & Life Sciences</button>
+                        <div class="d-flex flex-wrap gap-3 justify-content-center">
+                            @foreach($industry->related as $related)
+                                <a href="{{ route('industries.show', $related->slug) }}" class="sector-btn">
+                                    {{ $related->title }}
+                                </a>
+                            @endforeach
+                        </div>
                     </div>
-                </div>
-            </section>
+                </section>
+            @endif
 
-            <!-- RESULT CARDS / INSIGHTS -->
+
+            <!-- RESULT CARDS -->
             @if($industry->industryResultCards->count())
+                @php
+                    $cards = $industry->industryResultCards;
+                    $cardsToShow = [];
+
+                    if ($cards->count() >= 3) {
+                        $cardsToShow = $cards->take(3);
+                    } elseif ($cards->count() === 2) {
+                        $cardsToShow = collect([$cards[0], $cards[1], $cards[0]]);
+                    } elseif ($cards->count() === 1) {
+                        $cardsToShow = collect([$cards[0], $cards[0], $cards[0]]);
+                    }
+                @endphp
+
                 <section class="insights-section py-5">
                     <div class="container">
                         <h2 class="section-title mb-5 text-align-center">
                             <span class="brdr-bottom">{{ $industry->result_cards_heading }}</span>
                         </h2>
-
                         <div class="row g-5">
-                            @foreach($industry->industryResultCards as $resultCard)
+                            @foreach($cardsToShow as $resultCard)
                                 <div class="col-md-4">
                                     <div class="insight-card text-left">
                                         @if($resultCard->card_image)
@@ -450,6 +377,7 @@
                     </div>
                 </section>
             @endif
+
 
             <!-- CTA -->
             @if($industry->cta_title)
@@ -471,13 +399,12 @@
                     </div>
                 </section>
             @endif
+
         </div>
     </div>
 
-
     {{ view('frontend.layouts.scripts') }}
-    {{view('frontend.layouts.footer')}}
-
+    {{ view('frontend.layouts.footer') }}
 </body>
 
 </html>
