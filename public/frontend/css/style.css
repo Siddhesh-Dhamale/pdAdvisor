@@ -392,7 +392,7 @@ header.scrolled .custom-nav-link.active {
 
 /* start of section animation for scrolling */
 /* Identify scroll sections */
-.scroll-snap-section {
+/* .scroll-snap-section {
     scroll-margin-top: 90px;
     opacity: 1;
     transform: translateY(20px);
@@ -402,7 +402,7 @@ header.scrolled .custom-nav-link.active {
 .scroll-snap-section.active {
     opacity: 1;
     transform: translateY(0);
-}
+} */
 
 /* end of section animation for scrolling */
 /* Counter section css */

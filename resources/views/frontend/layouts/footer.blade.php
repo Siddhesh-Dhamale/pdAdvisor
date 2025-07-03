@@ -38,17 +38,7 @@
         color: black !important;
     }
 
-    .scroll-snap-section {
-        scroll-margin-top: 90px!important;
-        opacity: 1!important;
-        transform: translateY(20px)!important;
-        transition: all 0.6s ease!important;
-    }
 
-    .scroll-snap-section.active {
-        opacity: 1!important;
-        transform: translateY(0)!important;
-    }
 </style>
 
 
@@ -138,7 +128,7 @@
 
     </div>
 </footer>
-<script>
+<!-- <script>
     document.addEventListener('DOMContentLoaded', function () {
         const sections = document.querySelectorAll('.scroll-snap-section');
         let isScrolling = false;
@@ -176,4 +166,4 @@
             observer.observe(section);
         });
     });
-</script>
+</script> -->
