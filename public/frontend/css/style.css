@@ -107,6 +107,76 @@ header.scrolled .custom-nav-link.active {
 .nav-link:hover {
     color: #c8102e !important;
 }
+.search-bar {
+    transition: all 0.3s ease-in-out;
+}
+
+.search-input {
+    width: 0 !important;
+    opacity: 0;
+    padding: 0;
+    border: none;
+    overflow: hidden;
+    transition: width 0.4s ease, opacity 0.4s ease, padding 0.2s ease,
+        border 0.2s ease;
+}
+
+.search-input.visible {
+    min-width: 200px;
+    opacity: 1;
+    padding: 0.375rem 0.75rem;
+    border: 1px solid #ced4da;
+}
+
+/* Slide-in mobile nav styles */
+.mobile-nav {
+    position: fixed;
+    top: 0;
+    left: -80%;
+    width: 80%;
+    height: 100vh;
+    background-color: #fff;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    z-index: 1050;
+    transition: left 0.3s ease;
+}
+
+/* Backdrop */
+.mobile-nav-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1040;
+    transition: opacity 0.3s ease;
+}
+
+/* When menu is open */
+.mobile-nav.open {
+    left: 0;
+}
+
+.mobile-nav-backdrop.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Ensure black text in mobile nav */
+.mobile-nav .nav-link {
+    color: #000 !important;
+    font-weight: 500;
+}
+
+@media (max-width: 992px) {
+    header.d-flex {
+        justify-content: space-between !important;
+    }
+}
 
 /* header css */
 
@@ -428,4 +498,26 @@ header.scrolled .custom-nav-link.active {
 }
 
 /* Counter section css end */
-    
+
+@media (max-width: 600px) {
+    br {
+        display: none !important;
+    }
+    h1 {
+        text-align: center;
+    }
+    .hero-swiper .swiper-slide {
+        height: 640px;
+        max-height: 100dvh;
+   
+    }
+    .hero-swiper .swiper-slide img {
+        object-fit: cover;
+        min-height: 640px !important;
+    }
+    .HeroContent p{
+        text-align: center;
+        font-size: 25px !important;
+    }
+
+}

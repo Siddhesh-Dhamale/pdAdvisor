@@ -15,43 +15,47 @@
         {{view('frontend.layouts.header')}}
 
         <div class="page-wrapper">
-            <section class="hero">
+            <section class="hero position-relative">
                 <div class="swiper hero-swiper">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide position-relative">
                             <img class="w-100" src="frontend/img/home/updated-banner-new.png" alt="">
+                            <div class="mobileOverlay"></div>
                             <div class="HeroContent text-start lh-1">
                                 <p class="m-0 p-0 fs-4 pb-0 underlinedHeading"><span class="brdr-bottom-hero">Green
                                         Transformation Playbook:</span></p>
                                 <h1 class="m-0 p-0">From Vision to Execution in 12 Months</h1>
-                                <a class="btn btn-danger rounded-lg px-4" href="/insights">Read More</a>
+                                <a class="btn btn-danger rounded-lg px-4 heroReadMore" href="/insights">Read More</a>
                             </div>
                         </div>
                         <div class="swiper-slide position-relative">
                             <img class="w-100" src="frontend/img/home/updated-banner-new.png" alt="">
-                            <div class="HeroContent text-start">
+                            <div class="mobileOverlay"></div>
+                            <div class="HeroContent text-start lh-1">
                                 <p class="m-0 p-0 fs-4 pb-0 underlinedHeading"><span class="brdr-bottom-hero">Green
                                         Transformation Playbook:</span></p>
                                 <h1 class="m-0 p-0">From Vision to Execution in 12 Months</h1>
-                                <a class="btn btn-danger rounded-lg px-4" href="/insights">Read More</a>
+                                <a class="btn btn-danger rounded-lg px-4 heroReadMore" href="/insights">Read More</a>
                             </div>
                         </div>
                         <div class="swiper-slide position-relative">
                             <img class="w-100" src="frontend/img/home/updated-banner-new.png" alt="">
-                            <div class="HeroContent text-start">
+                            <div class="mobileOverlay"></div>
+                            <div class="HeroContent text-start lh-1">
                                 <p class="m-0 p-0 fs-4 pb-0 underlinedHeading"><span class="brdr-bottom-hero">Green
                                         Transformation Playbook:</span></p>
                                 <h1 class="m-0 p-0">From Vision to Execution in 12 Months</h1>
-                                <a class="btn btn-danger rounded-lg px-4" href="/insights">Read More</a>
+                                <a class="btn btn-danger rounded-lg px-4 heroReadMore" href="/insights">Read More</a>
                             </div>
                         </div>
                         <div class="swiper-slide position-relative">
                             <img class="w-100" src="frontend/img/home/updated-banner-new.png" alt="">
-                            <div class="HeroContent text-start">
+                            <div class="mobileOverlay"></div>
+                            <div class="HeroContent text-start lh-1">
                                 <p class="m-0 p-0 fs-4 pb-0 underlinedHeading"><span class="brdr-bottom-hero">Green
                                         Transformation Playbook:</span></p>
                                 <h1 class="m-0 p-0">From Vision to Execution in 12 Months</h1>
-                                <a class="btn btn-danger rounded-lg px-4" href="#">Read More</a>
+                                <a class="btn btn-danger rounded-lg px-4 heroReadMore" href="#">Read More</a>
                             </div>
                         </div>
                     </div>
@@ -140,9 +144,9 @@
 
 
 
-            <section class="container py-5 scroll-snap-section">
-                <section class="container position-absolute">
-                    <div class="rotating-scroll magnetic-wrapper float-end p-3">
+            <section class="container py-5 scroll-snap-section position-relative">
+                <section class="position-absolute homeScrollDownMobile end-0">
+                    <div class="rotating-scroll magnetic-wrapper p-3">
                         <a href="" class="go-down-btn magnetic-btn" title="Scroll down">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                 width="120" height="120" viewBox="0 0 100 100" aria-hidden="true">
@@ -169,9 +173,9 @@
                     <div class="swiper-wrapper">
 
                         <!-- Slide 1 -->
-                        <div class="swiper-slide">
+                        <div class="swiper-slide w-100">
                             <div class="row align-items-center justify-content-evenly">
-                                <div class="col-6">
+                                <div class="col-md-6 col-12">
                                     <h1 class="fw-bold"><span class="brdr-bottom">Industry Expertise That</span> Drives
                                         Results</h1>
                                     <p class="py-3 QASubcaption">From finance to technology to the public sector, we
@@ -208,16 +212,16 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-5 d-flex justify-content-center">
-                                    <img class="w-75" src="frontend/img/home/Group 32.png" alt="">
+                                <div class="col-md-5 col-12 d-flex justify-content-center">
+                                    <img class="w-75 expertiesImg" src="frontend/img/home/Group 32.png" alt="">
                                 </div>
                             </div>
                         </div>
 
                         <!-- Slide 2 -->
-                        <div class="swiper-slide">
+                        <div class="swiper-slide w-100">
                             <div class="row align-items-center justify-content-evenly">
-                                <div class="col-6">
+                                <div class="col-md-6 col-12">
                                     <h1 class="fw-bold"><span class="brdr-bottom">Industry Expertise That</span> Drives
                                         Results</h1>
                                     <p class="py-3 QASubcaption">Choose your business need for tailored services and
@@ -255,12 +259,12 @@
                                                 Growth</button>
                                         </div>
                                         <div class="button-effect pt-5">
-                                            <a class="effect effect-3 " href="#" title="Learn More">View all...</a>
+                                            <a class="effect effect-3 " href="#" title="View all">View all...</a>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-5 d-flex justify-content-center">
-                                    <img class="w-75" src="frontend/img/home/Q11.png" alt="">
+                                <div class="col-md-5 col-12 d-flex justify-content-center">
+                                    <img class="w-75 expertiesImg" src="frontend/img/home/Q11.png" alt="">
                                 </div>
                             </div>
                         </div>
@@ -286,7 +290,7 @@
                 </div>
             </section> -->
 
-            <section class="py-5 scroll-snap-section" id="stats-section">
+            <section class="py-5 scroll-snap-section HomeCounter" id="stats-section">
 
                 <div class="text-center">
                     <h1 class="fw-bold">
@@ -315,7 +319,7 @@
 
             <section class="businessSection container pt-2 pb-5 scroll-snap-section">
                 <div class="row justify-content-between align-items-start pt-5">
-                    <div class="col-5">
+                    <div class="col-md-5 col-12 text-center text-md-start">
                         <h1 class="fw-bold">
                             <span class="brdr-bottom"> Breakthrough </span> <br> Results. <br>Bold Moves.
                         </h1>
@@ -327,10 +331,10 @@
                             <a class="effect effect-3 " href="#" title="Read all...">Read all...</a>
                         </div>
                     </div>
-                    <div class="col-6 BusinessScrollContainer">
+                    <div class="col-md-6 col-12 BusinessScrollContainer ">
                         <a href="/insights" class="text-decoration-none text-dark">
                             <div class="row pb-4">
-                                <div class="col-5">
+                                <div class="col-md-5 col-12">
                                     <div class="d-flex align-items-center gap-4">
                                         <div><img class="" src="frontend/img/home/profile-circle.svg" alt=""
                                                 style="width: 100px; height:100px;"></div>
@@ -341,7 +345,7 @@
                                     </div>
 
                                 </div>
-                                <div class="col-7">
+                                <div class="col-md-7 col-12">
                                     <div>
                                         <span class="small badge rounded-pill text-bg-secondary px-3 py-2">Solutions by
                                             Us</span>
@@ -359,7 +363,7 @@
                         <a href="/insights" class="text-decoration-none text-dark">
                             <div class="row pb-4">
 
-                                <div class="col-5">
+                                <div class="col-md-5 col-12">
                                     <div class="d-flex align-items-center gap-4">
                                         <div><img class="" src="frontend/img/home/profile-circle.svg" alt=""
                                                 style="width: 100px; height:100px;"></div>
@@ -369,7 +373,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-7">
+                                <div class="col-md-7 col-12">
                                     <div>
                                         <span class="small badge rounded-pill text-bg-secondary px-3 py-2">Solutions by
                                             Us</span>

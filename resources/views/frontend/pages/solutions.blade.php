@@ -18,11 +18,16 @@
         padding: 20px;
         transition: all 0.3s ease-in-out;
         height: 100%;
-        min-height: 380px;
+        min-height: 300px;
+        cursor: pointer;
     }
 
     .service-card:hover {
-        border-top: 5px solid red;
+        border-top: 5px solid red !important;
+    }
+
+    .modal-content .service-card {
+        border-top: 5px solid red !important;
     }
 
 
@@ -61,6 +66,15 @@
     header .nav-link,
     header .companyLogo {
         color: rgb(119, 119, 119) !important;
+    }
+
+    .truncate-text {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        /* Show only 3 lines */
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 </style>
 @php
@@ -130,24 +144,55 @@ if(count($words) <= 3) {
                 </div>
             </section>
 
+
+
             {{-- Solution Cards --}}
             <section class="py-5 container scroll-snap-section">
                 <h1 class="text-center fw-bold pb-5">{!! wrapFirstThreeWords($solution->solution_cards_heading) !!}</h1>
                 <div class="row justify-content-center g-4">
                     @foreach($solution->solutionCards as $card)
                     <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex">
-                        <div class="service-card d-flex gap-2 flex-column justify-content-between">
+                        <div class="service-card d-flex gap-2 flex-column justify-content-between" data-bs-toggle="modal"
+                            data-bs-target="#cardModal{{ $loop->iteration }}">
                             <div>
                                 <div class="card-number pt-3 QASubcaption">{{ $loop->iteration }}</div>
                                 <div class="service-title text-danger fw-bold pt-3">{{ $card->card_heading }}</div>
-                                <div class="service-desc pt-3 QASubcaption">{{ $card->card_description }}</div>
+                                <div class="service-desc pt-3 QASubcaption truncate-text">
+                                    {{ \Illuminate\Support\Str::limit($card->card_description, 100) }}
+                                </div>
                             </div>
-                            <div class="read-more mt-3 fw-semibold">Read More</div>
+                            <button
+                                class="btn btn-link read-more mt-3 fw-semibold p-0 text-start text-decoration-none"
+                                data-bs-toggle="modal"
+                                data-bs-target="#cardModal{{ $loop->iteration }}">
+                                Read More
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Modal Styled as Card -->
+                    <div class="modal fade" id="cardModal{{ $loop->iteration }}" tabindex="-1" aria-labelledby="cardModalLabel{{ $loop->iteration }}" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered ">
+                            <div class="modal-content p-0 border-0">
+                                <div class="service-card d-flex flex-column gap-2 justify-content-between border-0">
+                                    <div>
+                                        <div class="card-number pt-3 QASubcaption">{{ $loop->iteration }}</div>
+                                        <div class="service-title text-danger fw-bold pt-3">{{ $card->card_heading }}</div>
+                                        <div class="service-desc pt-3 QASubcaption">
+                                            {{ $card->card_description }}
+                                        </div>
+                                    </div>
+                                    <div class="text-end mt-3">
+                                        <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     @endforeach
                 </div>
             </section>
+
 
             {{-- Counters --}}
             <section class="py-5 container scroll-snap-section" id="stats-section">
@@ -167,21 +212,31 @@ if(count($words) <= 3) {
             <section class="py-5 container scroll-snap-section">
                 <h1 class="fw-bold text-center pb-5">{!! wrapFirstThreeWords($solution->result_cards_heading) !!}</h1>
                 <div class="row">
-                    @foreach($solution->solutionResultCards as $result)
+
+                    @php
+                    $cards = $solution->solutionResultCards;
+
+                    // Ensure minimum 3 cards by duplicating first card if needed
+                    if ($cards->count() === 2) {
+                    $cards->push($cards[0]); // repeat first card
+                    }
+                    @endphp
+
+                    @foreach($cards->take(3) as $result)
                     <div class="col-4">
-
                         @if($result->card_image)
-                        <img src="{{ asset('frontend/img/solutions/result_cards/'.$result->card_image) }}" class="w-100" alt="{{ $result->card_heading }}">
-
+                        <img src="{{ asset('frontend/img/solutions/result_cards/' . $result->card_image) }}" class="w-100" alt="{{ $result->card_heading }}">
                         @endif
-                        <!-- <img class="w-100" src="{{ asset('frontend\img\services\Placement area.png') }}" alt="err"> -->
+
                         <h4 class="pt-4 text-danger fw-semibold">{{ $result->card_heading }}</h4>
                         <p class="QASubcaption">{{ $result->card_description }}</p>
                         <a href="#" class="fw-bold text-dark">Read More →</a>
                     </div>
                     @endforeach
+
                 </div>
             </section>
+
 
             @if ($solution->services->isNotEmpty())
             <section class="py-5 container scroll-snap-section">
@@ -215,7 +270,7 @@ if(count($words) <= 3) {
             <section class="scroll-snap-section circleContainer position-relative d-flex justify-content-center bg-white pt-5">
                 <div class="circle2">
                     <div class="circle">
-                        <div class="logo"><i class="fa-solid fa-plus text-dark"></i></div>
+                        <div class="logo"><a href="/contact"><i class="fa-solid fa-plus text-dark"></i></a></div>
                         <div class="text">
                             <p class="">
                                 Turning Businesses . Into Winners . </p>

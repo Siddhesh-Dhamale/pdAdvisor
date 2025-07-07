@@ -84,10 +84,10 @@
             <!-- Social Banner -->
             <div class="col-md-8 col-12  text-center bg-danger ">
 
-                <div class="row rounded-Cont bg-darkgray h-100 p-5 justify-content-evenly">
+                <div class="row rounded-Cont bg-darkgray h-100 p-2 p-md-5 justify-content-evenly">
                     <div class="col-md-3 p-4 text-start">
-                        <h6 class="pb-4  ">Quick Links</h6>
-                        <ul class=" ">
+                        <h6 class="pb-4  fw-bold">Quick Links</h6>
+                        <ul class=" d-flex d-md-block flex-wrap " style="row-gap: 10px; column-gap: 20px;">
                             <li class=" "><a href="/industries">Industries</a></li>
                             <li class=" "><a href="/services">Solutions</a></li>
                             <li class=" "><a href="/insights">Insights</a></li>
@@ -97,7 +97,7 @@
                         </ul>
                     </div>
                     <div class="col-md-6 p-4 text-start">
-                        <h6 class="pb-4  ">Connect With Us !</h6>
+                        <h6 class="pb-4 fw-bold ">Connect With Us !</h6>
                         <ul class=" ">
                             <li class=" ">
                                 <a href="mailto:info@pdadvisorsandstrategists.com"><i class="fas fa-envelope"></i>

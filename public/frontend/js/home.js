@@ -50,7 +50,7 @@ const QAswiper = new Swiper(".industrySwiper", {
 document.querySelectorAll(".QAbutton").forEach((button) => {
     button.addEventListener("click", () => {
         if (QAswiper.isEnd) {
-            window.location.href = "#";
+            window.location.href = "/services";
         } else {
             QAswiper.slideNext();
         }

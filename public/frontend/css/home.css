@@ -1,5 +1,3 @@
-
-
 .icon-trigger {
     position: relative;
     display: flex;
@@ -77,9 +75,9 @@
     font: normal normal 600 55px/65px Tropiline;
 }
 
-.HeroContent p {
+/* .HeroContent p {
     font-size: 30px !important;
-}
+} */
 
 .HeroContent h1 {
     font-size: 50px;
@@ -132,7 +130,6 @@
 .effect.effect-3:hover::before {
     top: 0;
 }
-
 
 .marquee-row {
     width: 100%;
@@ -194,8 +191,52 @@
     overflow-y: scroll;
 }
 
-
-
 .companyTitle:hover {
     color: #c8102e;
+}
+
+@media (max-width: 768px) {
+    .expertiesImg {
+        width: 100% !important;
+    }
+    .py-5 {
+        padding-bottom: 0 !important;
+    }
+    .homeScrollDownMobile {
+        bottom: 40%;
+    }
+    .HeroContent {
+        top: 25%;
+        width: 100%;
+        left: 0;
+        z-index: 2;
+    }
+    .HeroContent h1 {
+        font-size: 35px;
+        padding: 20px 0 !important;
+    }
+    .heroReadMore {
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .icon-trigger svg {
+        width: 100%;
+    }
+    .icon-trigger p {
+        font-size: 10px;
+    }
+    .mobileOverlay{
+        height: 100%;
+        background-color: black;
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        width: 100%;
+        opacity: 0.2;
+    }
+    .HomeCounter{
+        padding-top:0 !important ;
+    }
 }

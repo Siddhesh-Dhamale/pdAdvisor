@@ -218,8 +218,8 @@
                                 </div>
                                 <div class="col-5 d-flex justify-content-center">
                                     @if($industry->hero_image)
-                                        <img class="w-75" src="{{ asset('frontend/img/' . $industry->hero_image) }}"
-                                            alt="HERO BANNER">
+                                    <img class="w-75" src="{{ asset('frontend/img/' . $industry->hero_image) }}"
+                                        alt="HERO BANNER">
                                     @endif
                                 </div>
                             </div>
@@ -230,36 +230,36 @@
 
             <!-- WHY TRUST SECTION -->
             @php
-                $hasHeading = !empty($industry->subhero_heading);
-                $hasDescriptions = collect(range(1, 4))->contains(fn($i) => !empty($industry->{'subhero_description' . $i}));
+            $hasHeading = !empty($industry->subhero_heading);
+            $hasDescriptions = collect(range(1, 4))->contains(fn($i) => !empty($industry->{'subhero_description' . $i}));
             @endphp
 
             @if($hasHeading || $hasDescriptions)
-                <section class="why-trust-section text-white py-5 scroll-snap-section">
-                    <div class="container">
-                        <div class="row align-items-center">
-                            <div class="col-md-6">
-                                <h2 class="section-heading"><span
-                                        class="brdr-bottom">{!! $industry->subhero_heading !!}</span></h2>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="row g-4">
-                                    @foreach (range(1, 4) as $i)
-                                        @php $desc = $industry->{'subhero_description' . $i}; @endphp
-                                        @if(!empty($desc))
-                                            <div class="col-sm-6">
-                                                <div class="check-item">
-                                                    <div class="check-icon">✓</div>
-                                                    <p><strong>{{ $desc }}</strong></p>
-                                                </div>
-                                            </div>
-                                        @endif
-                                    @endforeach
+            <section class="why-trust-section text-white py-5 scroll-snap-section">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-md-6">
+                            <h2 class="section-heading"><span
+                                    class="brdr-bottom">{!! $industry->subhero_heading !!}</span></h2>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row g-4">
+                                @foreach (range(1, 4) as $i)
+                                @php $desc = $industry->{'subhero_description' . $i}; @endphp
+                                @if(!empty($desc))
+                                <div class="col-sm-6">
+                                    <div class="check-item">
+                                        <div class="check-icon">✓</div>
+                                        <p><strong>{{ $desc }}</strong></p>
+                                    </div>
                                 </div>
+                                @endif
+                                @endforeach
                             </div>
                         </div>
                     </div>
-                </section>
+                </div>
+            </section>
             @endif
 
             <!-- SOLUTIONS CARDS -->
@@ -270,34 +270,34 @@
                     </h2>
                     <div class="row g-4">
                         @foreach($industry->industryCards as $index => $card)
-                            <div class="col-md-3">
-                                @php
-                                    $matchedChild = $industry->children->firstWhere('title', $card->card_heading);
-                                @endphp
+                        <div class="col-md-3">
+                            @php
+                            $matchedChild = $industry->children->firstWhere('title', $card->card_heading);
+                            @endphp
 
-                                @if($matchedChild)
-                                    <a href="{{ route('industries.show', $matchedChild->slug) }}"
-                                        class="text-decoration-none text-dark">
-                                        <div class="solution-card">
-                                            <div class="card-content">
-                                                <span class="card-number">{{ sprintf('%02d', $index + 1) }}</span>
-                                                <h5 class="card-title">{{ $card->card_heading }}</h5>
-                                                <p class="card-text">{{ $card->card_description }}</p>
-                                                <span class="read-more">Read More</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                @else
-                                    <div class="solution-card">
-                                        <div class="card-content">
-                                            <span class="card-number">{{ sprintf('%02d', $index + 1) }}</span>
-                                            <h5 class="card-title">{{ $card->card_heading }}</h5>
-                                            <p class="card-text">{{ $card->card_description }}</p>
-                                            <span class="read-more">Read More</span>
-                                        </div>
+                            @if($matchedChild)
+                            <a href="{{ route('industries.show', $matchedChild->slug) }}"
+                                class="text-decoration-none text-dark">
+                                <div class="solution-card">
+                                    <div class="card-content">
+                                        <span class="card-number">{{ sprintf('%02d', $index + 1) }}</span>
+                                        <h5 class="card-title">{{ $card->card_heading }}</h5>
+                                        <p class="card-text">{{ $card->card_description }}</p>
+                                        <span class="read-more">Read More</span>
                                     </div>
-                                @endif
+                                </div>
+                            </a>
+                            @else
+                            <div class="solution-card">
+                                <div class="card-content">
+                                    <span class="card-number">{{ sprintf('%02d', $index + 1) }}</span>
+                                    <h5 class="card-title">{{ $card->card_heading }}</h5>
+                                    <p class="card-text">{{ $card->card_description }}</p>
+                                    <span class="read-more">Read More</span>
+                                </div>
                             </div>
+                            @endif
+                        </div>
                         @endforeach
                     </div>
                 </div>
@@ -312,99 +312,99 @@
                 </div>
                 <div class="stats">
                     @foreach($industry->industryCounters as $counter)
-                        <div>
-                            <div class="stat-item" data-target="{{ $counter->number }}">0+</div>
-                            <div class="stat-label fw-semibold">{{ $counter->title }}</div>
-                        </div>
+                    <div>
+                        <div class="stat-item" data-target="{{ $counter->number }}">0+</div>
+                        <div class="stat-label fw-semibold">{{ $counter->title }}</div>
+                    </div>
                     @endforeach
                 </div>
             </section>
 
             <!-- RELATED CATEGORIES -->
             @if($industry->related->isNotEmpty())
-                <section class="energy-expertise py-5">
-                    <div class="container">
-                        <div class="d-flex justify-content-between align-items-center mb-4">
-                            <h2 class="section-title mx-auto">
-                                <span class="brdr-bottom">Explore Our {{ $industry->title }} Expertise</span>
-                            </h2>
-                        </div>
-
-                        <div class="d-flex justify-content-end mb-3">
-                            <a href="{{ route('industries.index') }}" class="view-all text-align-end">View all..</a>
-                        </div>
-
-                        <div class="d-flex flex-wrap gap-3 justify-content-center">
-                            @foreach($industry->related as $related)
-                                <a href="{{ route('industries.show', $related->slug) }}" class="sector-btn">
-                                    {{ $related->title }}
-                                </a>
-                            @endforeach
-                        </div>
+            <section class="energy-expertise py-5">
+                <div class="container">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h2 class="section-title mx-auto">
+                            <span class="brdr-bottom">Explore Our {{ $industry->title }} Expertise</span>
+                        </h2>
                     </div>
-                </section>
+
+                    <div class="d-flex justify-content-end mb-3">
+                        <a href="{{ route('industries.index') }}" class="view-all text-align-end">View all..</a>
+                    </div>
+
+                    <div class="d-flex flex-wrap gap-3 justify-content-center">
+                        @foreach($industry->related as $related)
+                        <a href="{{ route('industries.show', $related->slug) }}" class="sector-btn">
+                            {{ $related->title }}
+                        </a>
+                        @endforeach
+                    </div>
+                </div>
+            </section>
             @endif
 
 
             <!-- RESULT CARDS -->
             @if($industry->industryResultCards->count())
-                @php
-                    $cards = $industry->industryResultCards;
-                    $cardsToShow = [];
+            @php
+            $cards = $industry->industryResultCards;
+            $cardsToShow = [];
 
-                    if ($cards->count() >= 3) {
-                        $cardsToShow = $cards->take(3);
-                    } elseif ($cards->count() === 2) {
-                        $cardsToShow = collect([$cards[0], $cards[1], $cards[0]]);
-                    } elseif ($cards->count() === 1) {
-                        $cardsToShow = collect([$cards[0], $cards[0], $cards[0]]);
-                    }
-                @endphp
+            if ($cards->count() >= 3) {
+            $cardsToShow = $cards->take(3);
+            } elseif ($cards->count() === 2) {
+            $cardsToShow = collect([$cards[0], $cards[1], $cards[0]]);
+            } elseif ($cards->count() === 1) {
+            $cardsToShow = collect([$cards[0], $cards[0], $cards[0]]);
+            }
+            @endphp
 
-                <section class="insights-section py-5">
-                    <div class="container">
-                        <h2 class="section-title mb-5 text-align-center">
-                            <span class="brdr-bottom">{{ $industry->result_cards_heading }}</span>
-                        </h2>
-                        <div class="row g-5">
-                            @foreach($cardsToShow as $resultCard)
-                                <div class="col-md-4">
-                                    <div class="insight-card text-left">
-                                        @if($resultCard->card_image)
-                                            <img src="{{ asset('frontend/img/' . $resultCard->card_image) }}" class="img-fluid mb-3"
-                                                alt="card image">
-                                        @endif
-                                        <h5 class="insight-title text-danger">{!! $resultCard->card_heading !!}</h5>
-                                        <p class="insight-desc text-muted">{{ $resultCard->card_description }}</p>
-                                        <p class="read-more fw-bold text-black">Read more &gt;&gt;&gt;</p>
-                                    </div>
-                                </div>
-                            @endforeach
+            <section class="insights-section py-5">
+                <div class="container">
+                    <h2 class="section-title mb-5 text-align-center">
+                        <span class="brdr-bottom">{{ $industry->result_cards_heading }}</span>
+                    </h2>
+                    <div class="row g-5">
+                        @foreach($cardsToShow as $resultCard)
+                        <div class="col-md-4">
+                            <div class="insight-card text-left">
+                                @if($resultCard->card_image)
+                                <img src="{{ asset('frontend/img/' . $resultCard->card_image) }}" class="img-fluid mb-3"
+                                    alt="card image">
+                                @endif
+                                <h5 class="insight-title text-danger">{!! $resultCard->card_heading !!}</h5>
+                                <p class="insight-desc text-muted">{{ $resultCard->card_description }}</p>
+                                <p class="read-more fw-bold text-black">Read more &gt;&gt;&gt;</p>
+                            </div>
                         </div>
+                        @endforeach
                     </div>
-                </section>
+                </div>
+            </section>
             @endif
 
 
             <!-- CTA -->
             @if($industry->cta_title)
-                <section
-                    class="scroll-snap-section circleContainer position-relative d-flex justify-content-center bg-white pt-5 pb-0 mb-0">
-                    <div class="circle2">
-                        <div class="circle">
-                            <div class="logo"><i class="fa-solid fa-plus text-dark"></i></div>
-                            <div class="text">
-                                <p>Turning Businesses . Into Winners .</p>
-                            </div>
+            <section
+                class="scroll-snap-section circleContainer position-relative d-flex justify-content-center bg-white pt-5 pb-0 mb-0">
+                <div class="circle2">
+                    <div class="circle">
+                        <div class="logo"><a href="/contact"><i class="fa-solid fa-plus text-dark"></i></a></div>
+                        <div class="text">
+                            <p>Turning Businesses . Into Winners .</p>
                         </div>
                     </div>
-                    <div class="cta-banner">
-                        <div class="cta-content">
-                            <h2 class="fw-bold pb-5"><span class="brdr-bottom">{{ $industry->cta_title }}</span></h2>
-                            <a class="btn btn-danger rounded-lg px-4" href="#">Book a Consultation</a>
-                        </div>
+                </div>
+                <div class="cta-banner">
+                    <div class="cta-content">
+                        <h2 class="fw-bold pb-5"><span class="brdr-bottom">{{ $industry->cta_title }}</span></h2>
+                        <a class="btn btn-danger rounded-lg px-4" href="#">Book a Consultation</a>
                     </div>
-                </section>
+                </div>
+            </section>
             @endif
 
         </div>

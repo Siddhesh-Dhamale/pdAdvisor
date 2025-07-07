@@ -2,8 +2,9 @@
     <a class="companyLogo" href="/">
         <div class="fw-semibold ">Company Logo</div>
     </a>
-    <nav>
-        <ul class="nav">
+
+    <nav class="d-none d-lg-block">
+        <ul class="nav" id="mainNav">
             <li class="nav-item">
                 <a class="nav-link custom-nav-link {{ request()->is('/') ? 'active' : '' }}" href="/">Home</a>
             </li>
@@ -21,15 +22,94 @@
             </li>
 
         </ul>
+
     </nav>
 
-    <div class="d-flex align-items-center gap-5">
-        <!-- ✅ Font Awesome Search Icon -->
-        <i class="fas fa-search" style="font-size: 1.2rem;"></i>
+    <div class="d-none d-lg-flex align-items-center gap-5 ">
+        <div class="d-flex align-items-center gap-2 search-bar">
+            <input type="text" class="form-control search-input" placeholder="Search..." aria-label="Search">
+            <i class="fas fa-search search-icon" style="font-size: 1.2rem; cursor: pointer;"></i>
+        </div>
 
         <a class="btn btn-danger rounded-lg px-4" href="/contact">Contact Us</a>
+
     </div>
+
+    <button class="d-lg-none border-0 bg-transparent px-4" id="menuToggle" aria-label="Toggle Menu">
+        <i class="fas fa-bars fa-lg"></i>
+    </button>
+
 </header>
+
+<!-- Mobile Menu Wrapper -->
+<!-- Slide-in Mobile Menu -->
+<div id="mobileNav" class="mobile-nav d-lg-none">
+    <ul class="nav flex-column p-4">
+        <li class="nav-item">
+            <a class="nav-link custom-nav-link text-black {{ request()->is('/') ? 'active' : '' }}" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link custom-nav-link text-black {{ request()->is('industries') ? 'active' : '' }}" href="/industries">Industries</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link custom-nav-link text-black {{ request()->is('services') ? 'active' : '' }}" href="/services">Solutions</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link custom-nav-link text-black {{ request()->is('insights') ? 'active' : '' }}" href="/insights">Insights</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link custom-nav-link text-black {{ request()->is('about') ? 'active' : '' }}" href="/about">About Us</a>
+        </li>
+        <li class="nav-item mt-3">
+            <a class="btn btn-danger rounded-lg px-4" href="/contact">Contact Us</a>
+        </li>
+    </ul>
+</div>
+
+<!-- Optional: backdrop for closing the menu -->
+<div id="mobileNavBackdrop" class="mobile-nav-backdrop d-lg-none"></div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Search icon behavior
+        const searchIcon = document.querySelector('.search-icon');
+        const searchInput = document.querySelector('.search-input');
+
+        searchIcon.addEventListener('click', () => {
+            const isVisible = searchInput.classList.contains('visible');
+            const query = searchInput.value.trim();
+
+            if (!isVisible) {
+                searchInput.classList.add('visible');
+                searchInput.focus();
+            } else {
+                if (query === '') {
+                    searchInput.classList.remove('visible');
+                    searchInput.value = '';
+                } else {
+                    window.location.href = `/search?query=${encodeURIComponent(query)}`;
+                }
+            }
+        });
+
+        // Hamburger toggle behavior
+        const toggleButton = document.getElementById('menuToggle');
+        const mobileNav = document.getElementById('mobileNav');
+        const backdrop = document.getElementById('mobileNavBackdrop');
+
+        toggleButton.addEventListener('click', () => {
+            mobileNav.classList.toggle('open');
+            backdrop.classList.toggle('show');
+        });
+
+        backdrop.addEventListener('click', () => {
+            mobileNav.classList.remove('open');
+            backdrop.classList.remove('show');
+        });
+    });
+</script>
+
+
 
 <!-- cursor -->
 <div id="dot"></div>

@@ -1,3 +1,31 @@
+// header search bar script
+// document.addEventListener("DOMContentLoaded", function () {
+//     const searchIcon = document.querySelector(".search-icon");
+//     const searchInput = document.querySelector(".search-input");
+
+//     searchIcon.addEventListener("click", () => {
+//         const isVisible = searchInput.classList.contains("visible");
+//         const query = searchInput.value.trim();
+
+//         if (!isVisible) {
+//             // Show input
+//             searchInput.classList.add("visible");
+//             searchInput.focus();
+//         } else {
+//             if (query === "") {
+//                 // Hide input if it's empty
+//                 searchInput.classList.remove("visible");
+//                 searchInput.value = ""; // Optional: clear value
+//             } else {
+//                 // Submit logic if not empty
+//                 // window.location.href = `/search?query=${encodeURIComponent(query)}`;
+//             }
+//         }
+//     });
+// });
+
+// // header search bar script end
+
 // counter section js
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -157,6 +185,9 @@ const swiper = new Swiper(".insightsSwiper", {
         delay: 3000,
     },
     breakpoints: {
+        320: {
+            slidesPerView: 1,
+        },
         768: {
             slidesPerView: 2,
         },
