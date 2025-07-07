@@ -69,47 +69,6 @@
 <!-- Optional: backdrop for closing the menu -->
 <div id="mobileNavBackdrop" class="mobile-nav-backdrop d-lg-none"></div>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Search icon behavior
-        const searchIcon = document.querySelector('.search-icon');
-        const searchInput = document.querySelector('.search-input');
-
-        searchIcon.addEventListener('click', () => {
-            const isVisible = searchInput.classList.contains('visible');
-            const query = searchInput.value.trim();
-
-            if (!isVisible) {
-                searchInput.classList.add('visible');
-                searchInput.focus();
-            } else {
-                if (query === '') {
-                    searchInput.classList.remove('visible');
-                    searchInput.value = '';
-                } else {
-                    window.location.href = `/search?query=${encodeURIComponent(query)}`;
-                }
-            }
-        });
-
-        // Hamburger toggle behavior
-        const toggleButton = document.getElementById('menuToggle');
-        const mobileNav = document.getElementById('mobileNav');
-        const backdrop = document.getElementById('mobileNavBackdrop');
-
-        toggleButton.addEventListener('click', () => {
-            mobileNav.classList.toggle('open');
-            backdrop.classList.toggle('show');
-        });
-
-        backdrop.addEventListener('click', () => {
-            mobileNav.classList.remove('open');
-            backdrop.classList.remove('show');
-        });
-    });
-</script>
-
-
 
 <!-- cursor -->
 <div id="dot"></div>

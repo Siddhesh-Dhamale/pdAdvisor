@@ -356,7 +356,7 @@ header.scrolled .custom-nav-link.active {
 .cta-banner {
     background-image: url("../img/home/CTA.webp");
     background-repeat: no-repeat;
-    /* background-size: cover; */
+    background-size: cover;
     background-position: center;
     background-attachment: fixed;
     min-height: 300px;
@@ -498,6 +498,14 @@ header.scrolled .custom-nav-link.active {
 }
 
 /* Counter section css end */
+
+
+@media (max-width:768px) {
+  .socialNames{
+    overflow-x: scroll;
+  }
+
+}
 
 @media (max-width: 600px) {
     br {
