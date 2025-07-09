@@ -30,7 +30,7 @@
             </section>
 
             <section class="scroll-snap-section position-relative">
-                <div class="container py-5">
+                <div class="container py-5 TopPaddingMobile">
                     <div class=" row justify-content-evenly text-start pt-2">
                         <div class="col-12 col-md-3 p-4"><small>Our Approach</small></div>
                         <div class="col-12 col-md-4">
@@ -138,7 +138,7 @@
             </section> -->
 
             <section class="scroll-snap-section container">
-                <h1 class="fw-bold text-center py-5">
+                <h1 class="fw-bold text-center py-5 TopPaddingMobile">
                     <span class="brdr-bottom">How Can We Help You</span>
                 </h1>
                 <div class="row servicesCont">

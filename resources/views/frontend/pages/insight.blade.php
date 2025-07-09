@@ -23,7 +23,7 @@ $page_name = 'insights';
                 <div class="hero-container col-md-8">
                     <img src="frontend/img/insight/insights-banner.png" alt="Hero Image" class="hero-image">
                     <div class="hero-content">
-                        <h1 class="fw-bold"> <span class="brdr-bottom">Helping Industry </span></h1>
+                        <h1 class="fw-bold InsightsBorder"> <span class="brdr-bottom">Helping Industry </span></h1>
                         <h1>Leaders Lead the Future</h1>
                         <a href="/contact"
                             class="btn btn-danger rounded-lg px-4 btn-contact align-item-right">Contact</a>

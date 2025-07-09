@@ -67,7 +67,7 @@
             <!-- EXPERTISE SECTION -->
             <section class="scroll-snap-section our-expertise py-5 ">
                 <div class="container">
-                    <h2 class="mb-5 text-center ">
+                    <h2 class="text-center ">
                         <span class="brdr-bottom">Our Expertise</span>
                     </h2>
                     <div class="row g-5 m-0 ">

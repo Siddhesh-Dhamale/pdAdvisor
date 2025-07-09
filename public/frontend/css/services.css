@@ -27,4 +27,11 @@
     .servicesBtn {
         padding: 10px 15px !important;
     }
+    h1.TopPaddingMobile {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+    .container.TopPaddingMobile {
+        padding-top: 0 !important;
+    }
 }

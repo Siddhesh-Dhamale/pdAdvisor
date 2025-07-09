@@ -9,178 +9,10 @@
     {{ view('frontend.layouts.css') }}
 
     <link rel="stylesheet" href="{{ asset('frontend/css/home.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/industries.css') }}">
+
 </head>
 
-<style>
-    header {
-        color: rgb(0, 0, 0) !important;
-        background-color: white !important;
-        transition: background-color 0.3s !important;
-    }
-
-    header .nav-link,
-    header .companyLogo {
-        color: rgb(119, 119, 119) !important;
-    }
-
-    .arrow-scroll-down {
-        bottom: 120px;
-    }
-
-    .why-trust-section {
-        background-color: #1d1d1d;
-        color: #fff;
-        height: 450px;
-        align-items: center;
-    }
-
-    .section-heading {
-        font-size: 2rem;
-        font-weight: 600;
-        line-height: 1.4;
-    }
-
-    .section-heading .highlight {
-        display: inline-block;
-        position: relative;
-    }
-
-    .section-heading .highlight::after {
-        content: '';
-        position: absolute;
-        left: 0;
-        bottom: 5px;
-        width: 100%;
-        height: 5px;
-        background-color: #ff1f1f;
-        z-index: -1;
-    }
-
-    .check-item {
-        display: flex;
-        align-items: flex-start;
-        gap: 10px;
-        flex-direction: column;
-    }
-
-    .check-item p {
-        width: 100%;
-        max-width: 60%
-    }
-
-    .check-icon {
-        font-size: 1.5rem;
-        color: #fff;
-        line-height: 1;
-    }
-
-    .agribusiness-solutions {
-        background-color: #fff;
-    }
-
-    .section-title {
-        font-size: 2rem;
-        font-weight: 600;
-        text-align: center;
-    }
-
-    .section-title .highlight::after {
-        content: '';
-        position: absolute;
-        left: 0;
-        bottom: -5px;
-        height: 5px;
-        width: 100%;
-        background-color: #d0021b;
-        z-index: -1;
-    }
-
-    .solution-card {
-        border: 1px solid #eee;
-        background-color: #fff;
-        transition: box-shadow 0.3s;
-        position: relative;
-        height: 300px;
-    }
-
-    .solution-card::before {
-        content: '';
-        height: 5px;
-        width: 100%;
-        background-color: #d0021b;
-        position: absolute;
-        top: 0;
-        left: 0;
-        transform: scaleX(0);
-        transform-origin: left;
-        transition: transform 0.3s;
-    }
-
-    .solution-card:hover::before {
-        transform: scaleX(1);
-    }
-
-    .card-content {
-        padding: 20px;
-    }
-
-    .card-number {
-        font-size: 1rem;
-        color: #000;
-        display: inline-block;
-        margin-bottom: 10px;
-    }
-
-    .card-title {
-        font-weight: bold;
-        color: #d0021b;
-        margin-bottom: 10px;
-    }
-
-    .card-text {
-        font-size: 0.9rem;
-        color: #888;
-        min-height: 90px;
-    }
-
-    .read-more {
-        color: #000;
-        font-weight: 500;
-        text-decoration: none;
-    }
-
-    .sector-btn {
-        padding: 10px 24px;
-        border-radius: 20px;
-        border: 1px solid #d0021b;
-        background-color: transparent;
-        color: #d0021b;
-        font-weight: 500;
-        transition: all 0.3s;
-    }
-
-    .sector-btn:hover,
-    .sector-btn.active {
-        background-color: #d0021b;
-        color: #fff;
-    }
-
-    .custom-learn-more {
-        background-color: #d0021b;
-        color: white;
-        border-radius: 25px;
-        padding: 10px 30px;
-        font-size: 1rem;
-        font-weight: 500;
-        text-decoration: none;
-        transition: background-color 0.3s;
-    }
-
-    .custom-learn-more:hover {
-        background-color: #b00118;
-        color: white;
-    }
-</style>
 
 <body>
     <div class="main">
@@ -210,13 +42,13 @@
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
                             <div class="row align-items-center mt-5 justify-content-evenly" style="min-height: 500px;">
-                                <div class="col-6">
-                                    <h1 class="fw-bold"><span class="brdr-bottom">{!! $industry->hero_heading !!}</span>
+                                <div class="col-md-6 col-12">
+                                    <h1 class="fw-bold borderBottomZero"><span class="brdr-bottom ">{!! $industry->hero_heading !!}</span>
                                     </h1>
                                     <p class="py-3 QASubcaption">{{ $industry->hero_description }}</p>
                                     <a href="#" class="btn custom-learn-more">Learn More</a>
                                 </div>
-                                <div class="col-5 d-flex justify-content-center">
+                                <div class="col-md-5 col-12 d-flex justify-content-center">
                                     @if($industry->hero_image)
                                     <img class="w-75" src="{{ asset('frontend/img/' . $industry->hero_image) }}"
                                         alt="HERO BANNER">
@@ -247,7 +79,7 @@
                                 @foreach (range(1, 4) as $i)
                                 @php $desc = $industry->{'subhero_description' . $i}; @endphp
                                 @if(!empty($desc))
-                                <div class="col-sm-6">
+                                <div class="col-sm-6 col-6">
                                     <div class="check-item">
                                         <div class="check-icon">✓</div>
                                         <p><strong>{{ $desc }}</strong></p>
@@ -400,7 +232,7 @@
                 </div>
                 <div class="cta-banner">
                     <div class="cta-content">
-                        <h2 class="fw-bold pb-5"><span class="brdr-bottom">{{ $industry->cta_title }}</span></h2>
+                        <h2 class="fw-bold pb-5 borderBottomZero"><span class="brdr-bottom">{{ $industry->cta_title }}</span></h2>
                         <a class="btn btn-danger rounded-lg px-4" href="#">Book a Consultation</a>
                     </div>
                 </div>

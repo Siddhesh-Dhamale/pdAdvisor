@@ -254,7 +254,7 @@ header.scrolled .custom-nav-link.active {
     top: 35%;
     left: 10%;
     color: white;
-    width: 50%;
+    /* width: 50%; */
     font: normal normal 600 55px/65px Tropiline;
 }
 
