@@ -47,7 +47,7 @@
                         </div>
                     </div>
                 </div>
-                <section class="container ServiceScrollButton position-absolute d-flex justify-content-end pb-2">
+                <section class="container ServiceScrollButton position-absolute d-flex justify-content-end pb-2 ">
                     <div class="rotating-scroll magnetic-wrapper">
                         <a href="" class="go-down-btn magnetic-btn" title="Scroll down">
                             <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
@@ -65,12 +65,12 @@
             </section>
 
             <!-- EXPERTISE SECTION -->
-            <section class="scroll-snap-section our-expertise py-5">
+            <section class="scroll-snap-section our-expertise py-5 ">
                 <div class="container">
-                    <h2 class="mb-5 text-center">
+                    <h2 class="mb-5 text-center ">
                         <span class="brdr-bottom">Our Expertise</span>
                     </h2>
-                    <div class="row g-5">
+                    <div class="row g-5 m-0 ">
                         @foreach([
                         'Strategic Expertise by Sector',
                         'Aviation',
@@ -94,7 +94,7 @@
                         'Transportation',
                         'Travel & Leisure'
                         ] as $i => $title)
-                        <div class="col-sm-6 col-md-4 col-lg-3">
+                        <div class="col-6 col-md-4 col-lg-3 ">
                             @if(isset($industries[$title]))
                             <a href="{{ route('industries.show', $industries[$title]) }}" class="text-decoration-none text-dark">
                                 @endif
@@ -217,7 +217,7 @@
                 <div class="cta-banner">
                     <div class="cta-content">
                         <div class="container">
-                            <div class="bg-danger bg-opacity-60 text-white rounded-4 px-4 px-md-5 py-5">
+                            <div class="bg-danger bg-opacity-60 text-white rounded-4 px-4 px-md-5 pt-5 pb-5">
                                 <div class="row align-items-center text-center text-md-start">
 
                                     <!-- Left Section -->

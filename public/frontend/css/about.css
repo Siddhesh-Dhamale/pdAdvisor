@@ -50,3 +50,30 @@
     left: 50%;
     letter-spacing: 5px;
 }
+
+@media (max-width: 768px) {
+    .HeroContent {
+        text-align: center !important;
+    }
+
+    .container.TopPaddingMobile {
+        padding-top: 0 !important;
+        margin-bottom: 0 !important;
+    }
+    h1.TopPaddingMobile {
+        padding-top: 0 !important;
+    }
+    .circleContainer::after {
+        height: 200px;
+    }
+    .thirty{
+        font-size: 50px ;
+    }
+    .thirty::before{
+        font-size: 25px;
+        bottom: 25%;
+        left: 48%;
+    }
+
+    
+}

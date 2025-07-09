@@ -2,8 +2,8 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF‑8">
-    <meta name="viewport" content="width=device‑width, initial‑scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $solution->title }}</title>
 
     {{-- Global CSS --}}
@@ -96,13 +96,14 @@ if(count($words) <= 3) {
 
             {{-- Hero Section --}}
             <section class="pb-5 solutionsHero">
-                <div class="row justify-content-evenly position-relative">
-                    <div class="col-12 col-md-5 text-start">
+                <div class="row justify-content-evenly position-relative m-0">
+                    <div class="col-12 col-md-5 text-start p-1">
                         <h1 class="fw-bold">{!! wrapFirstThreeWords($solution->hero_heading) !!}</h1>
                         <p class="QASubcaption">{{ $solution->hero_description }}</p>
-                        <a href="/contact" class=" position-relative btn btn-danger rounded px-5 my-5" style="z-index: 99;">Contact Us</a>
+                        <a href="/contact" class=" position-relative btn btn-danger rounded px-5 my-5 contactButton" style="z-index: 99;">Contact Us</a>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 col-12 p-0">
+                        {{-- Hero Image --}}
                         @if($solution->hero_image)
                         <img src="{{ asset('frontend/img/solutions/' . $solution->hero_image) }}" class="w-100" alt="{{ $solution->title }}">
                         @endif
@@ -132,7 +133,7 @@ if(count($words) <= 3) {
 
             {{-- Subhero --}}
             <section class="scroll-snap-sectio">
-                <div class="container py-5">
+                <div class="container py-5 TopPaddingMobile">
                     <div class="row justify-content-evenly position-relative">
                         <div class="col-12 col-md-5 text-start">
                             <h1 class="fw-bold">{!! wrapFirstThreeWords($solution->subhero_heading) !!}</h1>
@@ -147,7 +148,7 @@ if(count($words) <= 3) {
 
 
             {{-- Solution Cards --}}
-            <section class="py-5 container scroll-snap-section">
+            <section class="py-5 container scroll-snap-section TopPaddingMobile">
                 <h1 class="text-center fw-bold pb-5">{!! wrapFirstThreeWords($solution->solution_cards_heading) !!}</h1>
                 <div class="row justify-content-center g-4">
                     @foreach($solution->solutionCards as $card)
@@ -195,7 +196,7 @@ if(count($words) <= 3) {
 
 
             {{-- Counters --}}
-            <section class="py-5 container scroll-snap-section" id="stats-section">
+            <section class="py-5 container scroll-snap-section TopPaddingMobile" id="stats-section">
                 <div class="text-center">
                     <h1 class="fw-bold pt-3">{!! wrapFirstThreeWords($solution->counter_heading) !!}</h1>
                     <div class="row justify-content-evenly align-items-center pt-4">
@@ -223,7 +224,7 @@ if(count($words) <= 3) {
                     @endphp
 
                     @foreach($cards->take(3) as $result)
-                    <div class="col-4">
+                    <div class="col-12 col-md-4">
                         @if($result->card_image)
                         <img src="{{ asset('frontend/img/solutions/result_cards/' . $result->card_image) }}" class="w-100" alt="{{ $result->card_heading }}">
                         @endif

@@ -20,7 +20,7 @@
     left: 20%;
     transform: translate(-50%, -50%);
     text-align: left;
-    color: #FFFFFF;
+    color: #ffffff;
 }
 
 .hero-content h1 {
@@ -40,14 +40,17 @@
 
     .btn-contact {
         padding: 8px 24px;
-        float: none !important;
+        margin-top: 20px;
+        position: relative;
+        left: 50%;
+        transform: translate(-50%);
     }
 
     .hero-content {
         left: 50% !important;
-        bottom: 20%;
-        /* transform: translate(-50%, -50%); */
-
+        /* bottom: 20%; */
+        width: 100%;
+        transform: translate(-50%, -50%);
     }
 }
 

@@ -34,7 +34,7 @@
             </section>
 
             <section class="py-5 scroll-snap-section">
-                <div class="row justify-content-evenly position-relative">
+                <div class="row justify-content-evenly position-relative m-0">
                     <div class="col-12 col-md-6 text-start">
                         <h1 class="fw-bold"><span class="brdr-bottom">Navigating Complexity,</span> <br> Seizing
                             transformative <br> opportunities.</h1>
@@ -73,8 +73,8 @@
                 </div>
             </section>
 
-            <section class="scroll-snap-section">
-                <div class="container py-5">
+            <section class="scroll-snap-section ">
+                <div class="container TopPaddingMobilepy-5 ">
                     <div class=" row justify-content-evenly text-start pt-2">
                         <div class="col-12 col-md-2"><small>Our Approach</small></div>
                         <div class="col-12 col-md-4">
@@ -94,7 +94,7 @@
             </section>
 
 
-            <section class="pt-5 scroll-snap-section">
+            <section class="TopPaddingMobilept-5 scroll-snap-section ">
                 <div class="row g-0">
                     <!-- Left Column with Image -->
                     <div class="col-12 col-md-6 p-0">
@@ -105,25 +105,25 @@
                     <!-- Right Column with Vertically Centered Content -->
                     <div class="col-12 col-md-6 bg-dark p-5 d-flex" id="rightContent">
                         <div class="my-auto w-100">
-                            <h2 class="text-white w-75">Collaborative, Insight-Driven, and Results Oriented</h2>
+                            <h2 class="text-white w-75 fullHeadingWidth">Collaborative, Insight-Driven, and Results Oriented</h2>
                             <br>
                             <div class="row">
-                                <div class="col-6 col-md-5 m-2 text-white">
+                                <div class="col-12 col-md-5 m-2 text-white">
                                     <img class="checkMarkImg" src="frontend/img/about/checkMark.png" alt="">
                                     <p class="fw-bold mb-1">Integrity:</p>
                                     <p>Upholding the highest ethical standards in all our engagements.</p>
                                 </div>
-                                <div class="col-6 col-md-5 m-2 text-white">
+                                <div class="col-12 col-md-5 m-2 text-white">
                                     <img class="checkMarkImg" src="frontend/img/about/checkMark.png" alt="">
                                     <p class="fw-bold mb-1">Excellence:</p>
                                     <p>Striving for superior quality and continuous improvement.</p>
                                 </div>
-                                <div class="col-6 col-md-5 m-2 text-white">
+                                <div class="col-12 col-md-5 m-2 text-white">
                                     <img class="checkMarkImg" src="frontend/img/about/checkMark.png" alt="">
                                     <p class="fw-bold mb-1">Innovation:</p>
                                     <p>Embracing creativity to drive meaningful change.</p>
                                 </div>
-                                <div class="col-6 col-md-5 m-2 text-white">
+                                <div class="col-12 col-md-5 m-2 text-white">
                                     <img class="checkMarkImg" src="frontend/img/about/checkMark.png" alt="">
                                     <p class="fw-bold mb-1">Collaboration:</p>
                                     <p>Fostering inclusive partnerships for collective success.</p>
@@ -136,7 +136,7 @@
             </section>
 
 
-            <section class="py-5 my-5 container scroll-snap-section">
+            <section class="py-5 my-5 container scroll-snap-section TopPaddingMobile">
                 <div class="row justify-content-evenly align-items-end">
                     <div class="col-12 col-md-4 circleContainer h-100 position-relative p-0">
                         <div class="AboutCircularCounter position-relative ">
@@ -146,14 +146,14 @@
                     </div>
                     <div class="col-12 col-md-7">
                         <div class="row justify-content-evenly">
-                            <div class="col-6">
+                            <div class="col-md-6 col-12 pt-3 pt-md-0">
                                 <h1 class="fw-bold"><span class="brdr-bottom">Serving Clients</span> <br> Across Diverse
                                     <br> Market
                                 </h1>
                                 <p class="QASubcaption">We believe in working side by side with our clients, fostering
                                     partnerships built on trust and mutual respect.</p>
                             </div>
-                            <div class="col-6">
+                            <div class="col-md-6 col-12">
 
                                 <p class="QASubcaption">Our approach integrates data-driven insights with practical
                                     solutions. ensuring that strategies are not only visionary but also executable.</p>
@@ -166,10 +166,10 @@
             </section>
 
             <section class="container scroll-snap-section">
-                <h1 class="text-center fw-bold py-4"><span class="brdr-bottom">Driving Positive Change</span> <br>
+                <h1 class="text-center fw-bold py-4 TopPaddingMobile"><span class="brdr-bottom">Driving Positive Change</span> <br>
                     Beyond Business</h1>
                 <div class="d-flex justify-content-center">
-                    <p class="QASubcaption w-75">We are dedicated to making a difference not only in the business world
+                    <p class="QASubcaption w-75 fullHeadingWidth">We are dedicated to making a difference not only in the business world
                         but also in the communities we serve. Our initiatives focus on sustainability, education, and
                         social equity, reflecting our belief in responsible and inclusive growth.</p>
                 </div>

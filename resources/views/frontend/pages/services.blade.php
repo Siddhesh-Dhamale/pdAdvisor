@@ -18,7 +18,7 @@
                 <div class="swiper hero-swiper">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide position-relative">
-                            <img class="w-100" src="frontend/img/services/services_hero.png" alt="">
+                            <img class="w-100" src="frontend/img/services/SolutionsBanner.png" alt="">
                             <div class="HeroContent text-start lh-1">
                                 <h2 class=" underlinedHeading"><span class="brdr-bottom-hero">Helping Industry</span></h2>
                                 <h1 class="m-0 p-0">Leaders Lead the Future</h1>
@@ -41,7 +41,7 @@
                         </div>
                     </div>
                 </div>
-                <section class="container ServiceScrollButton position-absolute d-flex justify-content-end pb-2">
+                <section class="containe ServiceScrollButton position-absolute d-flex justify-content-end pb-2">
                     <div class="rotating-scroll magnetic-wrapper ">
                         <a href="" class="go-down-btn magnetic-btn" title="Scroll down">
                             <svg xmlns="http://www.w3.org/2000/svg"

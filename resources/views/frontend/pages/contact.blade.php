@@ -26,7 +26,7 @@ $page_name = 'contact-us';
                     <img src="frontend/img/contact/contact-banner.png" alt="Hero Image" class="hero-image">
                     <div class="hero-content">
                         <h1 class="fw-bold"><span class="brdr-bottom">Big visions start</span>
-                            with a<br>simple conversation.
+                            with a<br> simple conversation.
                         </h1>
                         <a href="#contact"
                             class="btn btn-danger rounded-lg px-4 btn-contact align-item-right">Contact</a>
@@ -34,11 +34,11 @@ $page_name = 'contact-us';
                 </div>
 
             </section>
-            <section class="py-5 w-75 mx-auto scroll-snap-section">
+            <section class="py-5 w-75 mx-auto scroll-snap-section fullHeadingWidth">
                 <div class="container">
                     <p class="text-uppercase text-muted small mb-2 section-subtitle">Contact Us</p>
-                    <h1 class="highlight-title mx-auto fw-bold">
-                        <span class="brdr-bottom">Connect with us to discover how our experts can</span><br>
+                    <h1 class="highlight-title mx-auto fw-bold position-relative">
+                        <span class="brdr-bottom">Connect with us to discover how our experts can</span><br> 
                         help you achieve your goals
                     </h1>
                 </div>
@@ -55,7 +55,7 @@ $page_name = 'contact-us';
                 <div class="contact-box">
                     <h4>Get In Touch</h4>
                     <p><strong>Email:</strong> info@pdadvisorsandstrategists.com</p>
-                    <p><strong>Address:</strong> 202 Leo Building 24th Road, near Starbucks Bandra (W),<br>Mumbai-400052
+                    <p><strong>Address:</strong> 202 Leo Building 24th Road, near Starbucks Bandra (W),<br> Mumbai-400052
                         Maharashtra</p>
                     <p><strong>Contact:</strong> +91 9820202059</p>
                 </div>
@@ -66,7 +66,7 @@ $page_name = 'contact-us';
                     <div class="row align-items-center">
                         <!-- Left Text Column -->
                         <div class="col-md-5 contact-left">
-                            <h2>Let’s<br>contact<br>for<br>better<br>result</h2>
+                            <h2>Let’s<br>contact <br> for <br >better <br> result</h2>
                             <div class="divider-line"></div>
                             <div class="company-logo">Company Logo</div>
                         </div>
@@ -94,7 +94,9 @@ $page_name = 'contact-us';
                                 <div class="mb-3">
                                     <textarea class="form-control" rows="4" placeholder="Message"></textarea>
                                 </div>
-                                <button type="submit" class="submit-btn">Submit Now</button>
+                                <div class="submitBtnMobile">
+                                    <button type="submit" class="submit-btn">Submit Now</button>
+                                </div>
                             </form>
                         </div>
                     </div>

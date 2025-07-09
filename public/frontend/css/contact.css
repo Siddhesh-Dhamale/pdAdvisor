@@ -49,7 +49,9 @@
         left: 50% !important;
         bottom: 20%;
         /* transform: translate(-50%, -50%); */
-
+    }
+    .hero-content {
+        text-align: center !important;
     }
 }
 
@@ -117,24 +119,11 @@
     margin-bottom: 5px;
 }
 
-@media (max-width: 768px) {
-    .contact-box {
-        position: static;
-        transform: none;
-        max-width: 100%;
-        margin-top: 20px;
-    }
-
-    .contact-map-section {
-        height: auto;
-    }
-}
-
 /* CONTACT FORM SECTION */
 .contact-form-section {
     padding: 60px 0;
     background-color: #fff;
-    font-family: 'Segoe UI', sans-serif;
+    font-family: "Segoe UI", sans-serif;
 }
 
 .contact-left h2 {
@@ -188,4 +177,25 @@
         text-align: center;
         margin-bottom: 30px;
     }
+}
+
+@media (max-width: 768px) {
+    .contact-box {
+        position: static;
+        transform: none;
+        max-width: 100%;
+        margin-top: 20px;
+    }
+
+    .contact-map-section {
+        height: auto;
+    }
+    .submitBtnMobile {
+        display: flex;
+        justify-content: center;
+    }
+    .brdr-bottom::after{
+        width: 150px;
+    }
+
 }

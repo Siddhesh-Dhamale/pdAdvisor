@@ -499,12 +499,29 @@ header.scrolled .custom-nav-link.active {
 
 /* Counter section css end */
 
+@media (max-width: 768px) {
+    .socialNames {
+        overflow-x: scroll;
+    }
+    .HeroContent {
+        width: 100%;
+        left: 0;
+        text-align: center !important;
+    }
+    .cta-content h2 {
+        font-size: 1.5rem;
+    }
 
-@media (max-width:768px) {
-  .socialNames{
-    overflow-x: scroll;
-  }
-
+    .rotating-scroll {
+        display: none !important;
+    }
+    .TopPaddingMobile{
+        padding-top: 0 !important;
+    }
+    .fullHeadingWidth{
+        min-width: 100% !important;
+    }
+    
 }
 
 @media (max-width: 600px) {
@@ -517,15 +534,13 @@ header.scrolled .custom-nav-link.active {
     .hero-swiper .swiper-slide {
         height: 640px;
         max-height: 100dvh;
-   
     }
     .hero-swiper .swiper-slide img {
         object-fit: cover;
         min-height: 640px !important;
     }
-    .HeroContent p{
+    .HeroContent p {
         text-align: center;
         font-size: 25px !important;
     }
-
 }

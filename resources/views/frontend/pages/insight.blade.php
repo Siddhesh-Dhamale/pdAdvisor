@@ -33,7 +33,7 @@ $page_name = 'insights';
 
             <!-- HEADING SECTION -->
             <section class="py-5 mx-auto mb-3 scroll-snap-section">
-                <div class="rotating-scroll magnetic-wrapper float-end p-3">
+                <div class="rotating-scroll magnetic-wrapper position-absolute end-0">
                     <a href="" class="go-down-btn magnetic-btn" title="Scroll down"
                         style="transform: translate(-10.92px, 1.5px) scale(1.1);">
                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="120"

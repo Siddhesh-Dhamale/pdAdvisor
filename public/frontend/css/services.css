@@ -1,8 +1,30 @@
-.ServiceScrollButton{
+.ServiceScrollButton {
     bottom: -90px;
     left: 100px;
 }
-.servicesCont img{
+.servicesCont img {
     height: auto;
     width: 65px;
+}
+@media (max-width: 768px) {
+    .HeroContent.text-start {
+        text-align: center !important;
+    }
+    .ServiceScrollButton {
+        justify-content: end !important;
+        right: 00px;
+        bottom: -69px;
+    }
+    .cta-content h2 {
+        font-size: 1.5rem;
+    }
+    .solutionsHero {
+        padding-top: 100px !important;
+    }
+    .contactButton {
+        margin-top: 0 !important;
+    }
+    .servicesBtn {
+        padding: 10px 15px !important;
+    }
 }
