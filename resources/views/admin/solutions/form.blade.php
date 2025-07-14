@@ -32,6 +32,12 @@
         </div>
     </div>
     <div class="mb-3">
+        <label for="sort_order">Display Order</label>
+        <input type="number" name="sort_order" id="sort_order" class="form-control"
+            value="{{ old('sort_order', $solution->sort_order ?? 0) }}">
+    </div>
+
+    <div class="mb-3">
         <label for="description" class="form-label fw-bold">Description</label>
         <textarea name="description" id="description" rows="4" class="form-control">{{ old('description', $solution->description ?? '') }}</textarea>
     </div>
@@ -223,10 +229,34 @@
 @push('scripts')
 <script>
     // Initialize indices from old input or existing solution data counts
-    let cardIndex = {{ count(old('cards', $solution->solutionCards ?? [['card_heading' => '', 'card_description' => '']])) }};
-    let counterIndex = {{ count(old('counters', $solution->solutionCounters ?? [['title' => '', 'number' => '']])) }};
-    let resultCardIndex = {{ count(old('result_cards', $solution->solutionResultCards ?? [['card_heading' => '', 'card_description' => '', 'card_image' => '']])) }};
-    let serviceIndex = {{ count(old('services', $solution->services ?? [['name' => '', 'url' => '']])) }};
+    let cardIndex = {
+        {
+            count(old('cards', $solution - > solutionCards ?? [
+                ['card_heading' => '', 'card_description' => '']
+            ]))
+        }
+    };
+    let counterIndex = {
+        {
+            count(old('counters', $solution - > solutionCounters ?? [
+                ['title' => '', 'number' => '']
+            ]))
+        }
+    };
+    let resultCardIndex = {
+        {
+            count(old('result_cards', $solution - > solutionResultCards ?? [
+                ['card_heading' => '', 'card_description' => '', 'card_image' => '']
+            ]))
+        }
+    };
+    let serviceIndex = {
+        {
+            count(old('services', $solution - > services ?? [
+                ['name' => '', 'url' => '']
+            ]))
+        }
+    };
 
     // Remove card, counter, result card, or service element
     function removeElement(button) {

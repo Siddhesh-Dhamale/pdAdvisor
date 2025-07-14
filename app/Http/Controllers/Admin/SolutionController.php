@@ -44,7 +44,10 @@ class SolutionController extends Controller
             'solutionCounters',
             'solutionResultCards',
             'solutionServices',
-        ])->get();
+        ])
+            ->orderByRaw('sort_order IS NULL, sort_order ASC')
+
+            ->get();
 
         return view('admin.solutions.index', compact('solutions'));
     }
@@ -90,6 +93,7 @@ class SolutionController extends Controller
             'services' => 'nullable|array',
             'services.*.service_heading' => 'required_with:services|string',
             'services.*.service_url' => 'nullable|string',
+            'sort_order' => 'nullable|integer',
 
         ]);
 
@@ -188,6 +192,7 @@ class SolutionController extends Controller
             'services' => 'nullable|array',
             'services.*.service_heading' => 'required_with:services|string',
             'services.*.service_url' => 'nullable|string',
+            'sort_order' => 'nullable|integer',
         ]);
 
         if ($request->hasFile('hero_image')) {

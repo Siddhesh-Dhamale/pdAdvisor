@@ -16,6 +16,7 @@
             <tr>
                 <th>Title</th>
                 <th>Slug</th>
+                <th>Order</th>
                 <th>Cards</th>
                 <th>Counters</th>
                 <th>Results</th>
@@ -27,6 +28,7 @@
             <tr>
                 <td>{{ $solution->title }}</td>
                 <td>{{ $solution->slug }}</td>
+                <td>{{ $solution->sort_order ?? '-' }}</td>
                 <td>{{ $solution->solution_cards_count }}</td>
                 <td>{{ $solution->solution_counters_count }}</td>
                 <td>{{ $solution->solution_result_cards_count }}</td>

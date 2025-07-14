@@ -10,7 +10,7 @@ class Solution extends Model
     protected $fillable = [
         'title',
         'slug',
-        'description',  
+        'description',
         'icon',
         'hero_heading',
         'hero_description',
@@ -24,6 +24,7 @@ class Solution extends Model
         'cta_title',
         'cta_button_text',
         'cta_button_url',
+        'sort_order',
     ];
 
     public function solutionCards()

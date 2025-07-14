@@ -10,12 +10,19 @@
         <select class="form-select" name="parent_id" id="parent_id">
             <option value="">No Parent (Top-Level Category)</option>
             @foreach($allIndustries as $ind)
-                <option value="{{ $ind->id }}" {{ old('parent_id', $industry->parent_id ?? '') == $ind->id ? 'selected' : '' }}>
-                    {{ $ind->title }}
-                </option>
+            <option value="{{ $ind->id }}" {{ old('parent_id', $industry->parent_id ?? '') == $ind->id ? 'selected' : '' }}>
+                {{ $ind->title }}
+            </option>
             @endforeach
         </select>
     </div>
+    
+    <div class="mb-3">
+        <label for="sort_order">Display Order</label>
+        <input type="number" name="sort_order" id="sort_order" class="form-control"
+            value="{{ old('sort_order', $industry->sort_order ?? 0) }}">
+    </div>
+
 
     {{-- Industry Title --}}
     <div class="mb-4">
@@ -49,7 +56,7 @@
         <label for="hero_image" class="form-label fw-bold">Hero Image</label>
         <input type="file" class="form-control" id="hero_image" name="hero_image" accept="image/*">
         @if(isset($industry) && $industry->hero_image)
-            <img src="{{ asset('storage/' . $industry->hero_image) }}" alt="Hero Image" style="max-height: 120px;">
+        <img src="{{ asset('storage/' . $industry->hero_image) }}" alt="Hero Image" style="max-height: 120px;">
         @endif
     </div>
 
@@ -62,24 +69,24 @@
     </div>
     @for($i = 1; $i <= 4; $i++)
         <div class="mb-3">
-            <label class="form-label fw-bold">Subhero Description {{ $i }}</label>
-            <input type="text" name="subhero_description{{ $i }}" class="form-control"
-                value="{{ old("subhero_description$i", $industry->{'subhero_description' . $i} ?? '') }}">
+        <label class="form-label fw-bold">Subhero Description {{ $i }}</label>
+        <input type="text" name="subhero_description{{ $i }}" class="form-control"
+            value="{{ old("subhero_description$i", $industry->{'subhero_description' . $i} ?? '') }}">
         </div>
-    @endfor
+        @endfor
 
-    {{-- Solution Cards --}}
-    <h5 class="mb-3 fw-bold">Solution Cards</h5>
-    <div class="mb-3">
-        <label class="form-label fw-bold">Solution Cards Heading</label>
-        <input type="text" name="solution_cards_heading" class="form-control"
-            value="{{ old('solution_cards_heading', $industry->solution_cards_heading ?? '') }}">
-    </div>
-    <div id="card-wrapper" class="mb-4">
-        @php
+        {{-- Solution Cards --}}
+        <h5 class="mb-3 fw-bold">Solution Cards</h5>
+        <div class="mb-3">
+            <label class="form-label fw-bold">Solution Cards Heading</label>
+            <input type="text" name="solution_cards_heading" class="form-control"
+                value="{{ old('solution_cards_heading', $industry->solution_cards_heading ?? '') }}">
+        </div>
+        <div id="card-wrapper" class="mb-4">
+            @php
             $cards = old('cards', isset($industry) ? $industry->industryCards->toArray() : [['card_heading' => '', 'card_description' => '']]);
-        @endphp
-        @foreach($cards as $i => $card)
+            @endphp
+            @foreach($cards as $i => $card)
             <div class="card mb-3 p-3 border">
                 <div class="mb-2">
                     <label class="form-label fw-bold">Card Heading</label>
@@ -92,22 +99,22 @@
                         rows="2">{{ old("cards.$i.card_description", $card['card_description'] ?? '') }}</textarea>
                 </div>
             </div>
-        @endforeach
-    </div>
-    <button type="button" class="btn btn-secondary mb-4" onclick="addCard()">+ Add Card</button>
+            @endforeach
+        </div>
+        <button type="button" class="btn btn-secondary mb-4" onclick="addCard()">+ Add Card</button>
 
-    {{-- Counter Section --}}
-    <h5 class="mb-3 fw-bold">Counters</h5>
-    <div class="mb-3">
-        <label class="form-label fw-bold">Counter Heading</label>
-        <input type="text" name="counter_heading" class="form-control"
-            value="{{ old('counter_heading', $industry->counter_heading ?? '') }}">
-    </div>
-    <div id="counter-wrapper" class="mb-4">
-        @php
+        {{-- Counter Section --}}
+        <h5 class="mb-3 fw-bold">Counters</h5>
+        <div class="mb-3">
+            <label class="form-label fw-bold">Counter Heading</label>
+            <input type="text" name="counter_heading" class="form-control"
+                value="{{ old('counter_heading', $industry->counter_heading ?? '') }}">
+        </div>
+        <div id="counter-wrapper" class="mb-4">
+            @php
             $counters = old('counters', isset($industry) ? $industry->industryCounters->toArray() : [['title' => '', 'number' => '']]);
-        @endphp
-        @foreach($counters as $i => $counter)
+            @endphp
+            @foreach($counters as $i => $counter)
             <div class="row g-2 mb-3 align-items-center border rounded p-3">
                 <div class="col-md-8">
                     <label class="form-label fw-bold">Counter Title</label>
@@ -120,15 +127,15 @@
                         value="{{ old("counters.$i.number", $counter['number'] ?? '') }}">
                 </div>
             </div>
-        @endforeach
-    </div>
-    <button type="button" class="btn btn-secondary mb-4" onclick="addCounter()">+ Add Counter</button>
+            @endforeach
+        </div>
+        <button type="button" class="btn btn-secondary mb-4" onclick="addCounter()">+ Add Counter</button>
 
-    {{-- Related Categories --}}
-    <div class="mb-4">
-        <label class="form-label fw-bold">Related Categories</label>
-        <div class="border rounded p-3" style="max-height: 300px; overflow-y: auto;">
-            @foreach($allIndustries as $ind)
+        {{-- Related Categories --}}
+        <div class="mb-4">
+            <label class="form-label fw-bold">Related Categories</label>
+            <div class="border rounded p-3" style="max-height: 300px; overflow-y: auto;">
+                @foreach($allIndustries as $ind)
                 <div class="form-check mb-2">
                     <input class="form-check-input" type="checkbox" name="related_industries[]" value="{{ $ind->id }}"
                         id="related_{{ $ind->id }}" {{ isset($industry) && $industry->related->pluck('id')->contains($ind->id) ? 'checked' : '' }}>
@@ -136,25 +143,25 @@
                         {{ $ind->title }}
                     </label>
                 </div>
-            @endforeach
+                @endforeach
+            </div>
         </div>
-    </div>
 
 
 
 
-    {{-- Result Cards --}}
-    <h5 class="mb-3 fw-bold">Result Cards</h5>
-    <div class="mb-3">
-        <label class="form-label fw-bold">Result Cards Heading</label>
-        <input type="text" name="result_cards_heading" class="form-control"
-            value="{{ old('result_cards_heading', $industry->result_cards_heading ?? '') }}">
-    </div>
-    <div id="result-card-wrapper" class="mb-4">
-        @php
+        {{-- Result Cards --}}
+        <h5 class="mb-3 fw-bold">Result Cards</h5>
+        <div class="mb-3">
+            <label class="form-label fw-bold">Result Cards Heading</label>
+            <input type="text" name="result_cards_heading" class="form-control"
+                value="{{ old('result_cards_heading', $industry->result_cards_heading ?? '') }}">
+        </div>
+        <div id="result-card-wrapper" class="mb-4">
+            @php
             $resultCards = old('result_cards', isset($industry) ? $industry->industryResultCards->toArray() : [['card_heading' => '', 'card_description' => '', 'card_image' => null]]);
-        @endphp
-        @foreach($resultCards as $i => $rc)
+            @endphp
+            @foreach($resultCards as $i => $rc)
             <div class="card p-3 border mb-3">
                 <div class="mb-2">
                     <label class="form-label fw-bold">Card Heading</label>
@@ -170,31 +177,31 @@
                     <label class="form-label fw-bold">Card Image</label>
                     <input type="file" name="result_cards[{{ $i }}][card_image]" class="form-control" accept="image/*">
                     @if(!empty($rc['card_image']))
-                        <img src="{{ asset('public/storage/result_cards/' . $rc['card_image']) }}" class="img-thumbnail mt-2"
-                            alt="Result Card Image" style="max-height: 120px;">
+                    <img src="{{ asset('public/storage/result_cards/' . $rc['card_image']) }}" class="img-thumbnail mt-2"
+                        alt="Result Card Image" style="max-height: 120px;">
                     @endif
                 </div>
             </div>
-        @endforeach
-    </div>
-    <button type="button" class="btn btn-secondary mb-4" onclick="addResultCard()">+ Add Result Card</button>
+            @endforeach
+        </div>
+        <button type="button" class="btn btn-secondary mb-4" onclick="addResultCard()">+ Add Result Card</button>
 
-    {{-- CTA Section --}}
-    <h5 class="mb-3 fw-bold">Call To Action (CTA)</h5>
-    <div class="mb-3">
-        <label for="cta_title" class="form-label fw-bold">CTA Title</label>
-        <input type="text" class="form-control" id="cta_title" name="cta_title"
-            value="{{ old('cta_title', $industry->cta_title ?? '') }}">
-    </div>
-    <div class="mb-4">
-        <label for="cta_image" class="form-label fw-bold">CTA Image</label>
-        <input type="file" class="form-control" id="cta_image" name="cta_image" accept="image/*">
-        @if(isset($industry) && $industry->cta_image)
+        {{-- CTA Section --}}
+        <h5 class="mb-3 fw-bold">Call To Action (CTA)</h5>
+        <div class="mb-3">
+            <label for="cta_title" class="form-label fw-bold">CTA Title</label>
+            <input type="text" class="form-control" id="cta_title" name="cta_title"
+                value="{{ old('cta_title', $industry->cta_title ?? '') }}">
+        </div>
+        <div class="mb-4">
+            <label for="cta_image" class="form-label fw-bold">CTA Image</label>
+            <input type="file" class="form-control" id="cta_image" name="cta_image" accept="image/*">
+            @if(isset($industry) && $industry->cta_image)
             <img src="{{ asset('storage/' . $industry->cta_image) }}" alt="CTA Image" style="max-height: 120px;">
-        @endif
-    </div>
+            @endif
+        </div>
 
-    <button type="submit" class="btn btn-primary mb-5">{{ isset($industry) ? 'Update' : 'Create' }}</button>
+        <button type="submit" class="btn btn-primary mb-5">{{ isset($industry) ? 'Update' : 'Create' }}</button>
 </form>
 
 {{-- JavaScript for dynamic fields --}}

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -22,7 +23,8 @@ class Industry extends Model
         'counter_heading',
         'result_cards_heading',
         'cta_image',
-        'cta_title'
+        'cta_title',
+        'sort_order'
     ];
 
     public function industryCards(): HasMany
@@ -68,8 +70,4 @@ class Industry extends Model
             'industry_id'
         );
     }
-
-
-
 }
-?>

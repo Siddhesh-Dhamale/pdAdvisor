@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
@@ -9,9 +10,12 @@ class IndustryController extends Controller
 {
     public function index()
     {
-        $industries = Industry::withCount(['industryCards', 'industryCounters', 'industryResultCards'])->get();
+        $industries = Industry::withCount(['industryCards', 'industryCounters', 'industryResultCards'])
+            ->orderByRaw('sort_order IS NULL, sort_order ASC')
+            ->get();
         return view('admin.industries.index', compact('industries'));
     }
+
 
     public function create()
     {
@@ -38,6 +42,8 @@ class IndustryController extends Controller
             'result_cards_heading' => 'nullable',
             'cta_title' => 'nullable',
             'cta_image' => 'nullable|image',
+            'sort_order' => 'integer',
+
         ]);
 
         // Save hero and CTA images if uploaded
@@ -112,6 +118,7 @@ class IndustryController extends Controller
             'result_cards_heading' => 'nullable',
             'cta_title' => 'nullable',
             'cta_image' => 'nullable|image',
+            'sort_order' => 'integer',
         ]);
 
         // Save hero and CTA images if uploaded

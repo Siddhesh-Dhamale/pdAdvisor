@@ -21,7 +21,7 @@
                     <img src="frontend/img/industries/industries-banner.png" alt="Hero Image" class="hero-image">
                     <div class="hero-content">
                         <h1 class="fw-bold">
-                            <span class="brdr-bottom">Helping Industry</span><br>Leader Lead the Future
+                            <span class="brdr-bottom">Helping Industry</span><br>Leaders Lead the Future
                         </h1>
                         <a href="/contact" class="btn btn-danger rounded-lg px-4 btn-contact align-item-right">Contact</a>
                     </div>
@@ -71,71 +71,25 @@
                         <span class="brdr-bottom">Our Expertise</span>
                     </h2>
                     <div class="row g-5 m-0 ">
-                        @foreach([
-                        'Strategic Expertise by Sector',
-                        'Aviation',
-                        'Energy & Natural Resources',
-                        'Healthcare & Life Sciences',
-                        'Aerospace & Defence',
-                        'Construction & Infrastructure',
-                        'Financial Services',
-                        'Machinery & Equipment',
-                        'Automotive & Mobility',
-                        'Consumer Products',
-                        'Forest Products, Paper & Packaging',
-                        'Media & Entertainment',
-                        'Metals',
-                        'Private Equity',
-                        'Real Estate',
-                        'Retail',
-                        'Social Impact',
-                        'Technology',
-                        'Telecommunications',
-                        'Transportation',
-                        'Travel & Leisure'
-                        ] as $i => $title)
+                        @forelse($industries as $i => $industry)
                         <div class="col-6 col-md-4 col-lg-3 ">
-                            @if(isset($industries[$title]))
-                            <a href="{{ route('industries.show', $industries[$title]) }}" class="text-decoration-none text-dark">
-                                @endif
-
-                                <img src="frontend/img/industries/{{ $i + 1 }}.png" alt="{{ $title }}" class="mb-3" />
-                                <h6 class="fw-bold text-danger">{{ $title }}</h6>
+                            <a href="{{ route('industries.show', $industry->slug) }}" class="text-decoration-none text-dark">
+                                <img src="{{ asset('frontend/img/industries/' . ($i + 1) . '.png') }}" alt="{{ $industry->title }}" class="mb-3" />
+                                <h6 class="fw-bold text-danger">{{ $industry->title }}</h6>
                                 <p class="small">
-                                    @switch($title)
-                                    @case('Strategic Expertise by Sector') See how we unlock value across industries. @break
-                                    @case('Aviation') Navigate shifting consumer expectations and global operations with agility and insight. @break
-                                    @case('Energy & Natural Resources') Transition to sustainable and profitable models while meeting global demand. @break
-                                    @case('Healthcare & Life Sciences') Accelerate breakthroughs and improve lives across: @break
-                                    @case('Aerospace & Defence') Strategic innovation and operational excellence for national security and commercial growth. @break
-                                    @case('Construction & Infrastructure') Build resilience and efficiency across projects that shape the world. @break
-                                    @case('Financial Services') Reimagine financial experiences, compliance, and growth across sectors: @break
-                                    @case('Machinery & Equipment') Transform operations and embrace digital to compete globally. @break
-                                    @case('Automotive & Mobility') Enhance connectivity, safety, and sustainability in transportation. @break
-                                    @case('Consumer Products') Adapt to shifting demands and digital-first consumer behaviors. @break
-                                    @case('Forest Products, Paper & Packaging') Optimize operations and create sustainable packaging solutions. @break
-                                    @case('Media & Entertainment') Innovate content delivery and monetization strategies across platforms. @break
-                                    @case('Metals') Deliver sustainable growth in a volatile, global market. @break
-                                    @case('Private Equity') Create value across the investment lifecycle with strategic insight. @break
-                                    @case('Real Estate') Rethink assets and operations in a hybrid, digitized world. @break
-                                    @case('Retail') Redefine customer journeys with agility and innovation. @break
-                                    @case('Social Impact') Advance equity, inclusion, and mission-driven innovation. @break
-                                    @case('Technology') Lead the digital age with bold innovation across. @break
-                                    @case('Telecommunications') Enable next-gen connectivity through infrastructure and service evolution. @break
-                                    @case('Transportation') Shape the future of movement with sustainable and efficient solutions. @break
-                                    @case('Travel & Leisure') Reimagine experiences that delight travellers and scale sustainably. @break
-                                    @default Explore opportunities and solutions.
-                                    @endswitch
+                                    {{ $industry->short_description ?? 'Explore opportunities and solutions.' }}
                                 </p>
-
-                                @if(isset($industries[$title]))
                             </a>
-                            @endif
                         </div>
-                        @endforeach
+                        @empty
+                        <div class="col-12 text-center">
+                            <em>No industries found.</em>
+                        </div>
+                        @endforelse
                     </div>
                 </div>
             </section>
+
 
             <!-- CTA SECTION (unchanged) -->
             <!-- CTA SECTION -->

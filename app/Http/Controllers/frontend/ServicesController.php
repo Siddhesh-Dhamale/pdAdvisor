@@ -10,7 +10,9 @@ class ServicesController extends Controller
 {
     public function index()
     {
-        $solutions = Solution::select('title', 'slug', 'description', 'icon')->get();
+        $solutions = Solution::select('title', 'slug', 'description', 'icon')
+            ->orderByRaw('sort_order IS NULL, sort_order ASC')
+            ->get();
         return view('frontend.pages.services', compact('solutions'));
         // return view('frontend.pages.services');
     }
