@@ -14,7 +14,10 @@
     <table class="table table-bordered table-hover align-middle">
         <thead class="table-light">
             <tr>
+                <th>Icon</th>
                 <th>Title</th>
+                <th>Description</th>
+
                 <th>Slug</th>
                 <th>Order</th>
 
@@ -29,7 +32,17 @@
         <tbody>
             @forelse($industries as $industry)
             <tr>
+                <td>
+                    @if($industry->icon)
+                    <img src="{{ asset('frontend/img/industries/' . $industry->icon) }}" alt="Icon"
+                        style="height: 40px; width: auto;">
+                    @else
+                    <em class="text-muted">—</em>
+                    @endif
+                </td>
                 <td>{{ $industry->title }}</td>
+                <td>{{ \Illuminate\Support\Str::limit($industry->description, 100) }}</td>
+
                 <td>{{ $industry->slug }}</td>
                 <td>{{ $industry->sort_order }}</td>
 

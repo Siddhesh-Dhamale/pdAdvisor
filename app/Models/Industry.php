@@ -9,6 +9,8 @@ class Industry extends Model
 {
     protected $fillable = [
         'title',
+        'icon',
+        'description',
         'slug',
         'parent_id',
         'hero_heading',

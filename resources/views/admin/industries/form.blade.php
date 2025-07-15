@@ -16,7 +16,7 @@
             @endforeach
         </select>
     </div>
-    
+
     <div class="mb-3">
         <label for="sort_order">Display Order</label>
         <input type="number" name="sort_order" id="sort_order" class="form-control"
@@ -30,6 +30,26 @@
         <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title"
             value="{{ old('title', $industry->title ?? '') }}" required>
         @error('title')<div class="invalid-feedback">{{ $message }}</div>@enderror
+    </div>
+
+    {{-- Icon Upload --}}
+    <div class="mb-4">
+        <label for="icon" class="form-label fw-bold">Industry Icon</label>
+        <input type="file" class="form-control @error('icon') is-invalid @enderror" id="icon" name="icon" accept="image/*">
+        @error('icon')<div class="invalid-feedback">{{ $message }}</div>@enderror
+
+        @if(isset($industry) && $industry->icon)
+        <div class="mt-3">
+            <p class="mb-1 fw-semibold">Existing Icon Preview:</p>
+            <img src="{{ asset($industry->icon) }}" alt="Industry Icon" style="max-height: 80px;">
+        </div>
+        @endif
+    </div>
+    {{-- Industry Description --}}
+    <div class="mb-4">
+        <label for="description" class="form-label fw-bold">Description</label>
+        <textarea id="description" name="description" class="form-control"
+            rows="3">{{ old('description', $industry->description ?? '') }}</textarea>
     </div>
 
     {{-- Slug --}}

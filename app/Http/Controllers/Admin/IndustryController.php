@@ -27,7 +27,9 @@ class IndustryController extends Controller
     {
         $data = $request->validate([
             'title' => 'required',
-            'slug' => 'required|unique:industries',
+            'icon' => 'nullable|image|mimes:jpeg,png,jpg,svg,webp|max:2048',
+            'description' => 'nullable|string',
+            'slug' => 'nullable|unique:industries',
             'parent_id' => 'nullable|exists:industries,id',
             'hero_heading' => 'nullable',
             'hero_description' => 'nullable',
@@ -45,6 +47,20 @@ class IndustryController extends Controller
             'sort_order' => 'integer',
 
         ]);
+
+        // Handle icon upload
+        if ($request->hasFile('icon') && $request->file('icon')->isValid()) {
+            $file = $request->file('icon');
+
+            $filename = uniqid('icon_') . '.' . $file->getClientOriginalExtension();
+
+            // Move the uploaded file to public/frontend/img/industries
+            $file->move(public_path('frontend/img/industries'), $filename);
+
+            // Save only file name
+            $data['icon'] = $filename;
+        }
+
 
         // Save hero and CTA images if uploaded
         if ($request->hasFile('hero_image')) {
@@ -103,7 +119,9 @@ class IndustryController extends Controller
 
         $data = $request->validate([
             'title' => 'required',
-            'slug' => 'required|unique:industries,slug,' . $id,
+            'icon' => 'nullable|image|mimes:jpeg,png,jpg,svg,webp|max:2048',
+            'description' => 'nullable|string',
+            'slug' => 'nullable|unique:industries,slug,' . $id,
             'parent_id' => 'nullable|exists:industries,id',
             'hero_heading' => 'nullable',
             'hero_description' => 'nullable',
@@ -120,6 +138,23 @@ class IndustryController extends Controller
             'cta_image' => 'nullable|image',
             'sort_order' => 'integer',
         ]);
+
+        // Handle icon upload
+        if ($request->hasFile('icon') && $request->file('icon')->isValid()) {
+            $file = $request->file('icon');
+
+            $filename = uniqid('icon_') . '.' . $file->getClientOriginalExtension();
+
+            // Move the uploaded file to public/frontend/img/industries
+            $file->move(public_path('frontend/img/industries'), $filename);
+
+            $data['icon'] = $filename;
+        } else {
+            // Keep existing icon if no new file uploaded
+            $data['icon'] = $industry->icon;
+        }
+
+
 
         // Save hero and CTA images if uploaded
         if ($request->hasFile('hero_image')) {

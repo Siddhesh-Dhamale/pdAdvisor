@@ -10,10 +10,13 @@ class IndustriesController extends Controller
 {
     public function index()
     {
-        $industries = Industry::orderByRaw('sort_order IS NULL, sort_order ASC')->get();
+        $industries = Industry::whereNull('parent_id') 
+            ->orderByRaw('sort_order IS NULL, sort_order ASC')
+            ->get();
 
         return view('frontend.pages.industries', compact('industries'));
     }
+
 
     public function show($slug)
     {

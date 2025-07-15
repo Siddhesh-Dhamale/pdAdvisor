@@ -12,6 +12,18 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/industries.css') }}">
 
 </head>
+<style>
+    header {
+        color: rgb(0, 0, 0) !important;
+        background-color: white !important;
+        transition: background-color 0.3s !important;
+    }
+
+    header .nav-link,
+    header .companyLogo {
+        color: rgb(119, 119, 119) !important;
+    }
+</style>
 
 
 <body>
