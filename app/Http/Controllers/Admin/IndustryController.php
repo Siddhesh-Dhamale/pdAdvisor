@@ -44,9 +44,14 @@ class IndustryController extends Controller
             'result_cards_heading' => 'nullable',
             'cta_title' => 'nullable',
             'cta_image' => 'nullable|image',
-            'sort_order' => 'integer',
+            'sort_order' => 'nullable|integer',
 
         ]);
+
+        // ✅ Convert sort_order = 0 to null
+        if (isset($data['sort_order']) && (int)$data['sort_order'] === 0) {
+            $data['sort_order'] = null;
+        }
 
         // Handle icon upload
         if ($request->hasFile('icon') && $request->file('icon')->isValid()) {
@@ -136,8 +141,13 @@ class IndustryController extends Controller
             'result_cards_heading' => 'nullable',
             'cta_title' => 'nullable',
             'cta_image' => 'nullable|image',
-            'sort_order' => 'integer',
+            'sort_order' => 'nullable|integer',
         ]);
+
+        // ✅ Convert sort_order = 0 to null
+        if (isset($data['sort_order']) && (int)$data['sort_order'] === 0) {
+            $data['sort_order'] = null;
+        }
 
         // Handle icon upload
         if ($request->hasFile('icon') && $request->file('icon')->isValid()) {

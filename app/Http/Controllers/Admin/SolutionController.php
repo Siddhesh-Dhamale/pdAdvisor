@@ -97,6 +97,11 @@ class SolutionController extends Controller
 
         ]);
 
+        // ✅ Convert sort_order = 0 to null
+        if (isset($data['sort_order']) && (int)$data['sort_order'] === 0) {
+            $data['sort_order'] = null;
+        }
+
         if ($request->hasFile('hero_image')) {
             $data['hero_image'] = $this->uploadImage($request->file('hero_image'));
         }
@@ -194,6 +199,11 @@ class SolutionController extends Controller
             'services.*.service_url' => 'nullable|string',
             'sort_order' => 'nullable|integer',
         ]);
+
+        // ✅ Convert sort_order = 0 to null
+        if (isset($data['sort_order']) && (int)$data['sort_order'] === 0) {
+            $data['sort_order'] = null;
+        }
 
         if ($request->hasFile('hero_image')) {
             $this->deleteImage($solution->hero_image);
