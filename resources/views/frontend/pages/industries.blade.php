@@ -23,7 +23,8 @@
                         <h1 class="fw-bold">
                             <span class="brdr-bottom">Helping Industry</span><br>Leaders Lead the Future
                         </h1>
-                        <a href="/contact" class="btn btn-danger rounded-lg px-4 btn-contact align-item-right">Contact</a>
+                        <a href="/contact"
+                            class="btn btn-danger rounded-lg px-4 btn-contact align-item-right">Contact</a>
                     </div>
                 </div>
             </section>
@@ -42,7 +43,9 @@
                         </div>
                         <div class="col-md-5">
                             <p class="text-muted">
-                                At PD Advisors & Strategists, we work with leaders across sectors to navigate disruption, unlock growth, and build lasting impact. From legacy businesses to startups, we bring deep industry expertise and strategic clarity.
+                                At PD Advisors & Strategists, we work with leaders across sectors to navigate
+                                disruption, unlock growth, and build lasting impact. From legacy businesses to startups,
+                                we bring deep industry expertise and strategic clarity.
                             </p>
                         </div>
                     </div>
@@ -52,7 +55,8 @@
                         <a href="" class="go-down-btn magnetic-btn" title="Scroll down">
                             <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
                                 <polygon fill="#878787" points="55.334,46 49.333,58 43.333,46" />
-                                <path id="textPath" fill="none" d="M89.322,50.197c0,22.09-17.91,40-40,40c-22.089,0-40-17.91-40-40 c0-22.089,17.911-40,40-40C71.412,10.197,89.322,28.108,89.322,50.197z" />
+                                <path id="textPath" fill="none"
+                                    d="M89.322,50.197c0,22.09-17.91,40-40,40c-22.089,0-40-17.91-40-40 c0-22.089,17.911-40,40-40C71.412,10.197,89.322,28.108,89.322,50.197z" />
                                 <text class="scrollText" font-size="8" letter-spacing="2" fill="#000" textLength="350">
                                     <textPath href="#textPath" startOffset="-1%">
                                         &nbsp; • SCROLL DOWN • SCROLL DOWN • SCROLL DOWN • SCROLL DOWN •
@@ -72,23 +76,35 @@
                     </h2>
                     <div class="row g-5 m-0 ">
                         @forelse($industries as $i => $industry)
-                        <div class="col-6 col-md-4 col-lg-3 ">
-                            <a href="{{ route('industries.show', $industry->slug) }}" class="text-decoration-none text-dark">
-                                <img src="{{ asset('frontend/img/industries/' . ($i + 1) . '.png') }}" alt="{{ $industry->title }}" class="mb-3" />
-                                <h6 class="fw-bold text-danger">{{ $industry->title }}</h6>
-                                <p class="small">
-                                    {{ $industry->short_description ?? 'Explore opportunities and solutions.' }}
-                                </p>
-                            </a>
-                        </div>
+                                <div class="col-6 col-md-4 col-lg-3 ">
+                                    @if($industry->hero_heading)
+                                        <!-- Card with link if hero_heading is not null -->
+                                        <a href="{{ route('industries.show', $industry->slug) }}"
+                                            class="text-decoration-none text-dark">
+                                    @else
+                                            <!-- Non-clickable card if hero_heading is null -->
+                                            <div class="text-dark">
+                                        @endif
+                                            <img src="{{ asset('frontend/img/industries/' . ($i + 1) . '.png') }}"
+                                                alt="{{ $industry->title }}" class="mb-3" />
+                                            <h6 class="fw-bold text-danger">{{ $industry->title }}</h6>
+                                            <p class="small">
+                                                {{ $industry->short_description ?? 'Explore opportunities and solutions.' }}
+                                            </p>
+                                            @if($industry->hero_heading)
+                                                </a> <!-- Close the anchor tag if hero_heading is not null -->
+                                            @else
+                                        </div> <!-- Close the div if no link -->
+                                    @endif
+                            </div>
                         @empty
                         <div class="col-12 text-center">
                             <em>No industries found.</em>
                         </div>
-                        @endforelse
-                    </div>
+                    @endforelse
                 </div>
             </section>
+
 
 
             <!-- CTA SECTION (unchanged) -->
@@ -114,8 +130,8 @@
                                     style="transform: rotate(133.9deg)"> </span><span
                                     style="transform: rotate(144.20000000000002deg)"> </span><span
                                     style="transform: rotate(154.5deg)"> </span><span
-                                    style="transform: rotate(164.8deg)"> </span><span
-                                    style="transform: rotate(175.10000000000002deg)"> </span><span
+                                    style="transform: rotate(164.8deg)">
+                                </span><span style="transform: rotate(175.10000000000002deg)"> </span><span
                                     style="transform: rotate(185.4deg)"> </span><span
                                     style="transform: rotate(195.70000000000002deg)"> </span><span
                                     style="transform: rotate(206deg)"> </span><span style="transform: rotate(216.3deg)">
@@ -123,8 +139,8 @@
                                     style="transform: rotate(236.9deg)"> </span><span
                                     style="transform: rotate(247.20000000000002deg)"> </span><span
                                     style="transform: rotate(257.5deg)"> </span><span
-                                    style="transform: rotate(267.8deg)"> </span><span
-                                    style="transform: rotate(278.1deg)"> </span><span
+                                    style="transform: rotate(267.8deg)">
+                                </span><span style="transform: rotate(278.1deg)"> </span><span
                                     style="transform: rotate(288.40000000000003deg)"> </span><span
                                     style="transform: rotate(298.70000000000005deg)"> </span><span
                                     style="transform: rotate(309deg)"> </span><span style="transform: rotate(319.3deg)">
