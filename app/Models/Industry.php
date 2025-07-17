@@ -72,4 +72,17 @@ class Industry extends Model
             'industry_id'
         );
     }
+
+    public function blogs()
+    {
+        // 'industry_title' in the pivot matches 'title' in industries and belongs to blog_id
+        return $this->belongsToMany(
+            Blog::class,
+            'blog_industry',
+            'industry_title',  // local key on pivot (string)
+            'blog_id',         // related key on pivot
+            'title',           // local key on main model (Industry)
+            'id'               // related key (Blog)
+        );
+    }
 }

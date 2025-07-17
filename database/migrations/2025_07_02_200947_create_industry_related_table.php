@@ -8,15 +8,16 @@ return new class extends Migration {
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
-        Schema::create('industry_related', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('industry_id')->constrained('industries')->onDelete('cascade');
-            $table->foreignId('related_industry_id')->constrained('industries')->onDelete('cascade');
-            $table->timestamps();
-        });
-
+        if (!Schema::hasTable('industry_related')) {
+            Schema::create('industry_related', function (Blueprint $table) {
+                $table->id();
+                $table->unsignedBigInteger('industry_id');
+                $table->unsignedBigInteger('related_industry_id');
+                $table->timestamps();
+            });
+        }
     }
 
     /**
