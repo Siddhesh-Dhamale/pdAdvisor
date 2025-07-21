@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\BlogController;
+use App\Http\Controllers\Admin\HeroSectionController;
 use App\Http\Controllers\Admin\SolutionController as AdminSolutionController;
 use App\Http\Controllers\frontend\SolutionController as FrontendSolutionController;
 use App\Http\Controllers\Admin\SolutionController;
@@ -68,6 +69,16 @@ Route::prefix('admin/topics')->name('admin.topics.')->group(function () {
     Route::delete('/{topic}', [TopicController::class, 'destroy'])->name('destroy'); // Delete topic
 });
 
+
+Route::prefix('admin/hero')->name('admin.hero.')->group(function () {
+    Route::get('/', [HeroSectionController::class, 'index'])->name('index');             // List all hero sections
+    Route::get('/create', [HeroSectionController::class, 'create'])->name('create');     // Show create form
+    Route::post('/', [HeroSectionController::class, 'store'])->name('store');            // Store new hero section
+    Route::get('/{hero}', [HeroSectionController::class, 'show'])->name('show'); // (optionally) Show single hero section
+    Route::get('/{hero}/edit', [HeroSectionController::class, 'edit'])->name('edit'); // Show edit form
+    Route::put('/{hero}', [HeroSectionController::class, 'update'])->name('update'); // Update hero section
+    Route::delete('/{hero}', [HeroSectionController::class, 'destroy'])->name('destroy'); // Delete hero section
+});
+
 Route::get('/insights/{slug}', [InsightController::class, 'show'])->name('frontend.blog.show');
 Route::get('/insights', [InsightController::class, 'index'])->name('insights');
-

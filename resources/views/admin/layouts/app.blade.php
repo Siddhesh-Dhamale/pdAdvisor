@@ -8,6 +8,11 @@
 
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- jQuery (required for Summernote) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Summernote CSS/JS -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.js"></script>
     <style>
         body {
             background: #f8f9fa;
@@ -83,6 +88,7 @@
             <a href="{{ route('admin.solutions.index') }}" class="navbar-brand text-white fs-4">Admin CMS</a>
         </div>
         <ul class="nav nav-pills flex-column gap-1">
+            <li><a class="nav-link{{ request()->routeIs('admin.hero.*') ? ' active' : '' }}" href="{{ route('admin.hero.index') }}">Hero Sections</a></li>
             <li><a class="nav-link{{ request()->routeIs('admin.solutions.*') ? ' active' : '' }}" href="{{ route('admin.solutions.index') }}">Solutions</a></li>
             <li><a class="nav-link{{ request()->routeIs('admin.industries.*') ? ' active' : '' }}" href="{{ route('admin.industries.index') }}">Industries</a></li>
             <li><a class="nav-link{{ request()->routeIs('admin.blog.*') ? ' active' : '' }}" href="{{ route('admin.blog.index') }}">Blogs</a></li>

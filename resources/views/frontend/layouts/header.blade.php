@@ -71,8 +71,10 @@
 
 
 <!-- cursor -->
-<div id="dot"></div>
-<div id="ball"></div>
+
+<!-- <div id="dot"></div>
+<div id="ball"></div> -->
+
 <!-- cursor end -->
 
 <script>
