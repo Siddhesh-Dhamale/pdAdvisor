@@ -47,7 +47,7 @@ $page_name = 'contact-us';
             <section class="contact-map-section py-5 scroll-snap-section">
                 <!-- Google Map Image (replace with iframe if dynamic map needed) -->
                 <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3768.1032544438103!2d72.95256187525315!3d19.19069198203768!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b905c193fc1d%3A0xe51ccf4213ab2fff!2sCrezvatic%20Pvt.%20Ltd.!5e0!3m2!1sen!2sin!4v1750401326727!5m2!1sen!2sin"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d235.68423863716356!2d72.83300701528779!3d19.066031761490922!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c913ce4847b5%3A0x90029be626dd7dae!2sLeo%20Building%2C%20Bandra%20West%2C%20Mumbai%2C%20Maharashtra%20400052!5e0!3m2!1sen!2sin!4v1753252665398!5m2!1sen!2sin"
                     width="100%" height="600" style="border:0;" allowfullscreen="" loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade"></iframe>
 
