@@ -91,7 +91,7 @@
     <!-- Sidebar -->
     <nav class="sidebar" id="sidebar">
         <div class="p-4">
-            <a href="/admin" class="navbar-brand text-white fs-4">Admin CMS</a>
+            <a href="{{ route('admin.dashboard') ?? '/admin' }}" class="navbar-brand text-white fs-4">Admin CMS</a>
         </div>
 
         @php
@@ -113,7 +113,19 @@
         ['route' => 'admin.home.insights.edit', 'label' => 'Insights', 'pattern' => 'admin.home.insights.*', 'icon' => 'bi-lightning-charge'],
         ],
         ],
-
+        [
+        'title' => 'About Us',
+        'icon' => 'bi-info-circle',
+        'subLinks' => [
+        ['route' => 'admin.about.index', 'label' => 'Manage about', 'pattern' => 'admin.about.edit*', 'icon' => 'bi-image', 'params' => ['section' => 'subhero', 'id' => 1]],
+        ['route' => 'admin.about.edit', 'label' => 'Subhero Section', 'pattern' => 'admin.about.edit*', 'icon' => 'bi-image', 'params' => ['section' => 'subhero', 'id' => 1]],
+        ['route' => 'admin.about.edit', 'label' => 'Approach Section', 'pattern' => 'admin.about.edit*', 'icon' => 'bi-gear', 'params' => ['section' => 'approach', 'id' => 1]],
+        ['route' => 'admin.about.edit', 'label' => 'Values Section', 'pattern' => 'admin.about.edit*', 'icon' => 'bi-stars', 'params' => ['section' => 'values', 'id' => 1]],
+        ['route' => 'admin.about.index', 'label' => 'Value Points', 'pattern' => 'admin.about.valuepoints.*', 'icon' => 'bi-list-ul'],
+        ['route' => 'admin.about.edit', 'label' => 'Experience Section', 'pattern' => 'admin.about.edit*', 'icon' => 'bi-clock-history', 'params' => ['section' => 'experience', 'id' => 1]],
+        ['route' => 'admin.about.edit', 'label' => 'CSR Section', 'pattern' => 'admin.about.edit*', 'icon' => 'bi-heart', 'params' => ['section' => 'csr', 'id' => 1]],
+        ],
+        ],
         [
         'title' => 'Solutions',
         'icon' => 'bi-gear',
@@ -122,7 +134,6 @@
         ['route' => 'admin.sol_ind_ins.solutions', 'label' => 'Solutions Content', 'pattern' => 'admin.sol_ind_ins.solutions*', 'icon' => 'bi-puzzle'],
         ],
         ],
-
         [
         'title' => 'Industries',
         'icon' => 'bi-building',
@@ -131,8 +142,6 @@
         ['route' => 'admin.sol_ind_ins.industries', 'label' => 'Industries Content', 'pattern' => 'admin.sol_ind_ins.industries*', 'icon' => 'bi-building'],
         ],
         ],
-
-
         [
         'title' => 'Insights',
         'icon' => 'bi-lightning-charge',
@@ -141,7 +150,6 @@
         ['route' => 'admin.sol_ind_ins.insights', 'label' => 'Insights Content', 'pattern' => 'admin.sol_ind_ins.insights*', 'icon' => 'bi-lightbulb'],
         ],
         ],
-
         [
         'title' => 'Blogs',
         'icon' => 'bi-file-post',
@@ -150,8 +158,6 @@
         ['route' => 'admin.topics.index', 'label' => 'Topics for Blogs', 'pattern' => 'admin.topics.*', 'icon' => 'bi-file-post'],
         ],
         ],
-
-
         ];
         @endphp
 
@@ -159,20 +165,25 @@
             @foreach ($sidebarLinks as $link)
             @if (isset($link['subLinks']))
             @php
-            $subActive = collect($link['subLinks'])->some(fn($s)=>request()->routeIs($s['pattern']));
+            $subActive = collect($link['subLinks'])->some(function ($s) {
+            return request()->routeIs($s['pattern']);
+            });
             @endphp
             <li class="nav-item">
                 <a class="nav-link d-flex justify-content-between align-items-center {{ $subActive ? 'active' : 'collapsed' }}"
-                    href="#submenu-{{ Str::slug($link['title']) }}"
+                    href="#submenu-{{ \Illuminate\Support\Str::slug($link['title']) }}"
                     data-bs-toggle="collapse" aria-expanded="{{ $subActive ? 'true' : 'false' }}">
                     <span><i class="bi {{ $link['icon'] }}"></i> {{ $link['title'] }}</span>
                     <i class="bi bi-caret-down-fill"></i>
                 </a>
-                <div class="collapse {{ $subActive ? 'show' : '' }}" id="submenu-{{ Str::slug($link['title']) }}">
+                <div class="collapse {{ $subActive ? 'show' : '' }}" id="submenu-{{ \Illuminate\Support\Str::slug($link['title']) }}">
                     <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                         @foreach ($link['subLinks'] as $subLink)
+                        @php
+                        $routeParams = $subLink['params'] ?? [];
+                        @endphp
                         <li>
-                            <a href="{{ route($subLink['route']) }}"
+                            <a href="{{ route($subLink['route'], $routeParams) }}"
                                 class="nav-link ps-4 d-flex align-items-center {{ request()->routeIs($subLink['pattern']) ? 'active' : '' }}">
                                 <i class="bi {{ $subLink['icon'] }} me-1"></i> {{ $subLink['label'] }}
                             </a>
@@ -202,7 +213,7 @@
     <div class="main-content">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3 d-none d-lg-flex">
             <div class="container-fluid">
-                <a class="navbar-brand" href="/admin">Admin CMS</a>
+                <a class="navbar-brand" href="{{ route('admin.dashboard') ?? '/admin' }}">Admin CMS</a>
             </div>
         </nav>
 

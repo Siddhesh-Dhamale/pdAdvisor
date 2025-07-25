@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\AboutusController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\HeroSectionController;
@@ -133,4 +134,22 @@ Route::prefix('admin/sol-ind-ins')->name('admin.sol_ind_ins.')->group(function (
     Route::get('edit/{id}', [SolIndInController::class, 'edit'])->name('edit');
     Route::put('update/{id}', [SolIndInController::class, 'update'])->name('update');
     Route::delete('delete/{id}', [SolIndInController::class, 'destroy'])->name('destroy');
+});
+
+Route::prefix('admin')->name('admin.')->group(function () {
+
+    Route::get('about', [AboutusController::class, 'index'])->name('about.index');
+
+    Route::get('about/{section}/{id}/edit', [AboutusController::class, 'edit'])->name('about.edit');
+
+    Route::put('about/{section}/{id}', [AboutusController::class, 'update'])->name('about.update');
+
+    Route::get('about/{section}/create', [AboutusController::class, 'create'])->name('about.create');
+
+    Route::post('about/{section}', [AboutusController::class, 'store'])->name('about.store');
+
+    Route::delete('about/{section}/{id}', [AboutusController::class, 'destroy'])->name('about.destroy');
+
+    // Correct the URL here - remove extra 'admin/'
+    Route::get('about/valuepoints', [AboutusController::class, 'valuePointsIndex'])->name('about.valuepoints.index');
 });

@@ -231,14 +231,14 @@
     // Initialize indices from old input or existing solution data counts
     let cardIndex = {
         {
-            count(old('cards', $solution -> solutionCards ?? [
+            count(old('cards', $solution - > solutionCards ?? [
                 ['card_heading' => '', 'card_description' => '']
             ]))
         }
-    };
+    }
     let counterIndex = {
         {
-            count(old('counters', $solution -> solutionCounters ?? [
+            count(old('counters', $solution - > solutionCounters ?? [
                 ['title' => '', 'number' => '']
             ]))
         }
@@ -257,6 +257,7 @@
             ]))
         }
     };
+
 
     // Remove card, counter, result card, or service element
     function removeElement(button) {
@@ -343,4 +344,4 @@
         serviceIndex++;
     }
 </script>
-@endpush
+<!-- @endpush -->
