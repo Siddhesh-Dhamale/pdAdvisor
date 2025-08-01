@@ -26,7 +26,7 @@
             @if($hero->icon)
                 <img src="{{ asset('frontend/img/hero/' . $hero->icon) }}" alt="Icon Image" width="40" class="mb-2"><br>
             @endif
-            <input type="file" name="icon" class="form-control">
+            <input type="file" name="icon" class="form-control" accept=".svg,.png,.jpg,.jpeg,.gif" >
             <small class="text-muted">Leave blank to keep old icon.</small>
         </div>
 

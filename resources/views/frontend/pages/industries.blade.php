@@ -17,39 +17,89 @@
 
             <!-- HERO SECTION -->
             <section class="hero scroll-snap-section">
-                <div class="hero-container">
-                    <img src="frontend/img/industries/industries-banner.png" alt="Hero Image" class="hero-image">
+                <div class="hero-container position-relative">
+                    @php
+                    // There is only one record for page_name = Industries in your collection
+                    $hero = $heroSections->first();
+                    @endphp
+
+                    <img
+                        src="{{ $hero && $hero->banner_image ? asset('frontend/img/hero/' . $hero->banner_image) : asset('frontend/img/industries/industries-banner.png') }}"
+                        alt="{{ $hero->page_name ?? 'Industries Hero Image' }}"
+                        class="hero-image w-100">
+
                     <div class="hero-content">
                         <h1 class="fw-bold">
-                            <span class="brdr-bottom">Helping Industry</span><br>Leaders Lead the Future
+                            @if(!empty($hero->banner_content))
+                            {{-- Render with preserved line breaks and an underline for the first line if needed --}}
+
+                            <h1>{!! html_entity_decode($hero->banner_content) !!}</h1>
+
+                            @else
+                            <span class="brdr-bottom">Helping Industry</span>
+                            <br>
+                            Leaders Lead the Future
+                            @endif
                         </h1>
-                        <a href="/contact"
-                            class="btn btn-danger rounded-lg px-4 btn-contact align-item-right">Contact</a>
+                        <a
+                            href="{{ $hero->button_url ?? '/contact' }}"
+                            class="btn btn-danger rounded-lg px-4 btn-contact align-item-right">
+                            {{ $hero->button_text ?? 'Contact' }}
+                        </a>
                     </div>
                 </div>
             </section>
 
+
+
             <!-- HEADING SECTION -->
             <section class="scroll-snap-section introduction-section py-5">
-                <div class="container">
+                <div class="container ">
+                    @if($solIndIns->count())
+                    @foreach($solIndIns as $sectionData)
+
                     <div class="row">
                         <div class="col-md-2">
-                            <p class="text-uppercase medium text-muted mb-2">Introduction</p>
+                            <p class="text-uppercase medium text-muted mb-2">
+                                {{ $sectionData->section_title ?? '' }}
+                            </p>
                         </div>
                         <div class="col-md-5">
+                            @php
+                            // Split the heading into words
+                            $words = isset($sectionData->heading) ? explode(' ', $sectionData->heading) : [];
+
+                            // Get first 2 words for underline span
+                            $firstTwoWords = implode(' ', array_slice($words, 0, 2));
+
+                            // Get next 2 words (words 3 and 4)
+                            $nextTwoWords = implode(' ', array_slice($words, 2, 2));
+                            @endphp
+
                             <h2 class="display-5 fw-bold">
-                                <span class="brdr-bottom">Bridging Possibility</span><br>with Performance
+                                <span class="brdr-bottom">
+                                    {{ $firstTwoWords }}
+                                </span> <br>
+                                @if($nextTwoWords)
+                                {{ ' ' . $nextTwoWords }}
+                                @endif
                             </h2>
+
                         </div>
                         <div class="col-md-5">
                             <p class="text-muted">
-                                At PD Advisors & Strategists, we work with leaders across sectors to navigate
-                                disruption, unlock growth, and build lasting impact. From legacy businesses to startups,
-                                we bring deep industry expertise and strategic clarity.
+                                {{ $sectionData->description ?? '' }}
                             </p>
                         </div>
                     </div>
+
+                    @endforeach
+                    @else
+                    <p>No industry content available at the moment.</p>
+                    @endif
+
                 </div>
+
                 <section class="container ServiceScrollButton position-absolute d-flex justify-content-end pb-2 ">
                     <div class="rotating-scroll magnetic-wrapper">
                         <a href="" class="go-down-btn magnetic-btn" title="Scroll down">
@@ -76,31 +126,31 @@
                     </h2>
                     <div class="row g-5 m-0 ">
                         @forelse($industries as $i => $industry)
-                                <div class="col-6 col-md-4 col-lg-3 ">
-                                    @if($industry->hero_heading)
-                                        <!-- Card with link if hero_heading is not null -->
-                                        <a href="{{ route('industries.show', $industry->slug) }}"
-                                            class="text-decoration-none text-dark">
-                                    @else
-                                            <!-- Non-clickable card if hero_heading is null -->
-                                            <div class="text-dark">
-                                        @endif
-                                            <img src="{{ asset('frontend/img/industries/' . ($i + 1) . '.png') }}"
-                                                alt="{{ $industry->title }}" class="mb-3" />
-                                            <h6 class="fw-bold text-danger">{{ $industry->title }}</h6>
-                                            <p class="small">
-                                                {{ $industry->short_description ?? 'Explore opportunities and solutions.' }}
-                                            </p>
-                                            @if($industry->hero_heading)
-                                                </a> <!-- Close the anchor tag if hero_heading is not null -->
-                                            @else
-                                        </div> <!-- Close the div if no link -->
+                        <div class="col-6 col-md-4 col-lg-3 ">
+                            @if($industry->hero_heading)
+                            <!-- Card with link if hero_heading is not null -->
+                            <a href="{{ route('industries.show', $industry->slug) }}"
+                                class="text-decoration-none text-dark">
+                                @else
+                                <!-- Non-clickable card if hero_heading is null -->
+                                <div class="text-dark">
                                     @endif
-                            </div>
-                        @empty
-                        <div class="col-12 text-center">
-                            <em>No industries found.</em>
-                        </div>
+                                    <img src="{{ asset('frontend/img/industries/' . ($i + 1) . '.png') }}"
+                                        alt="{{ $industry->title }}" class="mb-3" />
+                                    <h6 class="fw-bold text-danger">{{ $industry->title }}</h6>
+                                    <p class="small">
+                                        {{ $industry->short_description ?? 'Explore opportunities and solutions.' }}
+                                    </p>
+                                    @if($industry->hero_heading)
+                            </a> <!-- Close the anchor tag if hero_heading is not null -->
+                            @else
+                        </div> <!-- Close the div if no link -->
+                        @endif
+                    </div>
+                    @empty
+                    <div class="col-12 text-center">
+                        <em>No industries found.</em>
+                    </div>
                     @endforelse
                 </div>
             </section>
@@ -116,132 +166,50 @@
                     <div class="circle">
                         <div class="logo"><a href="/contact"><i class="fa-solid fa-plus text-dark"></i></a></div>
                         <div class="text">
-                            <p class=""><span style="transform: rotate(0deg)">
-                                </span><span style="transform: rotate(10.3deg)"> </span><span
-                                    style="transform: rotate(20.6deg)"> </span><span
-                                    style="transform: rotate(30.900000000000002deg)"> </span><span
-                                    style="transform: rotate(41.2deg)"> </span><span style="transform: rotate(51.5deg)">
-                                </span><span style="transform: rotate(61.800000000000004deg)"> </span><span
-                                    style="transform: rotate(72.10000000000001deg)"> </span><span
-                                    style="transform: rotate(82.4deg)"> </span><span style="transform: rotate(92.7deg)">
-                                </span><span style="transform: rotate(103deg)"> </span><span
-                                    style="transform: rotate(113.30000000000001deg)"> </span><span
-                                    style="transform: rotate(123.60000000000001deg)"> </span><span
-                                    style="transform: rotate(133.9deg)"> </span><span
-                                    style="transform: rotate(144.20000000000002deg)"> </span><span
-                                    style="transform: rotate(154.5deg)"> </span><span
-                                    style="transform: rotate(164.8deg)">
-                                </span><span style="transform: rotate(175.10000000000002deg)"> </span><span
-                                    style="transform: rotate(185.4deg)"> </span><span
-                                    style="transform: rotate(195.70000000000002deg)"> </span><span
-                                    style="transform: rotate(206deg)"> </span><span style="transform: rotate(216.3deg)">
-                                </span><span style="transform: rotate(226.60000000000002deg)"> </span><span
-                                    style="transform: rotate(236.9deg)"> </span><span
-                                    style="transform: rotate(247.20000000000002deg)"> </span><span
-                                    style="transform: rotate(257.5deg)"> </span><span
-                                    style="transform: rotate(267.8deg)">
-                                </span><span style="transform: rotate(278.1deg)"> </span><span
-                                    style="transform: rotate(288.40000000000003deg)"> </span><span
-                                    style="transform: rotate(298.70000000000005deg)"> </span><span
-                                    style="transform: rotate(309deg)"> </span><span style="transform: rotate(319.3deg)">
-                                </span><span style="transform: rotate(329.6deg)"> </span><span
-                                    style="transform: rotate(339.90000000000003deg)">T</span><span
-                                    style="transform: rotate(350.20000000000005deg)">u</span><span
-                                    style="transform: rotate(360.5deg)">r</span><span
-                                    style="transform: rotate(370.8deg)">n</span><span
-                                    style="transform: rotate(381.1deg)">i</span><span
-                                    style="transform: rotate(391.40000000000003deg)">n</span><span
-                                    style="transform: rotate(401.70000000000005deg)">g</span><span
-                                    style="transform: rotate(412deg)"> </span><span
-                                    style="transform: rotate(422.3deg)">B</span><span
-                                    style="transform: rotate(432.6deg)">u</span><span
-                                    style="transform: rotate(442.90000000000003deg)">s</span><span
-                                    style="transform: rotate(453.20000000000005deg)">i</span><span
-                                    style="transform: rotate(463.50000000000006deg)">n</span><span
-                                    style="transform: rotate(473.8deg)">e</span><span
-                                    style="transform: rotate(484.1deg)">s</span><span
-                                    style="transform: rotate(494.40000000000003deg)">s</span><span
-                                    style="transform: rotate(504.70000000000005deg)">e</span><span
-                                    style="transform: rotate(515deg)">s</span><span
-                                    style="transform: rotate(525.3000000000001deg)"> </span><span
-                                    style="transform: rotate(535.6deg)">.</span><span
-                                    style="transform: rotate(545.9000000000001deg)"> </span><span
-                                    style="transform: rotate(556.2deg)">I</span><span
-                                    style="transform: rotate(566.5deg)">n</span><span
-                                    style="transform: rotate(576.8000000000001deg)">t</span><span
-                                    style="transform: rotate(587.1deg)">o</span><span
-                                    style="transform: rotate(597.4000000000001deg)"> </span><span
-                                    style="transform: rotate(607.7deg)">W</span><span
-                                    style="transform: rotate(618deg)">i</span><span
-                                    style="transform: rotate(628.3000000000001deg)">n</span><span
-                                    style="transform: rotate(638.6deg)">n</span><span
-                                    style="transform: rotate(648.9000000000001deg)">e</span><span
-                                    style="transform: rotate(659.2deg)">r</span><span
-                                    style="transform: rotate(669.5deg)">s</span><span
-                                    style="transform: rotate(679.8000000000001deg)"> </span><span
-                                    style="transform: rotate(690.1deg)">.</span><span
-                                    style="transform: rotate(700.4000000000001deg)"> </span></p>
+                            <p class="">
+                                Turning Businesses . Into Winners . </p>
                         </div>
                     </div>
                 </div>
-                <div class="cta-banner">
-                    <div class="cta-content">
+                @foreach($solIndIns as $cta)
+                @php $backgroundImageUrl = asset('frontend/img/SolIndIns/' . $cta->cta_img)
+                @endphp
+
+                <section class="cta-banner" style="background-image: url('{{ $backgroundImageUrl }}');">
+                    <div class="cta-content bg-danger bg-opacity-60 text-white rounded-4 px-4 px-md-5 pt-5 pb-5">
                         <div class="container">
-                            <div class="bg-danger bg-opacity-60 text-white rounded-4 px-4 px-md-5 pt-5 pb-5">
-                                <div class="row align-items-center text-center text-md-start">
+                            <div class="row align-items-center text-center text-md-start">
+                                <!-- Left Section: CTA Headings and Industry Dropdown -->
+                                <div class="col-md-5 mb-4 mb-md-0">
+                                    <h5 class="fw-semibold mb-3">{{ $cta->cta_heading_1 ?? 'Want to talk with our experts ?' }}</h5>
+                                    <select class="form-select" aria-label="Select an Industry">
+                                        <option selected disabled>Select an Industry</option>
+                                        @foreach($industries as $industry)
+                                        <option value="{{ $industry->slug }}">
+                                            {{ $industry->title ?? $industry->name ?? $industry->slug }}
+                                        </option>
+                                        @endforeach
+                                    </select>
+                                </div>
 
-                                    <!-- Left Section -->
-                                    <div class="col-md-5 mb-4 mb-md-0">
-                                        <h5 class="fw-semibold mb-3">Want to talk with our experts?</h5>
-                                        <select class="form-select">
-                                            <option selected disabled>Select an Industry</option>
-                                            <option value="strategic-expertise">Strategic Expertise by Sector</option>
-                                            <option value="aviation">Aviation</option>
-                                            <option value="energy-natural-resources">Energy & Natural Resources</option>
-                                            <option value="healthcare-life-sciences">Healthcare & Life Sciences</option>
-                                            <option value="aerospace-defence">Aerospace & Defence</option>
-                                            <option value="construction-infrastructure">Construction & Infrastructure
-                                            </option>
-                                            <option value="financial-services">Financial Services</option>
-                                            <option value="machinery-equipment">Machinery & Equipment</option>
-                                            <option value="automotive-mobility">Automotive & Mobility</option>
-                                            <option value="consumer-products">Consumer Products</option>
-                                            <option value="forest-products-packaging">Forest Products, Paper & Packaging
-                                            </option>
-                                            <option value="media-entertainment">Media & Entertainment</option>
-                                            <option value="metals">Metals</option>
-                                            <option value="private-equity">Private Equity</option>
-                                            <option value="real-estate">Real Estate</option>
-                                            <option value="retail">Retail</option>
-                                            <option value="social-impact">Social Impact</option>
-                                            <option value="technology">Technology</option>
-                                            <option value="telecommunications">Telecommunications</option>
-                                            <option value="transportation">Transportation</option>
-                                            <option value="travel-leisure">Travel & Leisure</option>
-                                        </select>
+                                <!-- Divider -->
+                                <div class="col-md-2 d-none d-md-flex justify-content-center">
+                                    <div class="vr bg-white" style="width:2px; height:100%; opacity:0.5;"></div>
+                                </div>
 
-                                    </div>
-
-                                    <!-- Divider -->
-                                    <div class="col-md-2 d-none d-md-flex justify-content-center">
-                                        <div class="vr bg-white" style="width:2px; height:100%; opacity:0.5;"></div>
-                                    </div>
-
-                                    <!-- Right Section -->
-                                    <div class="col-md-5 text-center text-md-start">
-                                        <h5 class="fw-semibold mb-3">We tailor solutions for every challenge.</h5>
-                                        <a href="/contact" class="btn btn-light rounded-pill px-4 fw-semibold">
-                                            Let’s talk →
-                                        </a>
-                                    </div>
-
+                                <!-- Right Section: CTA text and button -->
+                                <div class="col-md-5 text-center text-md-start">
+                                    <h5 class="fw-semibold mb-3">{{ $cta->cta_heading_2 ?? 'We tailor solutions for every challenge.' }}</h5>
+                                    <a href="{{ url($cta->cta_btn_link ?? '/contact') }}" class="btn btn-light rounded-pill px-4 fw-semibold">
+                                        {{ $cta->cta_btn_text ?? 'Let’s talk →' }}
+                                    </a>
                                 </div>
                             </div>
                         </div>
-
-
                     </div>
-                </div>
+                </section>
+                @endforeach
+
             </section>
 
 

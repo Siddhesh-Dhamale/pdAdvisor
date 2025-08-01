@@ -18,7 +18,7 @@
         <button type="submit" class="btn btn-primary btn-lg px-4">{{ isset($solution) ? 'Update' : 'Create' }}</button>
     </div>
 
-    {{-- Solution Title & Slug --}}
+    {{-- Title, Slug, Description, Icon --}}
     <div class="row g-3 mb-4">
         <div class="col-md-6">
             <label for="title" class="form-label fw-semibold">Solution Title</label>
@@ -32,21 +32,19 @@
         </div>
     </div>
     <div class="mb-3">
-        <label for="sort_order">Display Order</label>
-        <input type="number" name="sort_order" id="sort_order" class="form-control"
-            value="{{ old('sort_order', $solution->sort_order ?? 0) }}">
-    </div>
-
-    <div class="mb-3">
         <label for="description" class="form-label fw-bold">Description</label>
         <textarea name="description" id="description" rows="4" class="form-control">{{ old('description', $solution->description ?? '') }}</textarea>
     </div>
-    <div class="mb-3">
+    <div class="mb-4">
         <label for="icon" class="form-label fw-bold">Icon (SVG, PNG, JPG, JPEG)</label>
         <input type="file" name="icon" id="icon" class="form-control" accept=".svg,.png,.jpg,.jpeg">
+        @if(isset($solution) && $solution->icon)
+        <div class="mt-2">
+            <p class="small fw-semibold mb-1">Existing Icon Preview:</p>
+            <img src="{{ asset('frontend/img/solutions/' . $solution->icon) }}" alt="Icon" style="max-height: 80px;" class="img-thumbnail">
+        </div>
+        @endif
     </div>
-
-
 
     {{-- Hero Section --}}
     <section class="mb-5">
@@ -162,11 +160,10 @@
                 <div>
                     <label class="form-label fw-semibold">Card Image</label>
                     <input type="file" name="result_cards[{{ $i }}][card_image]" class="form-control" accept="image/*">
-                    @if(isset($solution) && $solution->solutionResultCards && $solution->solutionResultCards->count() > $i)
-                    @php $img = $solution->solutionResultCards[$i]->card_image; @endphp
-                    @if($img)
-                    <img src="{{ asset('frontend/img/solutions/result_cards/' . $img) }}" alt="Result Card Image" class="img-thumbnail mt-3" style="max-height: 140px;">
-                    @endif
+                    @if(isset($solution) && $solution->solutionResultCards && count($solution->solutionResultCards) > $i && $solution->solutionResultCards[$i]->card_image)
+                    <div class="mt-2">
+                        <img src="{{ asset('frontend/img/solutions/result_cards/' . $solution->solutionResultCards[$i]->card_image) }}" alt="Result Card Image" class="img-thumbnail" style="max-height: 120px;">
+                    </div>
                     @endif
                 </div>
             </div>
@@ -218,53 +215,25 @@
             <label for="cta_image" class="form-label fw-semibold">CTA Image</label>
             <input type="file" class="form-control" id="cta_image" name="cta_image" accept="image/*">
             @if(isset($solution) && $solution->cta_image)
-            <img src="{{ asset('frontend/img/solutions/cta_img' . $solution->cta_image) }}" class="img-thumbnail mt-3" style="max-height: 140px;" alt="CTA Image Preview">
+            <div class="mt-2">
+                <img src="{{ asset('frontend/img/solutions/cta_img' . $solution->cta_image) }}" class="img-thumbnail" style="max-height: 140px;" alt="CTA Image Preview">
+            </div>
             @endif
         </div>
     </section>
-
-
 </form>
-
 @push('scripts')
 <script>
-    // Initialize indices from old input or existing solution data counts
-    let cardIndex = {
-        {
-            count(old('cards', $solution - > solutionCards ?? [
-                ['card_heading' => '', 'card_description' => '']
-            ]))
-        }
-    }
-    let counterIndex = {
-        {
-            count(old('counters', $solution - > solutionCounters ?? [
-                ['title' => '', 'number' => '']
-            ]))
-        }
-    };
-    let resultCardIndex = {
-        {
-            count(old('result_cards', $solution - > solutionResultCards ?? [
-                ['card_heading' => '', 'card_description' => '', 'card_image' => '']
-            ]))
-        }
-    };
-    let serviceIndex = {
-        {
-            count(old('services', $solution - > services ?? [
-                ['name' => '', 'url' => '']
-            ]))
-        }
-    };
+    // Set initial indices based on existing solution or old input, just like your industry form 
+    let cardIndex = {{ count(old('cards', $solution->solutionCards ?? [['card_heading' => '', 'card_description' => '']])) }};
+    let counterIndex = {{ count(old('counters', $solution->solutionCounters ?? [['title' => '', 'number' => '']])) }};
+    let resultCardIndex = {{ count(old('result_cards', $solution->solutionResultCards ?? [['card_heading' => '', 'card_description' => '', 'card_image' => '']])) }};
+    let serviceIndex = {{ count(old('services', $solution->services ?? [['service_heading' => '', 'service_url' => '']])) }};
 
-
-    // Remove card, counter, result card, or service element
     function removeElement(button) {
         button.closest('.card, .row').remove();
     }
 
-    // Add new Solution Card
     function addCard() {
         const wrapper = document.getElementById('card-wrapper');
         const html = `
@@ -283,7 +252,6 @@
         cardIndex++;
     }
 
-    // Add new Counter
     function addCounter() {
         const wrapper = document.getElementById('counter-wrapper');
         const html = `
@@ -302,7 +270,6 @@
         counterIndex++;
     }
 
-    // Add new Result Card
     function addResultCard() {
         const wrapper = document.getElementById('result-card-wrapper');
         const html = `
@@ -325,7 +292,6 @@
         resultCardIndex++;
     }
 
-    // Add new Service
     function addService() {
         const wrapper = document.getElementById('service-wrapper');
         const html = `
@@ -344,4 +310,4 @@
         serviceIndex++;
     }
 </script>
-<!-- @endpush -->
+@endpush

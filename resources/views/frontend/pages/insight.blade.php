@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -53,16 +54,41 @@
         <div class="page-wrapper">
 
             <!-- HERO SECTION -->
+            @php
+            // Grab the first hero record for the insights page if available
+            $hero = $heroSections->first();
+            @endphp
+
             <section class="hero">
                 <div class="hero-container col-md-8">
-                    <img src="{{ asset('frontend/img/insight/insights-banner.png') }}" alt="Hero Image" class="hero-image">
+                    <img
+                        src="{{ $hero && $hero->banner_image 
+                ? asset('frontend/img/hero/' . $hero->banner_image) 
+                : asset('frontend/img/insight/insights-banner.png') }}"
+                        alt="{{ $hero->alt_text ?? 'Hero Image' }}"
+                        class="hero-image">
+
                     <div class="hero-content">
-                        <h1 class="fw-bold InsightsBorder"><span class="brdr-bottom">Helping Industry </span></h1>
+                        @if(!empty($hero->heading_1) || !empty($hero->heading_2))
+                        <h1 class="fw-bold InsightsBorder">
+                            <span class="brdr-bottom">{!! $hero->heading_1 ?? 'Helping Industry' !!}</span>
+                        </h1>
+                        <h1>{!! $hero->heading_2 ?? 'Leaders Lead the Future' !!}</h1>
+                        @else
+                        {{-- Fallback static content if no data available --}}
+                        <h1 class="fw-bold InsightsBorder">
+                            <span class="brdr-bottom">Helping Industry</span>
+                        </h1>
                         <h1>Leaders Lead the Future</h1>
-                        <a href="/contact" class="btn btn-danger rounded-lg px-4 btn-contact align-item-right">Contact</a>
+                        @endif
+
+                        <a href="{{ $hero->button_url ?? '/contact' }}" class="btn btn-danger rounded-lg px-4 btn-contact align-item-right">
+                            {{ $hero->button_text ?? 'Contact' }}
+                        </a>
                     </div>
                 </div>
             </section>
+
 
             <!-- HEADING SECTION -->
             <section class="py-5 mx-auto mb-3 scroll-snap-section">
@@ -159,19 +185,73 @@
             <section class="scroll-snap-section circleContainer position-relative d-flex justify-content-center bg-white pt-5 mb-0">
                 <div class="circle2">
                     <div class="circle">
-                        <div class="logo"><i class="fa-solid fa-plus text-dark"></i></div>
+                        <div class="logo"><a href="/contact"><i class="fa-solid fa-plus text-dark"></i></a></div>
                         <div class="text">
-                            <!-- ... your rotating text etc ... -->
+                            <p class="">
+                                Turning Businesses . Into Winners . </p>
                         </div>
                     </div>
                 </div>
-                <div class="cta-banner">
-                    <div class="cta-content">
-                        <h2 class="fw-bold"><span class="brdr-bottom">Guiding high-impact organizations to
-                                scale</span><br> with vision and purpose</h2>
+                @php
+                // Assuming $solIndIns is passed to the view and contains the collection
+                $cta = $solIndIns->first();
+
+                // Prepare the background image URL (optional, if you want to use it for background)
+                $backgroundImageUrl = $cta && $cta->cta_img
+                ? asset('frontend/img/SolIndIns/' . $cta->cta_img)
+                : asset('frontend/img/SolIndIns/default-cta.jpg');
+                @endphp
+
+                <div class="cta-banner"
+                    style="background-image: url('{{ $backgroundImageUrl }}'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+                    <div class="cta-content row justify-content-center">
+                        {{-- Check if CTA data is available --}}
+                        @if($cta)
+                        {{-- Split the cta_heading_1 into parts to wrap first few words in underline span and rest outside --}}
+                        @php
+                        // Let's split the phrase for underline similarly as in your example:
+                        // Here I assume the phrase "Guiding high-impact organizations to scale" is the part to underline
+                        $fullText = $cta->cta_heading_1 ?? '';
+                        // The underline phrase (adjust this string if dynamic highlighting needed)
+                        $underlinePhrase = 'Guiding high-impact organizations to scale';
+
+                        // Replace underline phrase with span wrapped version, fallback to fullText if phrase not found
+                        if (str_contains($fullText, $underlinePhrase)) {
+                        $finalHeading = str_replace(
+                        $underlinePhrase,
+                        "<span class='brdr-bottom'>{$underlinePhrase}</span>",
+                        e($fullText)
+                        );
+                        } else {
+                        $finalHeading = e($fullText);
+                        }
+                        @endphp
+
+                        {{-- Render heading with line break after the underline span part --}}
+
+                        <div class="col-12 col-md-7">
+                            {{-- Use nl2br to convert newlines to <br> tags --}}
+                            <h2 class="">{!! nl2br($finalHeading) !!}</h2>
+                        </div>
+
+                        {{-- CTA button with dynamic link and text --}}
+                        <div class="col-12">
+                            <a class="btn btn-danger rounded-lg px-4 " href="{{ url($cta->cta_btn_link ?? '/contact') }}">
+                                {{ $cta->cta_btn_text ?? '1Let’s Make It Happen' }}
+                            </a>
+                        </div>
+
+                        @else
+                        {{-- Fallback static content --}}
+                        <h2 class="fw-bold">
+                            <span class="brdr-bottom">Guiding high-impact organizations to scale</span><br> with vision and purpose
+                        </h2>
                         <a class="btn btn-danger rounded-lg px-4" href="/contact">Let’s Make It Happen</a>
+                        @endif
                     </div>
                 </div>
+
+
             </section>
         </div>
     </div>
@@ -188,8 +268,8 @@
                 document.querySelectorAll('.article').forEach(function(card) {
                     const topicList = (card.dataset.topics || "");
                     const industryList = (card.dataset.industries || "");
-                    const matchTopic = (!topic || topicList.split(',').map(s=>s.trim()).includes(topic));
-                    const matchIndustry = (!industry || industryList.split(',').map(s=>s.trim()).includes(industry));
+                    const matchTopic = (!topic || topicList.split(',').map(s => s.trim()).includes(topic));
+                    const matchIndustry = (!industry || industryList.split(',').map(s => s.trim()).includes(industry));
                     if (matchTopic && matchIndustry) {
                         card.style.display = '';
                         count++;
@@ -212,4 +292,5 @@
         });
     </script>
 </body>
+
 </html>

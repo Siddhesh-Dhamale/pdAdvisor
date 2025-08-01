@@ -15,22 +15,47 @@
         {{view('frontend.layouts.header')}}
         <div class="page-wrapper">
             <section class="hero">
+                @php
+                // There is only one record for page_name = Industries in your collection
+                $hero = $heroSections->first();
+                @endphp
+
                 <div class="swiper hero-swiper">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide position-relative">
-                            <img class="w-100" src="frontend/img/services/SolutionsBanner.png" alt="">
+
+                            <img
+                                src="{{ $hero && $hero->banner_image ? asset('frontend/img/hero/' . $hero->banner_image) : asset('frontend/img/industries/industries-banner.png') }}"
+                                alt="{{ $hero->page_name ?? 'Industries Hero Image' }}"
+                                class="hero-image w-100">
+
                             <div class="HeroContent text-start lh-1">
-                                <h2 class=" underlinedHeading"><span class="brdr-bottom-hero">Helping Industry</span></h2>
-                                <h1 class="m-0 p-0">Leaders Lead the Future</h1>
-                                <a class="btn btn-danger rounded-lg px-4 my-5" href="/contact">Contact</a>
+                                <h1 class="fw-bold">
+                                    @if(!empty($hero->banner_content))
+                                    {{-- Render with preserved line breaks and an underline for the first line if needed --}}
+
+                                    <h1>{!! html_entity_decode($hero->banner_content) !!}</h1>
+
+                                    @else
+                                    <span class="brdr-bottom">Helping Industry</span>
+                                    <br>
+                                    Leaders Lead the Future
+                                    @endif
+                                </h1>
+                                <a
+                                    href="{{ $hero->button_url ?? '/contact' }}"
+                                    class="btn btn-danger rounded-lg px-4 btn-contact align-item-right">
+                                    {{ $hero->button_text ?? 'Contact' }}
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
 
+
             <section class="scroll-snap-section position-relative">
-                <div class="container py-5 TopPaddingMobile">
+                <!-- <div class="container py-5 TopPaddingMobile">
                     <div class=" row justify-content-evenly text-start pt-2">
                         <div class="col-12 col-md-3 p-4"><small>Our Approach</small></div>
                         <div class="col-12 col-md-4">
@@ -40,6 +65,51 @@
                             <p class="QASubcaption">At PD Advisors & Strategists, our consulting services are designed to help ambitious organizations overcome their toughest challenges and seize their greatest opportunities. Our capabilities span across strategic, operational, technological, and people-centric transformations. We bring deep industry knowledge and a collaborative approach to every engagement.</p>
                         </div>
                     </div>
+                </div> -->
+                <div class="container py-5 TopPaddingMobile">
+                    @if($solIndIns->count())
+                    @foreach($solIndIns as $sectionData)
+
+                    <div class="row justify-content-evenly text-start pt-2">
+                        <div class="col-12 col-md-3 p-4">
+                            <small>
+                                {{ $sectionData->section_title ?? '' }}
+                            </small>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            @php
+                            // Split the heading into words
+                            $words = isset($sectionData->heading) ? explode(' ', $sectionData->heading) : [];
+
+                            // Get first 2 words for underline span
+                            $firstTwoWords = implode(' ', array_slice($words, 0, 2));
+
+                            // All remaining words after the first 2 words:
+                            $remainingWords = implode(' ', array_slice($words, 2));
+                            @endphp
+
+                            <h1 class="fw-bold">
+                                <span class="brdr-bottom">
+                                    {{ $firstTwoWords }}
+                                </span><br>
+                                @if($remainingWords)
+                                {{ ' ' . $remainingWords }}
+                                @endif
+                            </h1>
+
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <p class="text-muted">
+                                {{ $sectionData->description ?? '' }}
+                            </p>
+                        </div>
+                    </div>
+
+                    @endforeach
+                    @else
+                    <p>No industry content available at the moment.</p>
+                    @endif
+
                 </div>
                 <section class="containe ServiceScrollButton position-absolute d-flex justify-content-end pb-2">
                     <div class="rotating-scroll magnetic-wrapper ">
@@ -173,12 +243,41 @@
                         </div>
                     </div>
                 </div>
+                @foreach($solIndIns as $cta)
+
                 <div class="cta-banner">
                     <div class="cta-content">
-                        <h2 class="fw-bold">Explore <span class="brdr-bottom"> how PD Advisors & Strategists </span> can <br>help you transform your challenges into <br> sustainable success.</h2>
-                        <a class="btn btn-danger rounded-lg px-4" href="/contact">Know More</a>
+                        <div class="row justify-content-center">
+                            <h2 class="fw-bold col-md-7 col-12">
+                                {{-- Use the cta_heading_1 if available, otherwise fallback to a default message --}}
+                                {{-- Example dynamic split of headline to preserve <span> --}}
+                                @php
+                                // Try to highlight "how PD Advisors & Strategists" dynamically
+                                $headline = $cta->cta_heading_1 ?? '1Explore how PD Advisors & Strategists can help you transform your challenges into sustainable success.';
+                                // Find the phrase to underline or fallback to static as one phrase
+                                $highlightPhrase = 'how PD Advisors & Strategists';
+                                @endphp
+                                @if(str_contains($headline, $highlightPhrase))
+                                {!! nl2br(html_entity_decode(str_replace(
+                                $highlightPhrase,
+                                "<span class='brdr-bottom'>{$highlightPhrase}</span>",
+                                $headline
+                                ))) !!}
+                                @else
+                                {!! nl2br(html_entity_decode($headline)) !!}
+                                @endif
+
+                            </h2>
+                        </div>
+
+                        <a class="btn btn-danger rounded-lg px-4" href="{{ url($cta->cta_btn_link ?? '/contact') }}">
+                            {{ $cta->cta_btn_text ?? 'Know More' }}
+                        </a>
                     </div>
                 </div>
+
+                @endforeach
+
             </section>
         </div>
     </div>

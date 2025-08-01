@@ -185,6 +185,9 @@ header.scrolled .custom-nav-link.active {
     position: relative;
     z-index: 11;
 }
+u {
+    text-decoration-color: #c8102e;
+}
 
 .brdr-bottom::after {
     content: "";
@@ -515,13 +518,12 @@ header.scrolled .custom-nav-link.active {
     .rotating-scroll {
         display: none !important;
     }
-    .TopPaddingMobile{
+    .TopPaddingMobile {
         padding-top: 0 !important;
     }
-    .fullHeadingWidth{
+    .fullHeadingWidth {
         min-width: 100% !important;
     }
-    
 }
 
 @media (max-width: 600px) {

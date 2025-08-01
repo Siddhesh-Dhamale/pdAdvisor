@@ -23,13 +23,14 @@ class HeroSectionController extends Controller
     {
         $validated = $request->validate([
             'page_name' => 'required|max:255',
-            'banner_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp,svg|max:2048',
-            'icon' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp,svg|max:1024',
+            'banner_image' => 'nullable|file|mimes:jpeg,png,jpg,gif,webp,svg|max:2048',
+            'icon' => 'nullable|file|mimes:jpeg,png,jpg,gif,webp,svg|max:2048',
             'icon_text' => 'nullable|string|max:255',
             'banner_content' => 'nullable|string',
             'button_text' => 'nullable|string|max:255',
             'button_url' => 'nullable|string|max:255',
         ]);
+
 
         // Handle banner image upload
         if ($request->hasFile('banner_image')) {
@@ -62,14 +63,15 @@ class HeroSectionController extends Controller
     public function update(Request $request, HeroSection $hero)
     {
         $validated = $request->validate([
-            'page_name'      => 'required|max:255',
-            'banner_image'   => 'nullable|image|mimes:jpeg,png,jpg,gif,webp,svg|max:2048',
-            'icon'           => 'nullable|image|mimes:jpeg,png,jpg,gif,webp,svg|max:1024',
-            'icon_text'      => 'nullable|string|max:255',
+            'page_name' => 'required|max:255',
+            'banner_image' => 'nullable|file|mimes:jpeg,png,jpg,gif,webp,svg',
+            'icon' => 'nullable|file|mimes:jpeg,png,jpg,gif,webp,svg|max:2048',
+            'icon_text' => 'nullable|string|max:255',
             'banner_content' => 'nullable|string',
-            'button_text'    => 'nullable|string|max:255',
-            'button_url'     => 'nullable|string|max:255',
+            'button_text' => 'nullable|string|max:255',
+            'button_url' => 'nullable|string|max:255',
         ]);
+
 
         // Update and delete old banner image
         if ($request->hasFile('banner_image')) {

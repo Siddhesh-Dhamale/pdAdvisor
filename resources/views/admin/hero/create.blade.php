@@ -15,7 +15,7 @@
         </div>
         <div class="mb-3">
             <label class="fw-bold" class="fw-bold">Icon Image</label>
-            <input type="file" name="icon" class="form-control">
+            <input type="file" name="icon" class="form-control" accept=".svg,.png,.jpg,.jpeg,.gif" >
         </div>
         <div class="mb-3">
             <label class="fw-bold" class="fw-bold">Icon Text</label>

@@ -25,7 +25,7 @@
 
     <div class="form-group">
       <label>Button Link</label>
-      <input type="url" name="button_link" class="form-control" value="{{ old('button_link', $cta->button_link ?? '') }}">
+      <input type="text" name="button_link" class="form-control" value="{{ old('button_link', $cta->button_link ?? '') }}">
     </div>
 
     <div class="form-group">

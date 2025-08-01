@@ -10,7 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <!-- Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
-
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote.min.css" rel="stylesheet">
     <style>
         body {
             background: #f4f6f9;
@@ -93,6 +93,9 @@
         <div class="p-4">
             <a href="{{ route('admin.dashboard') ?? '/admin' }}" class="navbar-brand text-white fs-4">Admin CMS</a>
         </div>
+        <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
+            @csrf
+        </form>
 
         @php
         $sidebarLinks = [
@@ -158,8 +161,38 @@
         ['route' => 'admin.topics.index', 'label' => 'Topics for Blogs', 'pattern' => 'admin.topics.*', 'icon' => 'bi-file-post'],
         ],
         ],
+        [
+        'title' => 'Contact Us',
+        'route' => 'admin.contact-us.index',
+        'pattern' => 'admin.contact-us.*',
+        'icon' => 'bi-envelope',
+        ],
         ];
         @endphp
+
+
+        <ul class="nav nav-pills flex-column gap-1 px-3">
+            @foreach ($sidebarLinks as $link)
+            <!-- your code to show links -->
+            @endforeach
+
+            <!-- Place Logout inside the sidebar menu list -->
+            <li class="nav-item mt-4">
+                <a href="{{ route('admin.logout') }}"
+                    class="nav-link text-danger"
+                    onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                    <i class="bi bi-box-arrow-left me-1"></i> Logout
+                </a>
+            </li>
+
+            <li class="nav-item mt-4">
+                <a class="nav-link text-warning" target="_blank" href="{{ url('/') }}">
+                    <i class="bi bi-box-arrow-up-right me-1"></i> View Site
+                </a>
+            </li>
+        </ul>
+
+
 
         <ul class="nav nav-pills flex-column gap-1 px-3">
             @foreach ($sidebarLinks as $link)
@@ -229,6 +262,13 @@
             document.getElementById('sidebar').classList.toggle('active');
         });
     </script>
+    <!-- jQuery (required for Summernote) -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- Bootstrap JS (required for Summernote; only include if not already via your admin layout) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Summernote JS -->
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote.min.js"></script>
+
 
     @yield('scripts')
     @stack('scripts')
