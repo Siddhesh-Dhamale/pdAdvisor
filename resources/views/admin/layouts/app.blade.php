@@ -156,10 +156,7 @@
         [
         'title' => 'Blogs',
         'icon' => 'bi-file-post',
-        'subLinks' => [
-        ['route' => 'admin.blog.index', 'label' => 'Blogs', 'pattern' => 'admin.blog.*', 'icon' => 'bi-file-post'],
-        ['route' => 'admin.topics.index', 'label' => 'Topics for Blogs', 'pattern' => 'admin.topics.*', 'icon' => 'bi-file-post'],
-        ],
+        'route' => 'admin.blog.index', 'label' => 'Blogs', 'pattern' => 'admin.blog.*', 'icon' => 'bi-file-post',
         ],
         [
         'title' => 'Contact Us',
@@ -203,12 +200,14 @@
             });
             @endphp
             <li class="nav-item">
-                <a class="nav-link d-flex justify-content-between align-items-center {{ $subActive ? 'active' : 'collapsed' }}"
+                <a class="nav-link d-flex justify-content-between align-items-center {{ $subActive ? '' : 'collapsed' }}"
                     href="#submenu-{{ \Illuminate\Support\Str::slug($link['title']) }}"
-                    data-bs-toggle="collapse" aria-expanded="{{ $subActive ? 'true' : 'false' }}">
+                    data-bs-toggle="collapse"
+                    aria-expanded="{{ $subActive ? 'true' : 'false' }}">
                     <span><i class="bi {{ $link['icon'] }}"></i> {{ $link['title'] }}</span>
                     <i class="bi bi-caret-down-fill"></i>
                 </a>
+
                 <div class="collapse {{ $subActive ? 'show' : '' }}" id="submenu-{{ \Illuminate\Support\Str::slug($link['title']) }}">
                     <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                         @foreach ($link['subLinks'] as $subLink)
@@ -256,7 +255,7 @@
     </div>
 
     <!-- Bootstrap JS Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> -->
     <script>
         document.getElementById('sidebarToggle').addEventListener('click', () => {
             document.getElementById('sidebar').classList.toggle('active');
@@ -268,7 +267,11 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Summernote JS -->
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote.min.js"></script>
-
+    <script>
+        document.getElementById('sidebarToggle').addEventListener('click', () => {
+            document.getElementById('sidebar').classList.toggle('active');
+        });
+    </script>
 
     @yield('scripts')
     @stack('scripts')

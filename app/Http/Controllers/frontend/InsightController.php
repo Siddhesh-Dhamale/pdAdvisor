@@ -1,26 +1,26 @@
 <?php
 
-namespace App\Http\Controllers\frontend;
+namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Blog;
-use App\Models\Topic;
+use App\Models\Solution;
 use App\Models\Industry;
-use App\Models\HeroSection; // example model for hero/banner sections
-use App\Models\SolIndIn;   // example CTA model
+use App\Models\HeroSection;
+use App\Models\SolIndIn;
 
 class InsightController extends Controller
 {
     public function index(Request $request)
     {
-        // Start query with eager loading topics and industries
-        $query = Blog::query()->with(['topics', 'industries']);
+        // Start blog query with eager loading
+        $query = Blog::with(['solutions', 'industries']);
 
-        // Filter by Topic
-        if ($request->filled('topic')) {
-            $query->whereHas('topics', function ($q) use ($request) {
-                $q->where('name', $request->topic);
+        // Filter by Solution
+        if ($request->filled('solution')) {
+            $query->whereHas('solutions', function ($q) use ($request) {
+                $q->where('title', $request->solution);  // adjust column name as per DB
             });
         }
 
@@ -31,32 +31,27 @@ class InsightController extends Controller
             });
         }
 
-        // Optional: Search by title/body
+        // Search in title/body
         if ($request->filled('q')) {
-            $q = $request->q;
-            $query->where(function ($sub) use ($q) {
-                $sub->where('title', 'LIKE', "%$q%")
-                    ->orWhere('body', 'LIKE', "%$q%");
+            $search = $request->q;
+            $query->where(function ($q) use ($search) {
+                $q->where('title', 'like', "%{$search}%")
+                    ->orWhere('body', 'like', "%{$search}%");
             });
         }
 
         // Get paginated blogs
         $blogs = $query->orderBy('created_at', 'desc')->paginate(9);
 
-        // For rendering filter options in your view
-        $topics = Topic::all();
-        $industries = Industry::all();
+        // Filter lists and hero/CTA content
+        $solutions     = Solution::all();
+        $industries    = Industry::all();
+        $heroSections  = HeroSection::where('page_name', 'insights')->get();
+        $solIndIns     = SolIndIn::where('page_name', 'insights')->get();
 
-        // Fetch HeroSection records for 'insight' page (adjust page_name accordingly)
-        $heroSections = HeroSection::where('page_name', 'insight')->get();
-
-        // Fetch CTA or related SolIndIn content for 'insight' page
-        $solIndIns = SolIndIn::where('page_name', 'insights')->get();
-        // print_r($solIndIns);
-        // Pass all to the view
         return view('frontend.pages.insight', compact(
             'blogs',
-            'topics',
+            'solutions',
             'industries',
             'heroSections',
             'solIndIns'
@@ -65,14 +60,12 @@ class InsightController extends Controller
 
     public function show($slug)
     {
-        $blog = Blog::with(['topics', 'industries'])->where('slug', $slug)->firstOrFail();
+        $blog = Blog::with(['solutions', 'industries'])
+            ->where('slug', $slug)
+            ->firstOrFail();
 
-        // Fetch HeroSection records for 'insight' page as well for single page
-        $heroSections = HeroSection::where('page_name', 'insight')->get();
-
-        // Fetch CTA or related SolIndIn content for 'insight' page
-        $solIndIns = SolIndIn::where('page_name', 'insight')->get();
-
+        $heroSections = HeroSection::where('page_name', 'insights')->get();
+        $solIndIns    = SolIndIn::where('page_name', 'insights')->get();
 
         return view('frontend.pages.singleBlog', compact(
             'blog',

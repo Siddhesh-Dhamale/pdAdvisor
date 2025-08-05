@@ -16,22 +16,35 @@
         {{view('frontend.layouts.header')}}
 
         <div class="page-wrapper">
-
             <section class="hero">
                 <div class="swiper hero-swiper">
                     <div class="swiper-wrapper">
+                        @foreach($heroes as $hero)
                         <div class="swiper-slide position-relative">
-                            <img class="w-100" src="frontend/img/about/abtHero.png" alt="">
-                            <div class="HeroContent text-start lh-1">
-                                <h2 class=" underlinedHeading"><span class="brdr-bottom-hero">Empowering
-                                        Ambitious</span></h2>
-                                <h1 class="m-0 p-0"> Leaders to Shape the <br> Future</h1>
-                                <a class="btn btn-danger rounded-lg px-4 my-5" href="/contact">Contact</a>
+                            <img class="w-100"
+                                src="{{ asset('frontend/img/hero/' . ($hero->banner_image ?? 'abtHero.png')) }}"
+                                alt="Hero Banner">
+                            <div class="HeroContent text-start lh-1 row">
+                                <span class="col-12 col-md-8">
+                                    {!! html_entity_decode($hero->banner_content ?? '') !!}
+                                </span>
+
+                                @if($hero->button_text && $hero->button_url)
+                                <div>
+                                    <a class="btn btn-danger rounded-lg px-4 my-5"
+                                        href="{{ $hero->button_url }}">
+                                        {{ $hero->button_text }}
+                                    </a>
+                                </div>
+
+                                @endif
                             </div>
                         </div>
+                        @endforeach
                     </div>
                 </div>
             </section>
+
 
             @php
             // Get the first Subhero record, or provide fallback text & image
@@ -208,8 +221,8 @@
                 </span><br>
                 Beyond Business
             </h1>
-            <div class="d-flex justify-content-center">
-                <p class="QASubcaption w-75 fullHeadingWidth">
+            <div class="row justify-content-center">
+                <p class="QASubcaption col-md-8 col-12 mx-auto text-justify fullHeadingWidth">
                     {!! nl2br(e($csr->description ?? 'We are dedicated to making a difference not only in the business world but also in the communities we serve. Our initiatives focus on sustainability, education, and social equity, reflecting our belief in responsible and inclusive growth.')) !!}
                 </p>
             </div>

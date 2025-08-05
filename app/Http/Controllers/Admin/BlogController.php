@@ -1,12 +1,12 @@
-<?PHP
+<?php
 
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Blog;
-use App\Models\Topic;
 use App\Models\Industry;
+use App\Models\Solution; // Add this if not already
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -16,9 +16,9 @@ class BlogController extends Controller
     {
         $query = Blog::query();
 
-        if ($request->filled('topic_name')) {
-            $query->whereHas('topics', function ($q) use ($request) {
-                $q->where('name', $request->input('topic_name'));
+        if ($request->filled('solution_title')) {
+            $query->whereHas('solutions', function ($q) use ($request) {
+                $q->where('title', $request->input('solution_title'));
             });
         }
         if ($request->filled('industry_title')) {
@@ -28,18 +28,18 @@ class BlogController extends Controller
         }
 
         $blogs = $query->latest()->paginate(10);
-        $topics = Topic::all();
+        $solutions = Solution::all();
         $industries = Industry::all();
 
-        return view('admin.blog.index', compact('blogs', 'topics', 'industries'));
+        return view('admin.blog.index', compact('blogs', 'solutions', 'industries'));
     }
 
     public function create()
     {
-        $topics = Topic::all();
+        $solutions = Solution::all();
         $industries = Industry::all();
 
-        return view('admin.blog.create', compact('topics', 'industries'));
+        return view('admin.blog.create', compact('solutions', 'industries'));
     }
 
     public function store(Request $request)
@@ -49,8 +49,8 @@ class BlogController extends Controller
             'slug' => 'required|string|max:255|unique:blogs,slug',
             'body' => 'required|string',
             'image' => 'nullable|image|max:2048',
-            'topic_names' => 'array|nullable',
-            'topic_names.*' => 'string|exists:topics,name',
+            'solution_titles' => 'array|nullable',
+            'solution_titles.*' => 'string|exists:solutions,title',
             'industry_titles' => 'array|nullable',
             'industry_titles.*' => 'string|exists:industries,title',
         ]);
@@ -62,18 +62,17 @@ class BlogController extends Controller
             $image = $request->file('image');
             $imageName = uniqid('blog_') . '.' . $image->getClientOriginalExtension();
             $image->move(public_path('frontend/img/blog'), $imageName);
-            $blogData['image'] = $imageName; // Save only filename
+            $blogData['image'] = $imageName;
         }
-
 
         $blog = Blog::create($blogData);
 
-        // Attach topics (by name)
-        if ($request->filled('topic_names')) {
-            foreach ($request->input('topic_names') as $name) {
-                DB::table('blog_topic')->insert([
+        // Attach solutions (by title)
+        if ($request->filled('solution_titles')) {
+            foreach ($request->input('solution_titles') as $title) {
+                DB::table('blog_solutions')->insert([
                     'blog_id' => $blog->id,
-                    'topic_name' => $name,
+                    'solution_title' => $title,
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);
@@ -102,12 +101,20 @@ class BlogController extends Controller
 
     public function edit(Blog $blog)
     {
-        $topics = Topic::all();
+        $solutions = Solution::all();
         $industries = Industry::all();
-        $selectedTopics = $blog->topics->pluck('name')->toArray();
-        $selectedIndustries = $blog->industries->pluck('title')->toArray();
+        // Get selected solution_titles from the pivot table
+        $selectedSolutions = DB::table('blog_solutions')
+            ->where('blog_id', $blog->id)
+            ->pluck('solution_title')
+            ->toArray();
+        // Get selected industry_titles from pivot
+        $selectedIndustries = DB::table('blog_industry')
+            ->where('blog_id', $blog->id)
+            ->pluck('industry_title')
+            ->toArray();
 
-        return view('admin.blog.edit', compact('blog', 'topics', 'industries', 'selectedTopics', 'selectedIndustries'));
+        return view('admin.blog.edit', compact('blog', 'solutions', 'industries', 'selectedSolutions', 'selectedIndustries'));
     }
 
     public function update(Request $request, Blog $blog)
@@ -117,8 +124,8 @@ class BlogController extends Controller
             'slug' => 'required|string|max:255|unique:blogs,slug,' . $blog->id,
             'body' => 'required|string',
             'image' => 'nullable|image|max:2048',
-            'topic_names' => 'array|nullable',
-            'topic_names.*' => 'string|exists:topics,name',
+            'solution_titles' => 'array|nullable',
+            'solution_titles.*' => 'string|exists:solutions,title',
             'industry_titles' => 'array|nullable',
             'industry_titles.*' => 'string|exists:industries,title',
         ]);
@@ -134,17 +141,17 @@ class BlogController extends Controller
             $image = $request->file('image');
             $imageName = uniqid('blog_') . '.' . $image->getClientOriginalExtension();
             $image->move(public_path('frontend/img/blog'), $imageName);
-            $blogData['image'] = $imageName; // Save only filename
+            $blogData['image'] = $imageName;
         }
         $blog->update($blogData);
 
-        // Sync topics
-        DB::table('blog_topic')->where('blog_id', $blog->id)->delete();
-        if ($request->filled('topic_names')) {
-            foreach ($request->input('topic_names') as $name) {
-                DB::table('blog_topic')->insert([
+        // Sync solutions (by title)
+        DB::table('blog_solutions')->where('blog_id', $blog->id)->delete();
+        if ($request->filled('solution_titles')) {
+            foreach ($request->input('solution_titles') as $title) {
+                DB::table('blog_solutions')->insert([
                     'blog_id' => $blog->id,
-                    'topic_name' => $name,
+                    'solution_title' => $title,
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);
@@ -173,7 +180,7 @@ class BlogController extends Controller
             Storage::disk('public')->delete($blog->image);
         }
 
-        DB::table('blog_topic')->where('blog_id', $blog->id)->delete();
+        DB::table('blog_solutions')->where('blog_id', $blog->id)->delete();
         DB::table('blog_industry')->where('blog_id', $blog->id)->delete();
 
         $blog->delete();

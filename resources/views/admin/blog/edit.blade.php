@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 
 @section('head')
-    <!-- Summernote CSS (Bootstrap 4 style, works fine with Bootstrap 5 too) -->
+    <!-- Summernote CSS (Bootstrap 4 style, works with Bootstrap 5) -->
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-bs4.min.css" rel="stylesheet">
 @endsection
 
@@ -42,23 +42,27 @@
                     <label class="form-label fw-bold">Body *</label>
                     <textarea id="summernote" class="form-control" name="body" rows="7" required>{{ old('body', $blog->body) }}</textarea>
                 </div>
+
+                <!-- SOLUTIONS checkbox group -->
                 <div class="mb-4">
-                    <label class="form-label fw-bold mb-2">Topics</label>
+                    <label class="form-label fw-bold mb-2">Solutions</label>
                     <div class="row">
-                        @foreach($topics as $topic)
+                        @foreach($solutions as $solution)
                             <div class="col-md-4 col-sm-6 mb-1">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="topic_names[]" value="{{ $topic->name }}"
-                                        id="topic_{{ $topic->id }}"
-                                        {{ collect(old('topic_names', $selectedTopics))->contains($topic->name) ? 'checked' : '' }}>
-                                    <label class="form-check-label fw-bold" for="topic_{{ $topic->id }}">
-                                        {{ $topic->name }}
+                                    <input class="form-check-input" type="checkbox" name="solution_titles[]" value="{{ $solution->title }}"
+                                        id="solution_{{ $solution->id }}"
+                                        {{ collect(old('solution_titles', $selectedSolutions))->contains($solution->title) ? 'checked' : '' }}>
+                                    <label class="form-check-label fw-bold" for="solution_{{ $solution->id }}">
+                                        {{ $solution->title }}
                                     </label>
                                 </div>
                             </div>
                         @endforeach
                     </div>
                 </div>
+
+                <!-- INDUSTRIES (unchanged) -->
                 <div class="mb-4">
                     <label class="form-label fw-bold mb-2">Industries</label>
                     <div class="row">
@@ -76,6 +80,7 @@
                         @endforeach
                     </div>
                 </div>
+
                 <div class="d-flex justify-content-end gap-3">
                     <button type="submit" class="btn btn-success">Update</button>
                     <a href="{{ route('admin.blog.index') }}" class="btn btn-secondary ml-2">Cancel</a>

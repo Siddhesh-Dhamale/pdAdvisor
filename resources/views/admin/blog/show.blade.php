@@ -10,11 +10,16 @@
 </div>
 <p><strong>Slug:</strong> {{ $blog->slug }}</p>
 <p>
-    <strong>Topics:</strong>
-    @forelse($blog->topics as $topic)
-        <span class="badge bg-info text-dark">{{ $topic->name }}</span>
+    <strong>Solutions:</strong>
+    @php
+        $solutions = DB::table('blog_solutions')
+            ->where('blog_id', $blog->id)
+            ->pluck('solution_title');
+    @endphp
+    @forelse($solutions as $solutionTitle)
+        <span class="badge bg-info text-dark">{{ $solutionTitle }}</span>
     @empty
-        <span class="text-muted">No topics</span>
+        <span class="text-muted">No solutions</span>
     @endforelse
 </p>
 <p>

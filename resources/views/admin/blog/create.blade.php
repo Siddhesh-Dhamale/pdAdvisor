@@ -36,16 +36,16 @@
                     <textarea id="summernote" class="form-control" name="body" rows="7" required>{{ old('body') }}</textarea>
                 </div>
                 <div class="mb-4">
-                    <label class="form-label fw-bold mb-2">Topics</label>
+                    <label class="form-label fw-bold mb-2">Solutions</label>
                     <div class="row">
-                        @foreach($topics as $topic)
+                        @foreach($solutions as $solution)
                             <div class="col-md-4 col-sm-6 mb-1">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="topic_names[]" value="{{ $topic->name }}"
-                                        id="topic_{{ $topic->id }}"
-                                        {{ collect(old('topic_names'))->contains($topic->name) ? 'checked' : '' }}>
-                                    <label class="form-check-label fw-bold" for="topic_{{ $topic->id }}">
-                                        {{ $topic->name }}
+                                    <input class="form-check-input" type="checkbox" name="solution_titles[]" value="{{ $solution->title }}"
+                                        id="solution_{{ $solution->id }}"
+                                        {{ collect(old('solution_titles'))->contains($solution->title) ? 'checked' : '' }}>
+                                    <label class="form-check-label fw-bold" for="solution_{{ $solution->id }}">
+                                        {{ $solution->title }}
                                     </label>
                                 </div>
                             </div>

@@ -26,14 +26,18 @@ use Illuminate\Support\Facades\Route;
 // ---------- Frontend Routes ----------
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/contact', [ContactController::class, 'index']);
-Route::get('/insights', [InsightController::class, 'index']);
+// Route::get('/insights', [InsightController::class, 'index']);
 Route::get('/about', [AboutController::class, 'index']);
 Route::get('/services', [ServicesController::class, 'index']);
 Route::get('/industries', [IndustriesController::class, 'index']);
 Route::get('/industries/{slug}', [AgribusinessController::class, 'index'])->name('industries.show');
 Route::get('/solutions', [FrontendSolutionController::class, 'index'])->name('frontend.solutions.index');
 Route::get('/solutions/{slug}', [FrontendSolutionController::class, 'show'])->name('frontend.solutions.show');
-Route::get('/insights/{slug}', [InsightController::class, 'show'])->name('frontend.blog.show');
+// Route::get('/insights/{slug}', [InsightController::class, 'show'])->name('frontend.blog.show');
+Route::get('/insights', [InsightController::class, 'index'])->name('insights');
+Route::get('/insights/{slug}', [InsightController::class, 'show'])->name('insights.show');
+
+
 
 // ---------- Admin Routes ----------
 

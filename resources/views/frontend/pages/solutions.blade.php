@@ -279,13 +279,16 @@ if(count($words) <= 3) {
                     </div>
                 </div>
 
-
-                <div class="cta-banner">
+                @php
+                // Assuming $cta is passed and contains the Cta model instance
+                $backgroundImageUrl = $solution->cta_image
+                ? asset('frontend/img/solutions/' . $solution->cta_image)
+                : asset('frontend/img/hero/default-cta.jpg');
+                @endphp
+                <div class="cta-banner" style="background-image: url('{{ $backgroundImageUrl }}');">
                     <div class="cta-content">
                         <h2 class="fw-bold"><span class="brdr-bottom">{{ $solution->cta_title }}</span></h2>
-                        <!-- @if($solution->cta_image)
-                        <img src="{{ asset('frontend/img/solutions/'.$solution->cta_image) }}" class="img-fluid mb-3">
-                        @endif -->
+
                         @if($solution->cta_button_text)
                         <a href="/contact" class="btn btn-danger rounded px-4 my-4">{{ $solution->cta_button_text }}</a>
                         @endif

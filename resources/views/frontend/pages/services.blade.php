@@ -70,11 +70,11 @@
                     @if($solIndIns->count())
                     @foreach($solIndIns as $sectionData)
 
-                    <div class="row justify-content-evenly text-start pt-2">
-                        <div class="col-12 col-md-3 p-4">
-                            <small>
+                    <div class="row justify-content-evenly align-items-start text-start pt-2">
+                        <div class="col-12 col-md-2 ">
+                            <p class="text-uppercase medium text-muted mb-2 ">
                                 {{ $sectionData->section_title ?? '' }}
-                            </small>
+                            </p>
                         </div>
                         <div class="col-12 col-md-4">
                             @php
@@ -88,7 +88,7 @@
                             $remainingWords = implode(' ', array_slice($words, 2));
                             @endphp
 
-                            <h1 class="fw-bold">
+                            <h1 class=" fw-bold">
                                 <span class="brdr-bottom">
                                     {{ $firstTwoWords }}
                                 </span><br>
@@ -111,7 +111,7 @@
                     @endif
 
                 </div>
-                <section class="containe ServiceScrollButton position-absolute d-flex justify-content-end pb-2">
+                <section class="container ServiceScrollButton position-absolute d-flex justify-content-end pb-2">
                     <div class="rotating-scroll magnetic-wrapper ">
                         <a href="" class="go-down-btn magnetic-btn" title="Scroll down">
                             <svg xmlns="http://www.w3.org/2000/svg"

@@ -14,9 +14,7 @@
     @method('PUT')
     @endif
 
-    <div class="d-flex justify-content-end position-fixed top-0 end-0 p-5">
-        <button type="submit" class="btn btn-primary btn-lg px-4">{{ isset($solution) ? 'Update' : 'Create' }}</button>
-    </div>
+
 
     {{-- Title, Slug, Description, Icon --}}
     <div class="row g-3 mb-4">
@@ -221,14 +219,41 @@
             @endif
         </div>
     </section>
+    <div class="d-flex justify-content-start">
+        <button type="submit" class="btn btn-primary btn-lg px-4">{{ isset($solution) ? 'Update' : 'Create' }}</button>
+    </div>
 </form>
 @push('scripts')
 <script>
     // Set initial indices based on existing solution or old input, just like your industry form 
-    let cardIndex = {{ count(old('cards', $solution->solutionCards ?? [['card_heading' => '', 'card_description' => '']])) }};
-    let counterIndex = {{ count(old('counters', $solution->solutionCounters ?? [['title' => '', 'number' => '']])) }};
-    let resultCardIndex = {{ count(old('result_cards', $solution->solutionResultCards ?? [['card_heading' => '', 'card_description' => '', 'card_image' => '']])) }};
-    let serviceIndex = {{ count(old('services', $solution->services ?? [['service_heading' => '', 'service_url' => '']])) }};
+    let cardIndex = {
+        {
+            count(old('cards', $solution - > solutionCards ?? [
+                ['card_heading' => '', 'card_description' => '']
+            ]))
+        }
+    };
+    let counterIndex = {
+        {
+            count(old('counters', $solution - > solutionCounters ?? [
+                ['title' => '', 'number' => '']
+            ]))
+        }
+    };
+    let resultCardIndex = {
+        {
+            count(old('result_cards', $solution - > solutionResultCards ?? [
+                ['card_heading' => '', 'card_description' => '', 'card_image' => '']
+            ]))
+        }
+    };
+    let serviceIndex = {
+        {
+            count(old('services', $solution - > services ?? [
+                ['service_heading' => '', 'service_url' => '']
+            ]))
+        }
+    };
 
     function removeElement(button) {
         button.closest('.card, .row').remove();

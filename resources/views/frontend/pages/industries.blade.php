@@ -59,12 +59,12 @@
                     @foreach($solIndIns as $sectionData)
 
                     <div class="row">
-                        <div class="col-md-2">
+                        <div class="col-12 col-md-2">
                             <p class="text-uppercase medium text-muted mb-2">
                                 {{ $sectionData->section_title ?? '' }}
                             </p>
                         </div>
-                        <div class="col-md-5">
+                        <div class="col-12 col-md-5">
                             @php
                             // Split the heading into words
                             $words = isset($sectionData->heading) ? explode(' ', $sectionData->heading) : [];
@@ -86,7 +86,7 @@
                             </h2>
 
                         </div>
-                        <div class="col-md-5">
+                        <div class="col-12 col-md-5">
                             <p class="text-muted">
                                 {{ $sectionData->description ?? '' }}
                             </p>

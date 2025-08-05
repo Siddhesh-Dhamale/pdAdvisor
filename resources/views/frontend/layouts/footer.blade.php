@@ -60,12 +60,12 @@
             <div class="col-md-8 col-12 p-0 ">
                 <div class="bg-danger p-4 socialNames text-start d-flex justify-content-between">
                     {{-- Use social links dynamically --}}
-                    <a href="{{ $footerData->facebook_link ?? '#' }}" class="mx-3 text-white" target="_blank" rel="noopener">Facebook</a>
+                    <!-- <a href="{{ $footerData->facebook_link ?? '#' }}" class="mx-3 text-white" target="_blank" rel="noopener">Facebook</a>
                     <a href="{{ $footerData->insta_link ?? '#' }}" class="mx-3 text-white" target="_blank" rel="noopener">Instagram</a>
                     <a href="{{ $footerData->youtube_link ?? '#' }}" class="mx-3 text-white" target="_blank" rel="noopener">YouTube</a>
                     <a href="https://wa.me/{{ preg_replace('/\D/', '', $footerData->whatsapp_number ?? '') }}" class="mx-3 text-white" target="_blank" rel="noopener">WhatsApp</a>
                     <a href="{{ $footerData->twitter_link ?? '#' }}" class="mx-3 text-white" target="_blank" rel="noopener">Twitter</a>
-                    <a href="{{ $footerData->linkedin_link ?? '#' }}" class="mx-3 text-white" target="_blank" rel="noopener">LinkedIn</a>
+                    <a href="{{ $footerData->linkedin_link ?? '#' }}" class="mx-3 text-white" target="_blank" rel="noopener">LinkedIn</a> -->
                 </div>
             </div>
         </div>
@@ -79,9 +79,10 @@
                 </p>
                 <div class="d-flex justify-content-center justify-content-md-start mt-5 socialIcons">
                     {{-- Social Icons with dynamic links --}}
-                    <a href="{{ $footerData->facebook_link ?? '#' }}" class="me-3 text-white" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
-                    <a href="{{ $footerData->twitter_link ?? '#' }}" class="me-3 text-white" target="_blank" rel="noopener"><i class="fa-brands fa-x-twitter"></i></a>
                     <a href="{{ $footerData->linkedin_link ?? '#' }}" class="me-3 text-white" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="{{ $footerData->facebook_link ?? '#' }}" class="me-3 text-white" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+                    <a href="{{ $footerData->instagram_link ?? '#' }}" class="me-3 text-white" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+                    <a href="{{ $footerData->twitter_link ?? '#' }}" class="me-3 text-white" target="_blank" rel="noopener"><i class="fa-brands fa-x-twitter"></i></a>
                     <a href="{{ $footerData->youtube_link ?? '#' }}" class="me-3 text-white" target="_blank" rel="noopener"><i class="fab fa-youtube"></i></a>
                     <a href="tel:{{ $footerData->phone_number_1 ?? '' }}" class="text-white"><i class="fas fa-phone"></i></a>
                 </div>

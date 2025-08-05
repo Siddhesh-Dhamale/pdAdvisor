@@ -9,11 +9,11 @@
 
 <form method="get" class="row mb-4 gx-2">
     <div class="col-md-auto">
-        <select name="topic_name" class="form-select form-select-sm">
-            <option value="">Filter by Topic</option>
-            @foreach($topics as $topic)
-                <option value="{{ $topic->name }}" {{ request('topic_name') == $topic->name ? 'selected' : '' }}>
-                    {{ $topic->name }}
+        <select name="solution_title" class="form-select form-select-sm">
+            <option value="">Filter by Solution</option>
+            @foreach($solutions as $solution)
+                <option value="{{ $solution->title }}" {{ request('solution_title') == $solution->title ? 'selected' : '' }}>
+                    {{ $solution->title }}
                 </option>
             @endforeach
         </select>
@@ -41,7 +41,7 @@
                 <th>Image</th>
                 <th>Title</th>
                 <th>Slug</th>
-                <th>Topics</th>
+                <th>Solutions</th>
                 <th>Industries</th>
                 <th>Created</th>
                 <th style="width:180px;">Actions</th>
@@ -60,8 +60,11 @@
                 <td>{{ $blog->title }}</td>
                 <td>{{ $blog->slug }}</td>
                 <td>
-                    @foreach($blog->topics as $topic)
-                        <span class="badge bg-info text-dark">{{ $topic->name }}</span>
+                    @php
+                        $solutionsForBlog = DB::table('blog_solutions')->where('blog_id', $blog->id)->pluck('solution_title');
+                    @endphp
+                    @foreach($solutionsForBlog as $solutionTitle)
+                        <span class="badge bg-info text-dark">{{ $solutionTitle }}</span>
                     @endforeach
                 </td>
                 <td>

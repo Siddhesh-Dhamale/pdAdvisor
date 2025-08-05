@@ -7,7 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Blog extends Model
 {
     protected $fillable = [
-        'title', 'slug', 'body', 'image'];
+        'title',
+        'slug',
+        'body',
+        'image'
+    ];
     // Blog can have many Topics through the pivot table (by name string)
     public function topics()
     {
@@ -32,5 +36,9 @@ class Blog extends Model
             'id',
             'title'
         );
+    }
+    public function solutions()
+    {
+        return $this->belongsToMany(Solution::class, 'blog_solutions', 'blog_id', 'solution_title', 'id', 'title');
     }
 }
