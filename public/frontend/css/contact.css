@@ -14,7 +14,7 @@
     object-fit: cover;
 }
 
-.hero-content {
+.hero-content1 {
     position: absolute;
     top: 50%;
     left: 78%;
@@ -25,7 +25,7 @@
     width: 90%;
 }
 
-.hero-content h1 {
+.hero-content1 h1 {
     font-size: 2.5rem;
     font-weight: 600;
 }
@@ -36,7 +36,7 @@
 }
 
 @media (max-width: 768px) {
-    .hero-content h1 {
+    .hero-content1 h1 {
         font-size: 1.8rem;
     }
 
@@ -45,12 +45,12 @@
         float: none !important;
     }
 
-    .hero-content {
+    .hero-content1 {
         left: 50% !important;
         bottom: 20%;
         /* transform: translate(-50%, -50%); */
     }
-    .hero-content {
+    .hero-content1 {
         text-align: center !important;
     }
 }

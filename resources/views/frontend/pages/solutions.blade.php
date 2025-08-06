@@ -154,9 +154,9 @@ if(count($words) <= 3) {
                     @foreach($solution->solutionCards as $card)
                     <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex">
                         <div class="service-card d-flex gap-2 flex-column justify-content-between" data-bs-toggle="modal"
-                            data-bs-target="#cardModal{{ $loop->iteration }}">
+                            data-bs-target="#cardModal{{ $loop->index + 1 }}">
                             <div>
-                                <div class="card-number pt-3 QASubcaption">{{ $loop->iteration }}</div>
+                                <div class="card-number pt-3 QASubcaption">{{ $loop->index + 1 }}</div>
                                 <div class="service-title text-danger fw-bold pt-3">{{ $card->card_heading }}</div>
                                 <div class="service-desc pt-3 QASubcaption truncate-text">
                                     {{ \Illuminate\Support\Str::limit($card->card_description, 100) }}
@@ -165,19 +165,19 @@ if(count($words) <= 3) {
                             <button
                                 class="btn btn-link read-more mt-3 fw-semibold p-0 text-start text-decoration-none"
                                 data-bs-toggle="modal"
-                                data-bs-target="#cardModal{{ $loop->iteration }}">
+                                data-bs-target="#cardModal{{ $loop->index + 1 }}">
                                 Read More
                             </button>
                         </div>
                     </div>
 
                     <!-- Modal Styled as Card -->
-                    <div class="modal fade" id="cardModal{{ $loop->iteration }}" tabindex="-1" aria-labelledby="cardModalLabel{{ $loop->iteration }}" aria-hidden="true">
+                    <div class="modal fade" id="cardModal{{ $loop->index + 1 }}" tabindex="-1" aria-labelledby="cardModalLabel{{ $loop->index + 1 }}" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered ">
                             <div class="modal-content p-0 border-0">
                                 <div class="service-card d-flex flex-column gap-2 justify-content-between border-0">
                                     <div>
-                                        <div class="card-number pt-3 QASubcaption">{{ $loop->iteration }}</div>
+                                        <div class="card-number pt-3 QASubcaption">{{ $loop->index + 1 }}</div>
                                         <div class="service-title text-danger fw-bold pt-3">{{ $card->card_heading }}</div>
                                         <div class="service-desc pt-3 QASubcaption">
                                             {{ $card->card_description }}

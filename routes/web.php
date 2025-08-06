@@ -20,7 +20,7 @@ use App\Http\Controllers\frontend\IndustriesController;
 use App\Http\Controllers\frontend\AboutController;
 use App\Http\Controllers\frontend\ServicesController;
 use App\Http\Controllers\frontend\AgribusinessController;
-
+use App\Http\Controllers\LeadController;
 use Illuminate\Support\Facades\Route;
 
 // ---------- Frontend Routes ----------
@@ -37,8 +37,8 @@ Route::get('/solutions/{slug}', [FrontendSolutionController::class, 'show'])->na
 Route::get('/insights', [InsightController::class, 'index'])->name('insights');
 Route::get('/insights/{slug}', [InsightController::class, 'show'])->name('insights.show');
 
-
-
+// ----------Leads Routes----------
+Route::post('/lead/submit', [LeadController::class, 'store'])->name('lead.submit');
 // ---------- Admin Routes ----------
 
 Route::get('login', function () {

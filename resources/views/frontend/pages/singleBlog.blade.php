@@ -11,14 +11,26 @@
 </head>
 
 <?php $page_name = 'insights'; ?>
+<style>
+    header {
+        color: rgb(0, 0, 0) !important;
+        background-color: white !important;
+        transition: background-color 0.3s !important;
+    }
+
+    header .nav-link,
+    header .companyLogo {
+        color: rgb(119, 119, 119) !important;
+    }
+</style>
 
 <body>
     <div class="main">
         {{ view('frontend.layouts.header') }}
 
-        <div class="page-wrapper">
+        <div class="page-wrapper py-5">
             <!-- HERO SECTION -->
-            <section class="hero">
+            <!-- <section class="hero">
                 <div class="hero-container col-md-8">
                     <img src="{{ asset('frontend/img/insight/insights-banner.png') }}" alt="Hero Image" class="hero-image" />
                     <div class="hero-content">
@@ -27,11 +39,11 @@
                         <a href="/contact" class="btn btn-danger rounded-lg px-4 btn-contact align-item-right">Contact</a>
                     </div>
                 </div>
-            </section>
+            </section> -->
 
             <!-- BLOG DETAIL SECTION -->
             <section class="py-5 mx-auto" style="">
-                <div class="container card p-2" >
+                <div class="container card p-2">
 
                     <!-- @if($blog->image)
                         <img src="{{ asset('frontend/img/blog/' . $blog->image) }}" class="mb-4 w-100 rounded" alt="{{ $blog->title }}" style="max-height:320px;object-fit:cover;" />

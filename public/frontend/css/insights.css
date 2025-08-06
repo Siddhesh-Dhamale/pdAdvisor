@@ -14,21 +14,20 @@
     object-fit: cover;
 }
 
-.hero-content {
+/* .hero-content1 {
     position: absolute;
     top: 40%;
     left: 5%;
-    /* transform: translate(-50%, -50%); */
     text-align: left;
     color: #ffffff;
     max-width: 500px;
     width: 90%;
 }
 
-.hero-content h1 {
+.hero-content1 h1 {
     font-size: 2.5rem;
     font-weight: 600;
-}
+} */
 
 .btn-contact {
     margin-top: 70px;
@@ -36,7 +35,7 @@
 }
 
 @media (max-width: 768px) {
-    .hero-content h1 {
+    .hero-content1 h1 {
         font-size: 1.8rem;
     }
 
@@ -45,7 +44,7 @@
         float: none !important;
     }
 
-    .hero-content {
+    .hero-content1 {
         left: 50% !important;
         bottom: 20%;
         /* transform: translate(-50%, -50%); */
@@ -86,7 +85,7 @@
     .btn-contact {
         margin-top: 20px;
     }
-    .hero-content {
+    .hero-content1 {
         text-align: center !important;
     }
     .brdr-bottom::after {

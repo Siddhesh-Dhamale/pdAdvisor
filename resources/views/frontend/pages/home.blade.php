@@ -244,22 +244,46 @@
 
                     <!-- Right Content: List of Blog Insights -->
                     <div class="col-md-6 col-12 BusinessScrollContainer">
+                        <!-- @forelse($blogs as $blog)
+                        <div class="blog-item mb-4 p-3 border rounded">
+                            <h4>{{ $blog->title }}</h4>
+                            <p><strong>Slug:</strong> {{ $blog->slug }}</p>
+                            <p><strong>Description:</strong> {{ $blog->description ?? 'N/A' }}</p>
+                            <p><strong>Image:</strong> <img src="{{ asset('frontend/img/blog/' . $blog->image) }}" alt="{{ $blog->title }}" style="max-height: 100px;"></p>
+                            <p><strong>Created At:</strong> {{ $blog->created_at }}</p>
+                            <p><strong>Updated At:</strong> {{ $blog->updated_at }}</p>
+
+                            {{-- If you want to see all attributes raw --}}
+                            <pre>{{ json_encode($blog->toArray(), JSON_PRETTY_PRINT) }}</pre>
+                        </div>
+                        @empty
+                        <p>No blogs available.</p>
+                        @endforelse -->
+
                         @forelse($blogs as $blog)
-                        <a href="{{ url('blog/' . $blog->slug) }}" class="text-decoration-none text-dark mb-4 d-block">
+                        <a href="{{ url('insights/' . $blog->slug) }}" class="text-decoration-none text-dark mb-4 d-block">
                             <div class="row pb-4">
-                                <div class="col-md-5 col-12">
+                                <div class="col-md-6 col-12">
                                     <div class="d-flex align-items-center gap-4">
                                         <div>
                                             <img src="{{ asset('frontend/img/blog/' . $blog->image) }}"
                                                 alt="{{ $blog->title }}"
-                                                style="width: 100px; height: 100px;">
+                                                style="width: 100px; height: 100px; border-radius:100%;">
                                         </div>
-                                        <div class="name">
+                                        <!-- <div class="name">
                                             <p class="fw-bold m-0">{{ $blog->title }}</p>
+                                        </div> -->
+                                        <div class="text-muted mb-3">
+                                            {{ $blog->created_at->format('M d, Y') }}
+                                            <br />
+                                            @if($blog->industries->isNotEmpty())
+                                            <span class="badge bg-secondary ">{{ $blog->industries->first()->title }}</span>
+                                            @endif
                                         </div>
+
                                     </div>
                                 </div>
-                                <div class="col-md-7 col-12">
+                                <div class="col-md-6 col-12">
                                     <div>
                                         <span class="small badge rounded-pill text-bg-secondary px-3 py-2">Solutions by Us</span>
                                         <span class="small px-3">{{ $blog->created_at->format('F d, Y') }}</span>
@@ -319,9 +343,8 @@
             </section>
 
 
-            <section class="scroll-snap-section container py-5">
+            <!-- <section class="scroll-snap-section container py-5">
                 <div class="row align-items-center">
-                    <!-- Left Content -->
                     <div class="col-lg-4 mb-4 mb-lg-0">
                         <h1 class="fw-bold"> <span class="brdr-bottom">Our Latest</span> <br>Insights</h1>
                         <p class="text-muted mt-3 QASubcaption">Expert perspectives, sharp analysis, and strategic
@@ -329,11 +352,9 @@
                         <a href="/insights" class="btn btn-danger mt-3 px-4">Read More</a>
                     </div>
 
-                    <!-- Right Content: Swiper Carousel -->
                     <div class="col-lg-8">
                         <div class="swiper insightsSwiper">
                             <div class="swiper-wrapper">
-                                <!-- Card 1 -->
                                 <div class="swiper-slide">
                                     <div class="card border-0">
                                         <img src="frontend/img/home/insight1.png" class="card-img-to" alt="Insight 1">
@@ -344,7 +365,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- Card 2 -->
                                 <div class="swiper-slide">
                                     <div class="card border-0">
                                         <img src="frontend/img/home/insight2.png" class="card-img-to" alt="Insight 2">
@@ -355,7 +375,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- Card 1 -->
                                 <div class="swiper-slide">
                                     <div class="card border-0">
                                         <img src="frontend/img/home/insight1.png" class="card-img-to" alt="Insight 1">
@@ -366,7 +385,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- Card 2 -->
                                 <div class="swiper-slide">
                                     <div class="card border-0">
                                         <img src="frontend/img/home/insight2.png" class="card-img-to" alt="Insight 2">
@@ -378,14 +396,13 @@
                                     </div>
                                 </div>
 
-                                <!-- Add more slides as needed -->
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
+            </section> -->
             <!-- dynamic blog -->
-            <!-- <section class="scroll-snap-section container py-5">
+            <section class="scroll-snap-section container py-5">
                 <div class="row align-items-center">
                     <div class="col-lg-4 mb-4 mb-lg-0">
                         <h1 class="fw-bold">
@@ -402,19 +419,20 @@
                             <div class="swiper-wrapper">
                                 @forelse($blogs as $blog)
                                 <div class="swiper-slide">
-                                    <div class="card border-0">
-                                        <img src="{{ asset('frontend/img/blog/' . $blog->image) }}"
-                                            class="card-img-top"
-                                            alt="{{ $blog->title }}">
-                                        <div class="card-body">
-                                            <small class="text-muted">
-                                                {{-- Replace with category if available --}}
-                                                Category Name | {{ $blog->created_at->format('M d, Y') }}
-                                            </small>
-                                            <h5 class="card-title mt-2">{{ $blog->title }}</h5>
+                                    <a href="{{ route('insights.show', $blog->slug) }}" class="text-decoration-none text-reset">
+                                        <div class="card border-0">
+                                            <img src="{{ asset('frontend/img/blog/' . $blog->image) }}" class="card-img-top" alt="{{ $blog->title }}">
+                                            <div class="card-body">
+                                                <small class="text-muted">
+                                                    {{-- Replace with category if available --}}
+                                                    Category Name | {{ $blog->created_at->format('M d, Y') }}
+                                                </small>
+                                                <h5 class="card-title mt-2">{{ $blog->title }}</h5>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </a>
                                 </div>
+
                                 @empty
                                 <div class="swiper-slide">
                                     <p>No insights available at the moment.</p>
@@ -424,12 +442,12 @@
 
                             {{-- Optional swiper controls --}}
                             <div class="swiper-pagination"></div>
-                            <div class="swiper-button-next"></div>
-                            <div class="swiper-button-prev"></div>
+                            <!-- <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div> -->
                         </div>
                     </div>
                 </div>
-            </section> -->
+            </section>
 
 
             <!-- <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script> -->

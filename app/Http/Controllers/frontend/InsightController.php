@@ -48,6 +48,7 @@ class InsightController extends Controller
         $industries    = Industry::all();
         $heroSections  = HeroSection::where('page_name', 'insights')->get();
         $solIndIns     = SolIndIn::where('page_name', 'insights')->get();
+        // dd($solIndIns);
 
         return view('frontend.pages.insight', compact(
             'blogs',

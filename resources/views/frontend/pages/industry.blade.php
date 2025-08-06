@@ -13,6 +13,50 @@
 
 </head>
 <style>
+    .service-card {
+        border: 1px solid #eee;
+        padding: 20px;
+        transition: all 0.3s ease-in-out;
+        height: 100%;
+        min-height: 300px;
+        cursor: pointer;
+    }
+
+    .service-card:hover {
+        border-top: 5px solid red !important;
+    }
+
+    .modal-content .service-card {
+        border-top: 5px solid red !important;
+    }
+
+
+    .read-more {
+        margin-top: auto;
+        font-weight: 500;
+        color: #333;
+    }
+
+    .servicesBtn {
+        background-color: transparent !important;
+        border: 1.5px solid #959595 !important;
+        color: #c8102e;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        /* smooth transition */
+    }
+
+    .servicesBtn:hover {
+        background-color: #c8102e !important;
+        border-color: #c8102e !important;
+        /* keep border, just change color */
+        color: white !important;
+    }
+
+    .solutionsHero {
+        padding-top: 115px;
+    }
+
     header {
         color: rgb(0, 0, 0) !important;
         background-color: white !important;
@@ -22,6 +66,15 @@
     header .nav-link,
     header .companyLogo {
         color: rgb(119, 119, 119) !important;
+    }
+
+    .truncate-text {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        /* Show only 3 lines */
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 </style>
 
@@ -73,7 +126,7 @@
             </section>
 
             <!-- WHY TRUST SECTION -->
-            @php
+            <!-- @php
             $hasHeading = !empty($industry->subhero_heading);
             $hasDescriptions = collect(range(1, 4))->contains(fn($i) => !empty($industry->{'subhero_description' . $i}));
             @endphp
@@ -82,11 +135,11 @@
             <section class="why-trust-section text-white py-5 scroll-snap-section">
                 <div class="container">
                     <div class="row align-items-center">
-                        <div class="col-md-6">
+                        <div class="col-md-5 col-12">
                             <h2 class="section-heading"><span
                                     class="brdr-bottom">{!! $industry->subhero_heading !!}</span></h2>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-7 col-12">
                             <div class="row g-4">
                                 @foreach (range(1, 4) as $i)
                                 @php $desc = $industry->{'subhero_description' . $i}; @endphp
@@ -104,7 +157,7 @@
                     </div>
                 </div>
             </section>
-            @endif
+            @endif -->
 
             <!-- SOLUTIONS CARDS -->
             <section class="agribusiness-solutions py-5 scroll-snap-section">
@@ -114,38 +167,43 @@
                     </h2>
                     <div class="row g-4">
                         @foreach($industry->industryCards as $index => $card)
-                        <div class="col-md-3">
-                            @php
-                            $matchedChild = $industry->children->firstWhere('title', $card->card_heading);
-                            @endphp
-
-                            @if($matchedChild)
-                            <a href="{{ route('industries.show', $matchedChild->slug) }}"
-                                class="text-decoration-none text-dark">
-                                <div class="solution-card">
-                                    <div class="card-content">
-                                        <span class="card-number">{{ sprintf('%02d', $index + 1) }}</span>
-                                        <h5 class="card-title">{{ $card->card_heading }}</h5>
-                                        <p class="card-text">{{ $card->card_description }}</p>
-                                        <span class="read-more">Read More</span>
-                                    </div>
-                                </div>
-                            </a>
-                            @else
-                            <div class="solution-card">
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex">
+                            <div class="service-card d-flex gap-2 flex-column justify-content-between" data-bs-toggle="modal" data-bs-target="#readMoreModal{{ $index + 1 }}">
                                 <div class="card-content">
                                     <span class="card-number">{{ sprintf('%02d', $index + 1) }}</span>
-                                    <h5 class="card-title">{{ $card->card_heading }}</h5>
-                                    <p class="card-text">{{ $card->card_description }}</p>
-                                    <span class="read-more">Read More</span>
+                                    <h5 class="service-title text-danger fw-bold pt-3">{{ $card->card_heading }}</h5>
+                                    <p class="service-desc pt-3 QASubcaption truncate-text" id="desc-{{ $index }}">{{ $card->card_description }}</p>
+                                    <button class="btn btn-link p-0 read-more" data-bs-toggle="modal" data-bs-target="#readMoreModal{{ $index + 1 }}">
+                                        Read More
+                                    </button>
                                 </div>
                             </div>
-                            @endif
+                        </div>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="readMoreModal{{ $index + 1 }}" tabindex="-1" aria-labelledby="readMoreModalLabel{{ $index + 1 }}" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered ">
+                                <div class="modal-content p-0 border-0">
+                                    <div class="service-card d-flex flex-column gap-2 justify-content-between border-0">
+                                        <div>
+                                            <div class="card-number pt-3 QASubcaption">{{ $index + 1 }}</div>
+                                            <div class="service-title text-danger fw-bold pt-3">{{ $card->card_heading }}</div>
+                                            <div class="service-desc pt-3 QASubcaption">
+                                                {{ $card->card_description }}
+                                            </div>
+                                        </div>
+                                        <div class="text-end mt-3">
+                                            <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         @endforeach
                     </div>
                 </div>
             </section>
+
 
 
 
@@ -205,7 +263,7 @@
             }
             @endphp
 
-            <section class="insights-section py-5">
+            <!-- <section class="insights-section py-5">
                 <div class="container">
                     <h2 class="section-title mb-5 text-align-center">
                         <span class="brdr-bottom">{{ $industry->result_cards_heading }}</span>
@@ -226,8 +284,53 @@
                         @endforeach
                     </div>
                 </div>
+            </section> -->
+            @endif
+            @if($blogs->count())
+            @php
+            $blogsToShow = collect();
+
+            if ($blogs->count() >= 3) {
+            $blogsToShow = $blogs->take(3);
+            } elseif ($blogs->count() === 2) {
+            // Repeat first blog to make 3
+            $blogsToShow = collect([$blogs[0], $blogs[1], $blogs[0]]);
+            } elseif ($blogs->count() === 1) {
+            // Repeat the single blog 3 times
+            $blogsToShow = collect([$blogs[0], $blogs[0], $blogs[0]]);
+            }
+            @endphp
+
+            <section class="blog-section py-5">
+                <div class="container">
+                    <h2 class="section-title mb-5 text-align-center">
+                        <span class="brdr-bottom">Insights That Matter</span> 
+                    </h2>
+                
+                    <div class="row g-5">
+                        @foreach($blogsToShow as $blog)
+                        <div class="col-md-4">
+                            <div class="blog-card text-left">
+                                @if($blog->image)
+                                <img src="{{ asset('frontend/img/blog/' . $blog->image) }}"
+                                    class="img-fluid mb-3"
+                                    alt="Blog image for {{ $blog->title }}">
+                                @endif
+                                <h5 class="blog-title text-danger">{!! $blog->title !!}</h5>
+                                <p class="blog-excerpt text-muted">
+                                    {{ \Illuminate\Support\Str::limit(strip_tags($blog->body ?? ''), 120) }}
+                                </p>
+                                <a href="{{ route('insights.show', $blog->slug) }}" class="read-more fw-bold text-black">
+                                    Read more &gt;&gt;&gt;
+                                </a>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
             </section>
             @endif
+
 
 
             <!-- CTA -->

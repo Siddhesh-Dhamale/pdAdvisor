@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 // Import all models from the 'about' folder
 use App\Models\about\Approach;
-use App\Models\about\CSR;
+use App\Models\about\Csr;
 use App\Models\about\Experience;
 use App\Models\about\Subhero;
 use App\Models\about\ValuePoints;

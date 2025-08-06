@@ -135,8 +135,8 @@
                                 <!-- Non-clickable card if hero_heading is null -->
                                 <div class="text-dark">
                                     @endif
-                                    <img src="{{ asset('frontend/img/industries/' . ($i + 1) . '.png') }}"
-                                        alt="{{ $industry->title }}" class="mb-3" />
+                                    <img src="{{ asset('frontend/img/industries/' . $industry->icon) }}" alt="Industry Icon">
+                                    <!-- alt="{{ $industry->title }}" class="mb-3" /> -->
                                     <h6 class="fw-bold text-danger">{{ $industry->title }}</h6>
                                     <p class="small">
                                         {{ $industry->short_description ?? 'Explore opportunities and solutions.' }}

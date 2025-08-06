@@ -115,7 +115,17 @@
 
                         <!-- Right Form Column -->
                         <div class="col-md-7">
-                            <form method="POST" action="">
+                            @if(session('success'))
+                            <div class="alert alert-success">{{ session('success') }}</div>
+                            @endif
+
+                            @if($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>@foreach($errors->all() as $error)<li>{{ $error }}</li>@endforeach</ul>
+                            </div>
+                            @endif
+
+                            <form method="POST" action="{{ route('lead.submit') }}">
                                 @csrf
                                 <div class="mb-3">
                                     <input type="text" name="name" class="form-control" placeholder="Name" required />

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Blog;
 use App\Models\Industry;
 use App\Models\HeroSection;
 use App\Models\SolIndIn;
@@ -39,11 +40,13 @@ class IndustriesController extends Controller
 
         // Fetch SolIndIn content for "industries" page
         $solIndIns = SolIndIn::where('page_name', 'industries')->get();
+        $blogs = Blog::get();
 
         return view('frontend.pages.industry', compact(
             'industry',
             'heroSections',
-            'solIndIns'
+            'solIndIns',
+            'blogs',
         ));
     }
 }

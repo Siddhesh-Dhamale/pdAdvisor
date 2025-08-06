@@ -100,16 +100,20 @@
                 <div class="rotating-scroll magnetic-wrapper position-absolute end-0">
                     <!-- your SVG scroll button ... -->
                 </div>
+                @php $solIndIn = $solIndIns->first(); @endphp
+
                 <div class="container heading-section">
                     <h2 class="fw-bold text-center">
-                        <span class="brdr-bottom">Stay ahead with our latest thinking.</span>
+                        <span class="brdr-bottom">
+                            {{ $solIndIn->heading ?? '111Stay ahead with our latest thinking.' }}
+                        </span>
                     </h2>
                     <p class="mx-auto mt-5 text-center">
-                        Explore our latest research, client stories, and expert perspectives to help
-                        you stay ahead in an ever-changing world. Our insights reflect the depth of our experience across industries and
-                        capabilities, offering practical guidance and innovative thinking.
+                        {{ $solIndIn->description ?? 'Explore our latest research, client stories, and expert perspectives to help you stay ahead in an ever-changing world. Our insights reflect the depth of our experience across industries and capabilities, offering practical guidance and innovative thinking.' }}
                     </p>
                 </div>
+
+
             </section>
 
             <!-- FILTERING + BLOGS SECTION -->

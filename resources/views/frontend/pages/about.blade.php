@@ -193,7 +193,7 @@
                                 <span class="brdr-bottom">
                                     {{ $experience->heading ?? 'Serving Clients' }}
                                 </span>
-                                <br> Across Diverse <br> Market
+                                <!-- <br> Across Diverse <br> Market -->
                             </h1>
                             <p class="QASubcaption">
                                 {{ $experience->description_1 ?? 'We believe in working side by side with our clients, fostering partnerships built on trust and mutual respect.' }}
@@ -219,7 +219,7 @@
                 <span class="brdr-bottom">
                     {{ $csr->heading ?? 'Driving Positive Change' }}
                 </span><br>
-                Beyond Business
+                <!-- Beyond Business -->
             </h1>
             <div class="row justify-content-center">
                 <p class="QASubcaption col-md-8 col-12 mx-auto text-justify fullHeadingWidth">
